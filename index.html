@@ -660,49 +660,50 @@ body {
         <div class="subsection__desc">Brand action color. Used for buttons, links, focus rings, active states, and interactive elements.</div>
 
         <div class="demo">
-          <div class="demo__canvas demo__canvas--white" style="gap:16px">
-            <div class="swatch-block">
-              <div class="sw-lg" style="background:#371ee1"></div>
-              <div class="sw-info">
-                <div class="sw-name">Default</div>
-                <div class="sw-token">--s-primary-bg-default</div>
-                <div class="sw-hex">#371ee1</div>
+          <div class="demo__canvas demo__canvas--white" style="flex-direction:column; gap:0; padding:16px">
+            <div class="palette-grid">
+              <div class="pc">
+                <div class="pc-swatch" style="background:#f6f8ff; border:1px solid #dae2fe; border-bottom:none"></div>
+                <div class="pc-label"><div class="pc-step">50</div><div class="pc-hex">#f6f8ff</div></div>
               </div>
-            </div>
-            <div class="swatch-block">
-              <div class="sw-lg" style="background:#221098"></div>
-              <div class="sw-info">
-                <div class="sw-name">Hover</div>
-                <div class="sw-token">--s-primary-bg-hover</div>
-                <div class="sw-hex">#221098</div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#dae2fe"></div>
+                <div class="pc-label"><div class="pc-step">100</div><div class="pc-hex">#dae2fe</div></div>
               </div>
-            </div>
-            <div class="swatch-block">
-              <div class="sw-lg" style="background:#110662"></div>
-              <div class="sw-info">
-                <div class="sw-name">Active</div>
-                <div class="sw-token">--s-primary-bg-active</div>
-                <div class="sw-hex">#110662</div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#b5c5fd"></div>
+                <div class="pc-label"><div class="pc-step">200</div><div class="pc-hex">#b5c5fd</div></div>
               </div>
-            </div>
-            <div class="swatch-block">
-              <div class="sw-lg" style="background:#dae2fe; border:1px solid #bfbeb9"></div>
-              <div class="sw-info">
-                <div class="sw-name">Weak</div>
-                <div class="sw-token">--s-primary-bg-weak-active</div>
-                <div class="sw-hex">#dae2fe</div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#7b87f5"></div>
+                <div class="pc-label" style="border-color:#aab3f8"><div class="pc-step">300</div><div class="pc-hex">#7b87f5</div></div>
               </div>
-            </div>
-            <div class="swatch-block">
-              <div class="sw-lg" style="background:#f6f8ff; border:1px solid #bfbeb9"></div>
-              <div class="sw-info">
-                <div class="sw-name">Weak bg</div>
-                <div class="sw-token">--s-primary-bg-weak-default</div>
-                <div class="sw-hex">#f6f8ff</div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#5561ef"></div>
+                <div class="pc-label" style="border-color:#8d99f3"><div class="pc-step">400</div><div class="pc-hex">#5561ef</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#371ee1"></div>
+                <div class="pc-label" style="border-color:#7060ea"><div class="pc-step">500</div><div class="pc-hex">#371ee1</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#2c18b4"></div>
+                <div class="pc-label" style="border-color:#6050c0"><div class="pc-step">600</div><div class="pc-hex">#2c18b4</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#221098"></div>
+                <div class="pc-label" style="border-color:#5040a0"><div class="pc-step">700</div><div class="pc-hex">#221098</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#170b72"></div>
+                <div class="pc-label" style="border-color:#40307a"><div class="pc-step">800</div><div class="pc-hex">#170b72</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#110662"></div>
+                <div class="pc-label" style="border-color:#382068"><div class="pc-step">900</div><div class="pc-hex">#110662</div></div>
               </div>
             </div>
           </div>
-          <div class="demo__label">Primary palette</div>
         </div>
       </div>
 
@@ -774,68 +775,202 @@ body {
       <!-- Semantic -->
       <div class="subsection">
         <div class="subsection__title">Semantic — Sentiments</div>
-        <div class="subsection__desc">Four sentiments each with a fill, hover, active, and weak palette for backgrounds and borders.</div>
+        <div class="subsection__desc">Four sentiments each with a fill ramp and tinted background scale for use in chips, callouts, and status indicators.</div>
 
-        <div class="demo">
-          <div class="demo__canvas demo__canvas--white" style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:20px;">
-            <div>
-              <div class="swatch-row" style="border-radius:6px; margin-bottom:6px">
-                <div class="sw" style="background:#00795d"></div>
-                <div class="sw" style="background:#00513e"></div>
-                <div class="sw" style="background:#00382b"></div>
+        <!-- Success -->
+        <div style="margin-bottom:20px">
+          <div style="font-size:12px; font-weight:600; color:#00795d; margin-bottom:8px; display:flex; align-items:center; gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:#00795d;display:inline-block"></span>Success</div>
+          <div class="demo__canvas demo__canvas--white" style="flex-direction:column; gap:0; padding:16px">
+            <div class="palette-grid">
+              <div class="pc">
+                <div class="pc-swatch" style="background:#f2f9f8; border:1px solid #cce8e2; border-bottom:none"></div>
+                <div class="pc-label"><div class="pc-step">Bg</div><div class="pc-hex">#f2f9f8</div></div>
               </div>
-              <div class="swatch-row" style="border-radius:4px; height:20px; border:1px solid #e8e7e3">
-                <div class="sw" style="background:#f2f9f8"></div>
-                <div class="sw" style="background:#e6f4f0"></div>
-                <div class="sw" style="background:#cce8e2"></div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#e6f4f0"></div>
+                <div class="pc-label"><div class="pc-step">Bg hover</div><div class="pc-hex">#e6f4f0</div></div>
               </div>
-              <div style="margin-top:6px; font-size:12px; font-weight:700; color:#00795d">Success</div>
-              <div style="font-family:var(--mono); font-size:11px; color:var(--stone-500)">#00795d</div>
-            </div>
-            <div>
-              <div class="swatch-row" style="border-radius:6px; margin-bottom:6px">
-                <div class="sw" style="background:#d50047"></div>
-                <div class="sw" style="background:#910031"></div>
-                <div class="sw" style="background:#670022"></div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#cce8e2"></div>
+                <div class="pc-label"><div class="pc-step">Bg active</div><div class="pc-hex">#cce8e2</div></div>
               </div>
-              <div class="swatch-row" style="border-radius:4px; height:20px; border:1px solid #e8e7e3">
-                <div class="sw" style="background:#fef6f9"></div>
-                <div class="sw" style="background:#fdedf2"></div>
-                <div class="sw" style="background:#fbdae5"></div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#99d1c5"></div>
+                <div class="pc-label" style="border-color:#b0dbd3"><div class="pc-step">Border</div><div class="pc-hex">#99d1c5</div></div>
               </div>
-              <div style="margin-top:6px; font-size:12px; font-weight:700; color:#d50047">Error</div>
-              <div style="font-family:var(--mono); font-size:11px; color:var(--stone-500)">#d50047</div>
-            </div>
-            <div>
-              <div class="swatch-row" style="border-radius:6px; margin-bottom:6px">
-                <div class="sw" style="background:#ece68c"></div>
-                <div class="sw" style="background:#c4bc45"></div>
-                <div class="sw" style="background:#716d28"></div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#4da896"></div>
+                <div class="pc-label" style="border-color:#80c0b0"><div class="pc-step">Muted</div><div class="pc-hex">#4da896</div></div>
               </div>
-              <div class="swatch-row" style="border-radius:4px; height:20px; border:1px solid #e8e7e3">
-                <div class="sw" style="background:#faf9e3"></div>
-                <div class="sw" style="background:#f6f3c7"></div>
-                <div class="sw" style="background:#ece68c"></div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#00795d"></div>
+                <div class="pc-label" style="border-color:#40a080"><div class="pc-step">Default</div><div class="pc-hex">#00795d</div></div>
               </div>
-              <div style="margin-top:6px; font-size:12px; font-weight:700; color:#716d28">Warning</div>
-              <div style="font-family:var(--mono); font-size:11px; color:var(--stone-500)">#ece68c · txt #716d28</div>
-            </div>
-            <div>
-              <div class="swatch-row" style="border-radius:6px; margin-bottom:6px">
-                <div class="sw" style="background:#8351c2"></div>
-                <div class="sw" style="background:#583583"></div>
-                <div class="sw" style="background:#3c245a"></div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#00654e"></div>
+                <div class="pc-label" style="border-color:#30886a"><div class="pc-step">Hover</div><div class="pc-hex">#00654e</div></div>
               </div>
-              <div class="swatch-row" style="border-radius:4px; height:20px; border:1px solid #e8e7e3">
-                <div class="sw" style="background:#f9f7fc"></div>
-                <div class="sw" style="background:#f3eff9"></div>
-                <div class="sw" style="background:#e8dff4"></div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#00513e"></div>
+                <div class="pc-label" style="border-color:#207058"><div class="pc-step">Active</div><div class="pc-hex">#00513e</div></div>
               </div>
-              <div style="margin-top:6px; font-size:12px; font-weight:700; color:#8351c2">Info</div>
-              <div style="font-family:var(--mono); font-size:11px; color:var(--stone-500)">#8351c2</div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#003d2f"></div>
+                <div class="pc-label" style="border-color:#105845"><div class="pc-step">Strong</div><div class="pc-hex">#003d2f</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#00382b"></div>
+                <div class="pc-label" style="border-color:#084838"><div class="pc-step">Deep</div><div class="pc-hex">#00382b</div></div>
+              </div>
             </div>
           </div>
-          <div class="demo__label">Each row: default → hover → active + weak bg ramp</div>
+        </div>
+
+        <!-- Error -->
+        <div style="margin-bottom:20px">
+          <div style="font-size:12px; font-weight:600; color:#d50047; margin-bottom:8px; display:flex; align-items:center; gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:#d50047;display:inline-block"></span>Error</div>
+          <div class="demo__canvas demo__canvas--white" style="flex-direction:column; gap:0; padding:16px">
+            <div class="palette-grid">
+              <div class="pc">
+                <div class="pc-swatch" style="background:#fef6f9; border:1px solid #fbdae5; border-bottom:none"></div>
+                <div class="pc-label"><div class="pc-step">Bg</div><div class="pc-hex">#fef6f9</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#fdedf2"></div>
+                <div class="pc-label"><div class="pc-step">Bg hover</div><div class="pc-hex">#fdedf2</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#fbdae5"></div>
+                <div class="pc-label"><div class="pc-step">Bg active</div><div class="pc-hex">#fbdae5</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#f5a8c0"></div>
+                <div class="pc-label" style="border-color:#f8bfce"><div class="pc-step">Border</div><div class="pc-hex">#f5a8c0</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#e85080"></div>
+                <div class="pc-label" style="border-color:#ef80a0"><div class="pc-step">Muted</div><div class="pc-hex">#e85080</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#d50047"></div>
+                <div class="pc-label" style="border-color:#e04070"><div class="pc-step">Default</div><div class="pc-hex">#d50047</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#b5003c"></div>
+                <div class="pc-label" style="border-color:#c83060"><div class="pc-step">Hover</div><div class="pc-hex">#b5003c</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#910031"></div>
+                <div class="pc-label" style="border-color:#a82050"><div class="pc-step">Active</div><div class="pc-hex">#910031</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#780029"></div>
+                <div class="pc-label" style="border-color:#901040"><div class="pc-step">Strong</div><div class="pc-hex">#780029</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#670022"></div>
+                <div class="pc-label" style="border-color:#800838"><div class="pc-step">Deep</div><div class="pc-hex">#670022</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Warning -->
+        <div style="margin-bottom:20px">
+          <div style="font-size:12px; font-weight:600; color:#716d28; margin-bottom:8px; display:flex; align-items:center; gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:#ece68c;display:inline-block"></span>Warning</div>
+          <div class="demo__canvas demo__canvas--white" style="flex-direction:column; gap:0; padding:16px">
+            <div class="palette-grid">
+              <div class="pc">
+                <div class="pc-swatch" style="background:#faf9e3; border:1px solid #f0ecb8; border-bottom:none"></div>
+                <div class="pc-label"><div class="pc-step">Bg</div><div class="pc-hex">#faf9e3</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#f6f3c7"></div>
+                <div class="pc-label"><div class="pc-step">Bg hover</div><div class="pc-hex">#f6f3c7</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#ece68c"></div>
+                <div class="pc-label"><div class="pc-step">Bg active</div><div class="pc-hex">#ece68c</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#d8d060"></div>
+                <div class="pc-label" style="border-color:#e0d870"><div class="pc-step">Border</div><div class="pc-hex">#d8d060</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#c4bc45"></div>
+                <div class="pc-label" style="border-color:#d0c855"><div class="pc-step">Muted</div><div class="pc-hex">#c4bc45</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#a09830"></div>
+                <div class="pc-label" style="border-color:#b0a840"><div class="pc-step">Default</div><div class="pc-hex">#a09830</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#88822c"></div>
+                <div class="pc-label" style="border-color:#989238"><div class="pc-step">Hover</div><div class="pc-hex">#88822c</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#716d28"></div>
+                <div class="pc-label" style="border-color:#807830"><div class="pc-step">Active</div><div class="pc-hex">#716d28</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#585420"></div>
+                <div class="pc-label" style="border-color:#686028"><div class="pc-step">Strong</div><div class="pc-hex">#585420</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#423f18"></div>
+                <div class="pc-label" style="border-color:#504c20"><div class="pc-step">Deep</div><div class="pc-hex">#423f18</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div>
+          <div style="font-size:12px; font-weight:600; color:#8351c2; margin-bottom:8px; display:flex; align-items:center; gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:#8351c2;display:inline-block"></span>Info</div>
+          <div class="demo__canvas demo__canvas--white" style="flex-direction:column; gap:0; padding:16px">
+            <div class="palette-grid">
+              <div class="pc">
+                <div class="pc-swatch" style="background:#f9f7fc; border:1px solid #e8dff4; border-bottom:none"></div>
+                <div class="pc-label"><div class="pc-step">Bg</div><div class="pc-hex">#f9f7fc</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#f3eff9"></div>
+                <div class="pc-label"><div class="pc-step">Bg hover</div><div class="pc-hex">#f3eff9</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#e8dff4"></div>
+                <div class="pc-label"><div class="pc-step">Bg active</div><div class="pc-hex">#e8dff4</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#d0bce8"></div>
+                <div class="pc-label" style="border-color:#dccef0"><div class="pc-step">Border</div><div class="pc-hex">#d0bce8</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#ab85d8"></div>
+                <div class="pc-label" style="border-color:#c0a0e0"><div class="pc-step">Muted</div><div class="pc-hex">#ab85d8</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#8351c2"></div>
+                <div class="pc-label" style="border-color:#9868cc"><div class="pc-step">Default</div><div class="pc-hex">#8351c2</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#6d43a3"></div>
+                <div class="pc-label" style="border-color:#8058b0"><div class="pc-step">Hover</div><div class="pc-hex">#6d43a3</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#583583"></div>
+                <div class="pc-label" style="border-color:#684890"><div class="pc-step">Active</div><div class="pc-hex">#583583</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#472c6b"></div>
+                <div class="pc-label" style="border-color:#584078"><div class="pc-step">Strong</div><div class="pc-hex">#472c6b</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#3c245a"></div>
+                <div class="pc-label" style="border-color:#483065"><div class="pc-step">Deep</div><div class="pc-hex">#3c245a</div></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
