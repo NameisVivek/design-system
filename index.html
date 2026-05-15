@@ -3,848 +3,1427 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Design System — Framework</title>
-
-<!-- Inter (Google Fonts CDN) -->
+<title>Design System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..700;1,14..32,400..700&display=swap" rel="stylesheet">
-
-<!-- Supply icon font + glyph map -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="project/preview/supply-icons.css">
 <style>
-/* Ensure icons render inline-block (supply-icons.css doesn't set this) */
-[class^='s-icon-'],
-[class*=' s-icon-'] { display: inline-block; }
-</style>
+/* ─── Reset ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
-/* ============================================================
-   Supply Design System — Core Tokens
-   Source: @wtg/supply-tokens (WiseTechGlobal/WTG.WebComponents)
-   ============================================================ */
 :root {
-  --s-fontfamily-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'SF Mono', 'JetBrains Mono', Consolas, Menlo, monospace;
 
-  /* Type primitives */
-  --s-fontsize-100: 10px;
-  --s-fontsize-200: 12px;
-  --s-fontsize-300: 13px;
-  --s-fontsize-400: 16px;
-  --s-fontsize-500: 20px;
-  --s-fontsize-600: 28px;
-  --s-fontsize-700: 32px;
-  --s-fontsize-800: 40px;
-  --s-fontweight-400: 400;
-  --s-fontweight-500: 500;
-  --s-fontweight-600: 600;
-  --s-fontweight-700: 700;
-  --s-lineheight-100: 10px;
-  --s-lineheight-200: 16px;
-  --s-lineheight-300: 20px;
-  --s-lineheight-400: 24px;
-  --s-lineheight-500: 28px;
-  --s-lineheight-600: 34px;
-  --s-lineheight-700: 38px;
-  --s-lineheight-800: 48px;
+  /* brand */
+  --indigo-900: #110662; --indigo-700: #221098; --indigo-500: #371ee1;
+  --indigo-300: #7b87f5; --indigo-100: #dae2fe; --indigo-50:  #f6f8ff;
 
-  /* Spacing + padding */
-  --s-spacing-null: 0; --s-padding-null: 0;
-  --s-spacing-xs: 2px;  --s-padding-xs: 2px;
-  --s-spacing-s: 4px;   --s-padding-s: 4px;
-  --s-spacing-m: 8px;   --s-padding-m: 8px;
-  --s-spacing-l: 12px;  --s-padding-l: 12px;
-  --s-spacing-xl: 16px; --s-padding-xl: 16px;
-  --s-spacing-xxl: 24px; --s-padding-xxl: 24px;
+  /* neutral */
+  --stone-950: #1b1b1a; --stone-900: #383836; --stone-700: #5c5b57;
+  --stone-500: #8d8c88; --stone-300: #bfbeb9; --stone-200: #dad9d5;
+  --stone-100: #e8e7e3; --stone-50:  #efeeeb; --canvas: #f7f7f4;
 
-  /* Radii */
-  --s-radius-null: 0;
-  --s-radius-xs: 2px;
-  --s-radius-s: 4px;
-  --s-radius-m: 8px;
-  --s-radius-l: 12px;
-  --s-radius-xl: 16px;
-  --s-radius-xxl: 24px;
+  /* semantic */
+  --green:  #00795d; --green-bg:  #f2f9f8; --green-border:  rgba(0,121,93,0.35);
+  --red:    #d50047; --red-bg:    #fef6f9; --red-border:    rgba(213,0,71,0.35);
+  --yellow: #716d28; --yellow-bg: #faf9e3; --yellow-border: rgba(113,109,40,0.35);
+  --yellow-fill: #ece68c;
+  --violet: #8351c2; --violet-bg: #f9f7fc; --violet-border: rgba(131,81,194,0.35);
 
-  /* Icon sizing */
-  --s-sizing-icon-sm: 16px;
-  --s-sizing-icon-md: 20px;
-  --s-sizing-icon-lg: 28px;
-  --s-sizing-icon-xl: 34px;
-  --s-sizing-icon-2xl: 38px;
-  --s-sizing-icon-3xl: 48px;
+  /* elevation */
+  --shadow-100: 0 1px 1px rgba(27,27,26,.06), inset 0 -1px 1px rgba(27,27,26,.12);
+  --shadow-200: 0 2px 4px rgba(27,27,26,.12), inset 0 -1px 1px rgba(27,27,26,.12);
+  --shadow-300: 0 4px 8px rgba(27,27,26,.16), inset 0 -1px 1px rgba(27,27,26,.12);
 
-  /* Typography compositions */
-  --s-display-lg-default: var(--s-fontweight-700) var(--s-fontsize-800) / var(--s-lineheight-800) var(--s-fontfamily-primary);
-  --s-display-md-default: var(--s-fontweight-700) var(--s-fontsize-700) / var(--s-lineheight-700) var(--s-fontfamily-primary);
-  --s-display-sm-default: var(--s-fontweight-700) var(--s-fontsize-600) / var(--s-lineheight-600) var(--s-fontfamily-primary);
-  --s-title-lg-default:   var(--s-fontweight-600) var(--s-fontsize-500) / var(--s-lineheight-500) var(--s-fontfamily-primary);
-  --s-title-md-default:   var(--s-fontweight-600) var(--s-fontsize-400) / var(--s-lineheight-400) var(--s-fontfamily-primary);
-  --s-title-sm-default:   var(--s-fontweight-600) var(--s-fontsize-300) / var(--s-lineheight-300) var(--s-fontfamily-primary);
-  --s-text-md-default:    var(--s-fontweight-400) var(--s-fontsize-300) / var(--s-lineheight-300) var(--s-fontfamily-primary);
-  --s-text-md-strong:     var(--s-fontweight-600) var(--s-fontsize-300) / var(--s-lineheight-300) var(--s-fontfamily-primary);
-  --s-text-sm-default:    var(--s-fontweight-400) var(--s-fontsize-200) / var(--s-lineheight-200) var(--s-fontfamily-primary);
-  --s-text-sm-strong:     var(--s-fontweight-600) var(--s-fontsize-200) / var(--s-lineheight-200) var(--s-fontfamily-primary);
-  --s-text-xs-default:    var(--s-fontweight-400) var(--s-fontsize-100) / var(--s-lineheight-100) var(--s-fontfamily-primary);
-  --s-text-xs-strong:     var(--s-fontweight-600) var(--s-fontsize-100) / var(--s-lineheight-100) var(--s-fontfamily-primary);
-
-  /* Primary / Brand (indigo) */
-  --s-primary-bg-default: #371ee1;
-  --s-primary-bg-hover: #221098;
-  --s-primary-bg-active: #110662;
-  --s-primary-bg-weak-default: #f6f8ff;
-  --s-primary-bg-weak-hover: #ecf1ff;
-  --s-primary-bg-weak-active: #dae2fe;
-  --s-primary-bg-tonal-default: rgba(55, 30, 225, 0.06);
-  --s-primary-bg-tonal-hover: rgba(55, 30, 225, 0.12);
-  --s-primary-bg-tonal-active: rgba(55, 30, 225, 0.15);
-  --s-primary-border-default: #371ee1;
-  --s-primary-border-hover: #221098;
-  --s-primary-border-active: #110662;
-  --s-primary-txt-default: #371ee1;
-  --s-primary-txt-hover: #221098;
-  --s-primary-txt-active: #110662;
-  --s-primary-txt-inv-default: #f6f8ff;
-  --s-primary-icon-default: #371ee1;
-  --s-primary-icon-weak-default: #4d58eb;
-
-  /* Neutral (warm stone) */
-  --s-neutral-canvas-default: #f7f7f4;
-  --s-neutral-bg-default: #ffffff;
-  --s-neutral-bg-weak-default: #f7f7f4;
-  --s-neutral-bg-weak-hover: #efeeeb;
-  --s-neutral-bg-weak-active: #e8e7e3;
-  --s-neutral-bg-disabled: #f7f7f4;
-  --s-neutral-bg-hover: #383836;
-  --s-neutral-bg-active: #1b1b1a;
-  --s-neutral-bg-tonal-default: rgba(27, 27, 26, 0.06);
-  --s-neutral-bg-tonal-hover: rgba(27, 27, 26, 0.12);
-  --s-neutral-bg-tonal-active: rgba(27, 27, 26, 0.15);
-  --s-neutral-border-default: #5c5b57;
-  --s-neutral-border-hover: #383836;
-  --s-neutral-border-active: #1b1b1a;
-  --s-neutral-border-weak-default: #bfbeb9;
-  --s-neutral-border-weak-hover: #8d8c88;
-  --s-neutral-border-weak-active: #5c5b57;
-  --s-neutral-border-disabled: #dad9d5;
-  --s-neutral-divider: #383836;
-  --s-neutral-txt-default: #383836;
-  --s-neutral-txt-hover: #1b1b1a;
-  --s-neutral-txt-active: #000000;
-  --s-neutral-txt-disabled: #8d8c88;
-  --s-neutral-txt-weak-default: #5c5b57;
-  --s-neutral-txt-weak-hover: #383836;
-  --s-neutral-txt-weak-active: #1b1b1a;
-  --s-neutral-txt-inv-default: #f7f7f4;
-  --s-neutral-icon-default: #383836;
-  --s-neutral-icon-hover: #1b1b1a;
-  --s-neutral-icon-weak-default: #5c5b57;
-  --s-neutral-icon-disabled: #8d8c88;
-
-  /* Success */
-  --s-success-bg-default: #00795d;
-  --s-success-bg-hover: #00513e;
-  --s-success-bg-weak-default: #f2f9f8;
-  --s-success-border-default: #00795d;
-  --s-success-txt-default: #00795d;
-  --s-success-txt-inv-default: #f2f9f8;
-
-  /* Error */
-  --s-error-bg-default: #d50047;
-  --s-error-bg-weak-default: #fef6f9;
-  --s-error-border-default: #d50047;
-  --s-error-txt-default: #d50047;
-  --s-error-txt-inv-default: #fef6f9;
-
-  /* Warning */
-  --s-warning-bg-default: #ece68c;
-  --s-warning-bg-weak-default: #faf9e3;
-  --s-warning-border-default: #716d28;
-  --s-warning-txt-default: #716d28;
-  --s-warning-txt-inv-default: #4b481b;
-
-  /* Info */
-  --s-info-bg-default: #8351c2;
-  --s-info-bg-weak-default: #f9f7fc;
-  --s-info-border-default: #8351c2;
-  --s-info-txt-default: #8351c2;
-  --s-info-txt-inv-default: #f9f7fc;
-
-  /* Elevation */
-  --s-elevation-100: 0px 1px 1px 0px rgba(27, 27, 26, 0.06), inset 0px -1px 1px 0px rgba(27, 27, 26, 0.12);
-  --s-elevation-200: 0px 2px 4px 0px rgba(27, 27, 26, 0.12), inset 0px -1px 1px 0px rgba(27, 27, 26, 0.12);
-  --s-elevation-300: 0px 4px 8px 0px rgba(27, 27, 26, 0.16), inset 0px -1px 1px 0px rgba(27, 27, 26, 0.12);
-  --s-elevation-button-default: 0px 1px 1px 0px rgba(27, 27, 26, 0.06), inset 0px -1px 1px 1px #efeeeb, inset 0px 0px 2px 0px #f7f7f4;
-  --s-elevation-button-pressed: inset 0px 1px 2px 1px #bfbeb9, inset 0px -1px 1px 0px rgba(191, 190, 185, 0.4);
+  /* layout */
+  --sidebar-w: 224px;
+  --topbar-h: 56px;
 }
 
-/* ============================================================
-   Reset + base
-   ============================================================ */
-*, *::before, *::after { box-sizing: border-box; }
-html, body {
-  margin: 0; padding: 0;
-  height: 100%; min-height: 700px;
-  background: var(--s-neutral-canvas-default);
-  color: var(--s-neutral-txt-default);
-  font: var(--s-text-md-default);
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--stone-900);
+  background: #fff;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
 }
 
-/* ============================================================
-   App shell
-   Indigo sidebar floats as a rounded card on neutral canvas.
-   White content column is flush to the right of the sidebar.
-   ============================================================ */
-.app {
-  display: grid;
-  grid-template-columns: 216px 1fr;
-  gap: 12px;
-  padding: 12px;
-  height: 100vh;
-  min-height: 700px;
-  background: var(--s-neutral-canvas-default);
-}
+[class^='s-icon-'], [class*=' s-icon-'] { display: inline-block; }
 
-/* ============================================================
-   Sidebar — WtgNavigationDrawer shell
-   Floating indigo card with rounded corners
-   ============================================================ */
-.side {
-  display: flex;
-  flex-direction: column;
-  padding: 12px 0;
-  background: var(--s-primary-bg-default);
-  border-radius: var(--s-radius-m);
-  overflow: hidden;
-  color: #fff;
+/* ─── Top bar ────────────────────────────────────────────────────────────── */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--topbar-h);
+  background: var(--indigo-500);
+  display: flex; align-items: center;
+  padding: 0 24px;
+  gap: 32px;
 }
-
-.side .logo {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 6px 16px 18px;
-}
-
-.side .brand {
-  font: var(--s-title-md-default);
+.topbar__logo {
+  font-size: 15px; font-weight: 700;
   color: #fff;
   letter-spacing: -0.01em;
-}
-
-/* Icon button for light (indigo) backgrounds */
-.iconbtn-light {
-  width: 24px; height: 24px;
-  border: 0;
-  background: transparent;
-  color: #fff;
-  opacity: 0.75;
-  border-radius: var(--s-radius-s);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-}
-.iconbtn-light:hover { background: rgba(255,255,255,0.12); opacity: 1; }
-
-/* Portal card */
-.portal {
-  margin: 0 12px 14px;
-  padding: 10px 12px;
-  background: rgba(255,255,255,0.12);
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  cursor: pointer;
-}
-.portal:hover { background: rgba(255,255,255,0.18); }
-.portal .lbl { font: var(--s-text-md-strong); color: #fff; line-height: 18px; }
-.portal .sub { font: var(--s-text-sm-default); color: rgba(255,255,255,0.78); line-height: 16px; }
-
-/* Navigation slot area */
-.slot {
-  margin: 4px 14px 0;
-  padding: 24px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  color: rgba(255,255,255,0.55);
-  font: var(--s-text-sm-default);
-}
-.slot .dots {
-  width: 14px; height: 14px;
-  background:
-    radial-gradient(circle 1.2px at 3px 3px, rgba(255,255,255,0.55) 99%, transparent 100%),
-    radial-gradient(circle 1.2px at 11px 3px, rgba(255,255,255,0.55) 99%, transparent 100%),
-    radial-gradient(circle 1.2px at 3px 11px, rgba(255,255,255,0.55) 99%, transparent 100%),
-    radial-gradient(circle 1.2px at 11px 11px, rgba(255,255,255,0.55) 99%, transparent 100%);
-}
-
-.side-spacer { flex: 1; }
-
-/* Bottom nav items */
-.side-bottom { padding: 0 12px 4px; display: flex; flex-direction: column; gap: 2px; }
-
-.sideitem {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  color: rgba(255,255,255,0.92);
-  font: var(--s-text-md-strong);
-  line-height: 18px;
-}
-.sideitem:hover { background: rgba(255,255,255,0.12); }
-.sideitem .chev { margin-left: auto; opacity: 0.7; }
-.sideitem i { font-size: var(--s-sizing-icon-sm); flex-shrink: 0; }
-
-.sideitem.user { margin-top: 8px; padding: 10px 12px; }
-.sideitem.user .ava {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: #c4b8f5;
-  color: #221098;
-  font: var(--s-text-xs-strong);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-/* ============================================================
-   Main column — canvas background, full height
-   ============================================================ */
-.main-col {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  background: var(--s-neutral-canvas-default);
-  overflow: hidden;
-  position: relative;
-}
-
-/* ============================================================
-   WtgMasthead — port of WtgMasthead.vue
-   ============================================================ */
-.masthead {
-  flex: none;
-  background: var(--s-neutral-canvas-default);
-  padding-left: var(--s-padding-xl);
-}
-
-/* Top toolbar row (.v-toolbar__content equivalent) */
-.mh-row {
-  min-height: 44px;
-  padding-top: 8px;
-  padding-right: 16px;
-  display: flex;
-  align-items: center;
-  gap: var(--s-spacing-m);
-}
-
-/* WtgDivider between breadcrumbs and extension */
-.mh-divider {
-  height: 1px;
-  background: var(--s-neutral-border-weak-default);
-  border: 0;
-  margin: 0;
-}
-
-/* Extension column (.v-toolbar__extension) */
-.mh-extension {
-  display: flex;
-  flex-direction: column;
-  padding-right: 16px;
-}
-
-/* ============================================================
-   WtgBreadcrumbs — port of WtgBreadcrumbs.vue
-   ============================================================ */
-.crumbs {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-spacing-s);
-  font: var(--s-text-md-default);
-}
-.crumbs .bc-item {
-  cursor: pointer;
-  text-decoration: underline;
-  font-weight: var(--s-fontweight-500);
-  color: var(--s-primary-txt-default);
-}
-.crumbs .bc-item:hover { color: var(--s-primary-txt-hover); }
-.crumbs .bc-current {
-  font-weight: var(--s-fontweight-600);
-  color: var(--s-neutral-txt-default);
-}
-.crumbs .bc-sep {
-  font-size: var(--s-sizing-icon-sm);
-  color: var(--s-neutral-icon-weak-default);
-  line-height: 1;
-}
-
-.mh-row .spacer { flex: 1; }
-.mh-append { display: flex; align-items: center; gap: var(--s-spacing-xs); }
-
-/* ============================================================
-   WtgButton — port of WtgButton.vue
-   ============================================================ */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: var(--s-padding-s) var(--s-padding-m);
-  border-radius: var(--s-radius-s);
-  border: 1px solid transparent;
-  font: var(--s-text-md-strong);
-  cursor: pointer;
-  line-height: 20px;
   white-space: nowrap;
-  position: relative;
-  background: transparent;
-  transition:
-    background 0.28s cubic-bezier(0.4,0,0.2,1),
-    border-color 0.28s cubic-bezier(0.4,0,0.2,1),
-    box-shadow 0.28s cubic-bezier(0.4,0,0.2,1);
+}
+.topbar__logo span { opacity: .55; font-weight: 400; }
+.topbar__nav { display: flex; gap: 4px; flex: 1; }
+.topbar__nav a {
+  color: rgba(255,255,255,.7);
+  text-decoration: none;
+  font-size: 13px; font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: background .15s, color .15s;
+}
+.topbar__nav a:hover { background: rgba(255,255,255,.12); color: #fff; }
+.topbar__nav a.active { background: rgba(255,255,255,.16); color: #fff; }
+.topbar__badge {
+  margin-left: auto;
+  font-size: 11px; font-weight: 600; letter-spacing: .04em;
+  color: rgba(255,255,255,.55);
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.15);
+  padding: 2px 8px; border-radius: 99px;
 }
 
-.btn--outline {
-  background: var(--s-neutral-bg-default);
-  border-color: var(--s-neutral-border-weak-default);
-  color: var(--s-neutral-txt-default);
-  box-shadow: var(--s-elevation-button-default);
-}
-.btn--outline:hover:not(:disabled) {
-  background: var(--s-neutral-bg-weak-hover);
-  border-color: var(--s-neutral-border-weak-hover);
-}
-.btn--outline:active:not(:disabled) {
-  box-shadow: var(--s-elevation-button-pressed);
+/* ─── Layout ─────────────────────────────────────────────────────────────── */
+.layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  margin-top: var(--topbar-h);
+  min-height: calc(100vh - var(--topbar-h));
 }
 
-.btn--primary {
-  background: var(--s-primary-bg-default);
-  border-color: var(--s-primary-border-default);
-  color: var(--s-primary-txt-inv-default);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+/* ─── Sidebar ────────────────────────────────────────────────────────────── */
+.sidebar {
+  position: sticky; top: var(--topbar-h);
+  height: calc(100vh - var(--topbar-h));
+  overflow-y: auto;
+  border-right: 1px solid var(--stone-100);
+  background: #fff;
+  padding: 24px 0 48px;
 }
-.btn--primary:hover:not(:disabled) {
-  background: var(--s-primary-bg-hover);
-  border-color: var(--s-primary-border-hover);
-}
-.btn--primary:active:not(:disabled) {
-  background: var(--s-primary-bg-active);
-}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--stone-200); border-radius: 2px; }
 
-.btn--ghost {
-  background: transparent;
-  border-color: transparent;
-  color: var(--s-neutral-txt-default);
+.nav-group { margin-bottom: 8px; }
+.nav-group__label {
+  display: block;
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: var(--stone-500);
+  padding: 8px 20px 4px;
 }
-.btn--ghost:hover:not(:disabled)::before {
-  content: "";
-  position: absolute; inset: 0;
-  border-radius: inherit;
-  background: currentColor;
-  opacity: 0.12;
-  pointer-events: none;
-}
-
-.btn:focus-visible {
-  outline: 2px solid var(--s-primary-border-default);
-  outline-offset: 1px;
-  z-index: 1;
-}
-.btn:disabled {
-  background: var(--s-neutral-bg-disabled);
-  border-color: transparent;
-  color: var(--s-neutral-txt-disabled);
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-/* ============================================================
-   WtgIconButton — port of WtgIconButton.vue
-   Extends WtgButton: padding: --s-padding-s, centered icon
-   Default: 4px padding + 20px md-icon + 2×1px border = 30px
-   ============================================================ */
-.icon-btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: var(--s-padding-s);
-  border-radius: var(--s-radius-s);
-  border: 1px solid transparent;
-  background: transparent;
-  color: var(--s-neutral-txt-default);
+.nav-link {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 20px;
+  font-size: 13px; color: var(--stone-700);
+  text-decoration: none;
+  border-radius: 0;
+  transition: background .1s, color .1s;
   cursor: pointer;
-  position: relative;
-  transition:
-    background 0.28s cubic-bezier(0.4,0,0.2,1),
-    border-color 0.28s cubic-bezier(0.4,0,0.2,1);
 }
-.icon-btn > i {
-  font-size: var(--s-sizing-icon-md);
-  line-height: 1;
-  display: inline-flex;
-  align-items: center;
-  color: inherit;
+.nav-link:hover { background: var(--canvas); color: var(--stone-950); }
+.nav-link.active {
+  color: var(--indigo-500);
+  background: var(--indigo-50);
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 var(--indigo-500);
 }
-.icon-btn.icon-btn--s { padding: var(--s-padding-xs); }
-.icon-btn.icon-btn--s > i { font-size: var(--s-sizing-icon-sm); }
+.nav-link i { font-size: 14px; opacity: .6; }
 
-/* Outline variant */
-.icon-btn.outline {
-  background: var(--s-neutral-bg-default);
-  border-color: var(--s-neutral-border-weak-default);
-}
-.icon-btn.outline:hover:not(:disabled) {
-  background: var(--s-neutral-bg-weak-hover);
-  border-color: var(--s-neutral-border-weak-hover);
-  color: var(--s-neutral-txt-hover);
-}
-.icon-btn.outline:active:not(:disabled) {
-  border-color: var(--s-neutral-border-weak-active);
-  color: var(--s-neutral-txt-active);
-}
-
-/* Ghost variant */
-.icon-btn.ghost { background: transparent; border-color: transparent; color: inherit; }
-.icon-btn.ghost:hover::before,
-.icon-btn.ghost:active::before {
-  content: "";
-  position: absolute; inset: 0;
-  border-radius: inherit;
-  background: currentColor;
-  opacity: 0.12;
-  pointer-events: none;
-}
-.icon-btn.ghost:active::before { opacity: 0.24; }
-
-.icon-btn:focus-visible {
-  outline: 2px solid var(--s-primary-border-default);
-  outline-offset: 1px;
-  z-index: 1;
-}
-
-/* ============================================================
-   Masthead extension rows
-   ============================================================ */
-.mh-ext {
-  padding: var(--s-padding-m) 0;
-  display: flex;
-  align-items: center;
-  gap: var(--s-padding-m);
-}
-.rec-id-group { display: flex; align-items: center; gap: var(--s-padding-s); }
-.rec-id {
-  font: var(--s-title-md-default);
-  color: var(--s-neutral-txt-active);
-  padding: 0 var(--s-padding-xs);
-}
-.mh-ext .spacer { flex: 1; }
-
-/* ============================================================
-   WtgEntityActions — port of WtgEntityActions.vue
-   Flex row, gap: --s-spacing-xs, 1px weak border, radius-s.
-   No padding, no fill — just a bordered cluster.
-   ============================================================ */
-.entity-actions {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: var(--s-spacing-xs);
-  border: 1px solid var(--s-neutral-border-weak-default);
-  border-radius: var(--s-radius-s);
-}
-
-/* Entity action ghost buttons */
-.ea-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: var(--s-padding-s);
-  border: 0;
-  background: transparent;
-  border-radius: var(--s-radius-xs);
-  font: var(--s-text-md-default);
-  color: var(--s-neutral-txt-default);
-  cursor: pointer;
-  white-space: nowrap;
-  line-height: 20px;
-  position: relative;
-}
-.ea-btn:hover::before {
-  content: "";
-  position: absolute; inset: 0;
-  border-radius: inherit;
-  background: currentColor;
-  opacity: 0.08;
-  pointer-events: none;
-}
-.ea-btn > i {
-  color: var(--s-neutral-icon-weak-default);
-  font-size: var(--s-sizing-icon-sm);
-  line-height: 1;
-  width: 16px; height: 16px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ============================================================
-   WtgTabs + WtgTab — port of WtgTabs.vue + WtgTab.vue
-   ============================================================ */
-.mh-tabs {
-  display: flex;
-  align-items: stretch;
-  flex-grow: 1;
-  position: relative;
-}
-
-.mh-tab {
-  padding: 0;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  color: var(--s-neutral-txt-default);
-  font: var(--s-text-md-strong);
-  letter-spacing: normal;
-  text-transform: none;
-  position: relative;
-}
-.mh-tab > .mh-tab-content {
-  display: inline-flex;
-  align-items: center;
-  padding: var(--s-padding-s);
-}
-.mh-tab:hover {
-  background: var(--s-primary-bg-weak-hover);
-  color: var(--s-primary-txt-hover);
-}
-.mh-tab.active { color: var(--s-primary-txt-default); }
-.mh-tab.active::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 2px;
-  background: var(--s-primary-border-default);
-}
-
-/* ============================================================
-   Content area — scrollable body
-   ============================================================ */
+/* ─── Main content ───────────────────────────────────────────────────────── */
 .content {
-  flex: 1;
-  overflow: auto;
-  padding: var(--s-padding-xl);
-  background: var(--s-neutral-canvas-default);
+  padding: 48px 56px 120px;
+  max-width: 900px;
 }
 
-/* ============================================================
-   WtgActionBar — port of WtgActionBar.vue (desktop)
-   Floating card at the bottom, inset from edges
-   ============================================================ */
-.action-bar-footer {
-  flex: none;
-  padding: 0 var(--s-padding-xl) var(--s-padding-xl);
-  background: var(--s-neutral-canvas-default);
+/* ─── Section headings ───────────────────────────────────────────────────── */
+.section {
+  padding-top: 64px;
+  margin-top: -16px;
 }
-.action-bar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: var(--s-spacing-xl);
-  padding: var(--s-padding-xl);
-  border: 1px solid var(--s-neutral-border-weak-default);
-  border-radius: var(--s-radius-m);
-  background: var(--s-neutral-bg-default);
-  box-shadow: var(--s-elevation-200);
+.section:first-child { padding-top: 0; margin-top: 0; }
+
+.section__eyebrow {
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: var(--indigo-500);
+  margin-bottom: 8px;
+}
+.section__title {
+  font-size: 28px; font-weight: 700;
+  color: var(--stone-950);
+  letter-spacing: -.02em;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.section__desc {
+  font-size: 14px; line-height: 22px;
+  color: var(--stone-700);
+  max-width: 600px;
+  margin-bottom: 36px;
+}
+
+.subsection { margin-bottom: 48px; }
+.subsection__title {
+  font-size: 16px; font-weight: 600;
+  color: var(--stone-950);
+  margin-bottom: 6px;
+}
+.subsection__desc {
+  font-size: 13px; color: var(--stone-700);
+  margin-bottom: 18px; line-height: 20px;
+}
+
+/* ─── Divider ─────────────────────────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: var(--stone-100);
+  margin: 48px 0;
+}
+
+/* ─── Demo card ──────────────────────────────────────────────────────────── */
+.demo {
+  border: 1px solid var(--stone-200);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.demo__canvas {
+  background: var(--canvas);
+  padding: 32px;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
+}
+.demo__canvas--col { flex-direction: column; align-items: flex-start; }
+.demo__canvas--white { background: #fff; }
+.demo__canvas--grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.demo__label {
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .06em;
+  color: var(--stone-500);
+  background: #fff;
+  border-top: 1px solid var(--stone-200);
+  padding: 8px 16px;
+}
+
+/* ─── Token table ─────────────────────────────────────────────────────────── */
+.token-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 12px;
+  margin-bottom: 24px;
+}
+.token-table th {
+  text-align: left;
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--stone-500);
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--stone-100);
+  background: var(--canvas);
+}
+.token-table td {
+  padding: 7px 12px;
+  border-bottom: 1px solid var(--stone-100);
+  vertical-align: middle;
+}
+.token-table tr:last-child td { border-bottom: 0; }
+.token-table tr:hover td { background: var(--canvas); }
+.tok { font-family: var(--mono); color: var(--indigo-700); font-size: 11px; }
+.val { font-family: var(--mono); color: var(--stone-700); font-size: 11px; }
+
+/* ─── Color swatches ─────────────────────────────────────────────────────── */
+.swatch-row { display: flex; gap: 0; border-radius: 8px; overflow: hidden; margin-bottom: 4px; }
+.swatch-row .sw { height: 52px; flex: 1; }
+.swatch-strip { display: flex; flex-direction: column; gap: 12px; }
+.swatch-block { display: flex; gap: 12px; align-items: flex-start; }
+.swatch-block .sw-lg {
+  width: 72px; height: 72px; border-radius: 8px;
+  border: 1px solid rgba(0,0,0,.06); flex-shrink: 0;
+}
+.swatch-block .sw-info { padding-top: 2px; }
+.sw-name { font-size: 13px; font-weight: 600; color: var(--stone-950); }
+.sw-token { font-family: var(--mono); font-size: 11px; color: var(--stone-500); }
+.sw-hex { font-family: var(--mono); font-size: 11px; color: var(--stone-700); margin-top: 2px; }
+
+.palette-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 0; border-radius: 8px; overflow: hidden; margin-bottom: 12px; }
+.palette-grid .pc { height: 48px; }
+
+/* ─── Typography specimens ────────────────────────────────────────────────── */
+.type-specimen {
+  display: flex; align-items: baseline; gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--stone-100);
+}
+.type-specimen:last-child { border-bottom: 0; }
+.type-specimen__sample { color: var(--stone-950); }
+.type-specimen__meta { font-family: var(--mono); font-size: 11px; color: var(--stone-500); white-space: nowrap; }
+
+/* ─── Spacing visualizer ──────────────────────────────────────────────────── */
+.spacing-grid { display: flex; gap: 16px; align-items: flex-end; flex-wrap: wrap; }
+.spacing-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.spacing-item__bar { background: var(--indigo-500); border-radius: 2px; }
+.spacing-item__label { font-family: var(--mono); font-size: 11px; color: var(--stone-700); }
+
+.radius-grid { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 24px; }
+.radius-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.radius-item__box {
+  width: 56px; height: 56px;
+  background: var(--indigo-50);
+  border: 1.5px solid var(--indigo-300);
+}
+.radius-item__label { font-family: var(--mono); font-size: 11px; color: var(--stone-700); text-align: center; }
+
+/* ─── Elevation tiles ─────────────────────────────────────────────────────── */
+.elevation-row { display: flex; gap: 24px; flex-wrap: wrap; }
+.elevation-tile {
+  width: 140px; height: 88px;
+  background: #fff; border-radius: 8px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+}
+.elevation-tile__name { font-size: 13px; font-weight: 600; color: var(--stone-950); }
+.elevation-tile__val { font-family: var(--mono); font-size: 10px; color: var(--stone-500); }
+
+/* ─── Icon grid ───────────────────────────────────────────────────────────── */
+.icon-search {
+  width: 100%; max-width: 320px;
+  padding: 7px 12px;
+  border: 1px solid var(--stone-300);
+  border-radius: 6px;
+  font: inherit; font-size: 13px;
+  outline: none; margin-bottom: 20px;
+  transition: border-color .15s;
+}
+.icon-search:focus { border-color: var(--indigo-500); box-shadow: 0 0 0 2px rgba(55,30,225,.15); }
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 4px;
+}
+.icon-cell {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 12px 4px 10px;
+  border-radius: 6px; cursor: pointer;
+  transition: background .12s;
+  text-align: center;
+}
+.icon-cell:hover { background: var(--indigo-50); }
+.icon-cell i { font-size: 20px; color: var(--stone-900); }
+.icon-cell span { font-size: 9px; color: var(--stone-500); font-family: var(--mono); word-break: break-all; line-height: 1.3; }
+.icon-cell.copied { background: var(--indigo-50); }
+.icon-cell.copied i { color: var(--indigo-500); }
+
+/* ─── Buttons ─────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: 4px; border: 1px solid transparent;
+  font: inherit; font-size: 13px; font-weight: 600;
+  cursor: pointer; line-height: 20px; white-space: nowrap;
+  transition: background .15s, border-color .15s;
+}
+.btn-fill        { background: var(--canvas); border-color: var(--canvas); color: var(--stone-900); box-shadow: var(--shadow-100); }
+.btn-fill:hover  { background: var(--stone-50); }
+.btn-primary     { background: var(--indigo-500); border-color: var(--indigo-500); color: #fff; box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
+.btn-primary:hover { background: var(--indigo-700); }
+.btn-critical    { background: var(--red); border-color: var(--red); color: #fff; }
+.btn-success     { background: var(--green); border-color: var(--green); color: #fff; }
+.btn-outline     { background: #fff; border-color: var(--stone-300); color: var(--stone-900); box-shadow: var(--shadow-100); }
+.btn-outline:hover { background: var(--stone-50); }
+.btn-outline-primary { background: #fff; border-color: rgba(55,30,225,.5); color: var(--indigo-500); }
+.btn-outline-critical { background: #fff; border-color: rgba(213,0,71,.5); color: var(--red); }
+.btn-ghost       { background: transparent; border-color: transparent; color: var(--stone-900); }
+.btn-ghost:hover { background: var(--stone-50); }
+.btn-ghost-primary { background: transparent; border-color: transparent; color: var(--indigo-500); }
+.btn-ghost-primary:hover { background: var(--indigo-50); }
+.btn-tonal       { background: rgba(55,30,225,.06); border-color: transparent; color: var(--indigo-500); }
+.btn-tonal:hover { background: rgba(55,30,225,.12); }
+.btn-disabled    { background: var(--canvas); border-color: var(--canvas); color: var(--stone-500); cursor: not-allowed; box-shadow: none; }
+
+.btn-xs { padding: 1px 8px; font-size: 12px; border-radius: 3px; }
+.btn-sm { padding: 3px 10px; font-size: 12px; }
+.btn-lg { padding: 8px 16px; font-size: 14px; }
+
+/* ─── Status chips ────────────────────────────────────────────────────────── */
+.chip {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-size: 12px; font-weight: 600;
+  border: 1px solid transparent;
+}
+.chip-neutral         { background: var(--stone-950); color: var(--canvas); }
+.chip-primary         { background: var(--indigo-500); color: #f6f8ff; }
+.chip-success         { background: var(--green); color: #f2f9f8; }
+.chip-warning         { background: var(--yellow-fill); color: #4b481b; }
+.chip-error           { background: var(--red); color: #fef6f9; }
+.chip-info            { background: var(--violet); color: #f9f7fc; }
+
+.chip-outline-neutral  { background: var(--canvas); border-color: var(--stone-300); color: var(--stone-900); }
+.chip-outline-primary  { background: var(--indigo-50); border-color: var(--indigo-500); color: var(--indigo-500); }
+.chip-outline-success  { background: var(--green-bg); border-color: var(--green); color: var(--green); }
+.chip-outline-warning  { background: var(--yellow-bg); border-color: var(--yellow); color: var(--yellow); }
+.chip-outline-error    { background: var(--red-bg); border-color: var(--red); color: var(--red); }
+.chip-outline-info     { background: var(--violet-bg); border-color: var(--violet); color: var(--violet); }
+
+/* ─── Form fields ─────────────────────────────────────────────────────────── */
+.field { display: flex; flex-direction: column; gap: 3px; width: 220px; }
+.field__label { font-size: 12px; font-weight: 600; color: var(--stone-900); }
+.field__label .req { color: var(--red); margin-left: 2px; }
+.field__control {
+  display: flex; align-items: center;
+  min-height: 32px;
+  background: #fff;
+  border: 1px solid var(--stone-300);
+  border-radius: 4px;
+  padding: 0 8px;
+  transition: border-color .15s, box-shadow .15s;
+}
+.field__control:focus-within {
+  border-color: var(--indigo-500);
+  box-shadow: 0 0 0 2px rgba(55,30,225,.18);
+}
+.field__control:hover:not(:focus-within) { border-color: var(--stone-500); }
+.field__input {
+  flex: 1; min-width: 0; border: 0; background: transparent;
+  outline: none; padding: 4px 2px; font: inherit; font-size: 13px;
+  color: var(--stone-950);
+}
+.field__input::placeholder { color: var(--stone-500); }
+.field__affix { color: var(--stone-500); font-size: 14px; display: inline-flex; align-items: center; }
+.field__hint { font-size: 11px; color: var(--stone-500); line-height: 16px; }
+
+.field--error .field__control { border-color: var(--red); }
+.field--error .field__control:focus-within { box-shadow: 0 0 0 2px rgba(213,0,71,.18); }
+.field--error .field__hint { color: var(--red); }
+
+.field--disabled .field__control { background: var(--canvas); border-color: var(--stone-200); cursor: not-allowed; }
+.field--disabled .field__input { color: var(--stone-500); cursor: not-allowed; }
+.field--disabled .field__label { color: var(--stone-500); }
+
+/* ─── Data table ──────────────────────────────────────────────────────────── */
+.dt { border-collapse: collapse; width: 100%; font-size: 13px; }
+.dt th {
+  text-align: left; background: var(--canvas);
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .05em;
+  color: var(--stone-700);
+  padding: 7px 12px;
+  border-bottom: 1px solid var(--stone-300);
+}
+.dt td { padding: 8px 12px; border-bottom: 1px solid var(--stone-100); }
+.dt tr:last-child td { border-bottom: 0; }
+.dt tr:hover td { background: var(--indigo-50); }
+.dt .num { font-variant-numeric: tabular-nums; text-align: right; }
+.dt-link { color: var(--indigo-700); font-weight: 600; }
+
+/* ─── Callout ─────────────────────────────────────────────────────────────── */
+.callout {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 12px 14px; border-radius: 8px; border: 1px solid;
+  font-size: 13px;
+}
+.callout strong { font-weight: 600; display: block; margin-bottom: 2px; }
+.callout-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; margin-top: 5px; }
+
+/* ─── App shell preview ───────────────────────────────────────────────────── */
+.shell-preview {
+  border: 1px solid var(--stone-200);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--canvas);
+}
+.shell-preview__bar {
+  background: var(--stone-950); height: 24px;
+  display: flex; align-items: center; padding: 0 12px; gap: 6px;
+}
+.shell-preview__dot { width: 9px; height: 9px; border-radius: 50%; }
+.shell-preview__inner {
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: 10px; padding: 10px;
+  background: var(--canvas);
+  height: 380px;
+}
+.shell-preview__side {
+  background: var(--indigo-500); border-radius: 6px;
+  padding: 10px 0; display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.shell-preview__main {
+  background: var(--canvas); border-radius: 6px;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+
+/* mini masthead */
+.mini-mh { background: var(--canvas); padding: 8px 12px 0; flex-shrink: 0; }
+.mini-bc { font-size: 11px; color: var(--indigo-500); margin-bottom: 6px; }
+.mini-hr { height: 1px; background: var(--stone-200); }
+.mini-rec { display: flex; align-items: center; gap: 8px; padding: 6px 12px 0; }
+.mini-rec-id { font-size: 14px; font-weight: 700; color: var(--stone-950); }
+.mini-ea {
+  margin-left: auto; display: flex; gap: 2px;
+  border: 1px solid var(--stone-300); border-radius: 4px;
+  padding: 1px;
+}
+.mini-ea button {
+  border: 0; background: transparent; font-size: 10px; color: var(--stone-700);
+  padding: 2px 5px; border-radius: 3px; cursor: default;
+}
+.mini-tabs { display: flex; padding: 0 12px; gap: 0; }
+.mini-tab {
+  font-size: 11px; font-weight: 600; color: var(--stone-500);
+  padding: 5px 6px; border: 0; background: transparent; cursor: default;
+  position: relative;
+}
+.mini-tab.a { color: var(--indigo-500); }
+.mini-tab.a::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0;
+  height: 2px; background: var(--indigo-500);
+}
+.mini-body { flex: 1; background: var(--canvas); }
+.mini-ab-wrap { padding: 8px; }
+.mini-ab {
+  background: #fff; border: 1px solid var(--stone-200); border-radius: 6px;
+  padding: 8px 12px; display: flex; justify-content: flex-end; gap: 8px;
+}
+
+/* mini sidebar items */
+.mini-logo { color: #fff; font-size: 12px; font-weight: 700; padding: 4px 12px 10px; }
+.mini-portal {
+  margin: 0 8px 8px; padding: 7px 8px;
+  background: rgba(255,255,255,.12); border-radius: 4px;
+}
+.mini-portal .mp-name { font-size: 11px; font-weight: 600; color: #fff; }
+.mini-portal .mp-sub { font-size: 9px; color: rgba(255,255,255,.7); }
+.mini-spacer { flex: 1; }
+.mini-nav-item {
+  display: flex; align-items: center; gap: 6px;
+  padding: 5px 12px; font-size: 11px; color: rgba(255,255,255,.85); font-weight: 500;
+}
+.mini-nav-item i { font-size: 12px; }
+
+/* ─── Chip row in demo ────────────────────────────────────────────────────── */
+.chip-section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--stone-500);
+  margin-bottom: 8px; display: block;
+}
+.chip-section { margin-bottom: 20px; }
+
+/* ─── Copy toast ──────────────────────────────────────────────────────────── */
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: var(--stone-950); color: #fff;
+  padding: 8px 16px; border-radius: 8px;
+  font-size: 12px; font-weight: 500;
+  opacity: 0; pointer-events: none;
+  transition: opacity .2s;
+  z-index: 999;
+}
+.toast.show { opacity: 1; }
+
+/* ─── Intro hero ──────────────────────────────────────────────────────────── */
+.hero {
+  padding: 0 0 56px;
+  border-bottom: 1px solid var(--stone-100);
+  margin-bottom: 0;
+}
+.hero__title {
+  font-size: 40px; font-weight: 800;
+  color: var(--stone-950);
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.hero__title span { color: var(--indigo-500); }
+.hero__sub {
+  font-size: 16px; line-height: 26px;
+  color: var(--stone-700); max-width: 560px;
+  margin-bottom: 28px;
+}
+.hero__pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.hero__pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 12px;
+  background: var(--canvas);
+  border: 1px solid var(--stone-200);
+  border-radius: 99px;
+  font-size: 12px; font-weight: 500; color: var(--stone-700);
+}
+.hero__pill i { font-size: 13px; color: var(--indigo-500); }
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .content { padding: 32px 20px 80px; }
 }
 </style>
 </head>
 
 <body>
-<div class="app">
 
-  <!-- ================================================================
-       Sidebar — WtgNavigationDrawer (app shell)
-       ================================================================ -->
-  <aside class="side" aria-label="Primary navigation">
+<!-- ═══════════════════════════════════════════════════════ TOP BAR ══ -->
+<header class="topbar">
+  <div class="topbar__logo">design system <span>/ docs</span></div>
+  <nav class="topbar__nav">
+    <a href="#foundation" class="active">Foundation</a>
+    <a href="#components">Components</a>
+    <a href="#patterns">Patterns</a>
+  </nav>
+  <span class="topbar__badge">v1.0</span>
+</header>
 
-    <div class="logo">
-      <span class="brand">design system</span>
-      <button class="iconbtn-light" aria-label="Collapse sidebar" title="Collapse sidebar">
-        <i class="s-icon-drawer-close"></i>
-      </button>
+<!-- ═══════════════════════════════════════════════════════ LAYOUT ═══ -->
+<div class="layout">
+
+  <!-- ══════════════════════════════════════════════════ SIDEBAR ═══ -->
+  <aside class="sidebar">
+    <div class="nav-group">
+      <span class="nav-group__label">Foundation</span>
+      <a class="nav-link" href="#colors"><i class="s-icon-color"></i>Colors</a>
+      <a class="nav-link" href="#typography"><i class="s-icon-documentation"></i>Typography</a>
+      <a class="nav-link" href="#spacing"><i class="s-icon-density-compact"></i>Spacing & Radius</a>
+      <a class="nav-link" href="#elevation"><i class="s-icon-blocks"></i>Elevation</a>
+      <a class="nav-link" href="#iconography"><i class="s-icon-star-empty"></i>Iconography</a>
     </div>
-
-    <div class="portal" role="button" tabindex="0" aria-label="Switch portal">
-      <div>
-        <div class="lbl">Portal name</div>
-        <div class="sub">Branch / Department</div>
-      </div>
-      <i class="s-icon-caret-right" style="font-size:14px; opacity:0.85" aria-hidden="true"></i>
+    <div class="nav-group">
+      <span class="nav-group__label">Components</span>
+      <a class="nav-link" href="#buttons"><i class="s-icon-cursor-move"></i>Buttons</a>
+      <a class="nav-link" href="#status"><i class="s-icon-status-success"></i>Status</a>
+      <a class="nav-link" href="#fields"><i class="s-icon-edit"></i>Form fields</a>
+      <a class="nav-link" href="#table"><i class="s-icon-columns"></i>Data table</a>
+      <a class="nav-link" href="#callouts"><i class="s-icon-bell"></i>Callouts</a>
     </div>
-
-    <!-- Navigation items slot -->
-    <div class="slot" aria-label="Navigation">
-      <div class="dots" aria-hidden="true"></div>
-      <div>Slot</div>
+    <div class="nav-group">
+      <span class="nav-group__label">Patterns</span>
+      <a class="nav-link" href="#appshell"><i class="s-icon-apps"></i>App shell</a>
     </div>
-
-    <div class="side-spacer"></div>
-
-    <div class="side-bottom">
-      <div class="sideitem" role="button" tabindex="0">
-        <i class="s-icon-star-empty" aria-hidden="true"></i>
-        <span>Favorites</span>
-        <i class="s-icon-caret-right chev" style="font-size:12px" aria-hidden="true"></i>
-      </div>
-      <div class="sideitem" role="button" tabindex="0">
-        <i class="s-icon-history" aria-hidden="true"></i>
-        <span>Recently viewed</span>
-        <i class="s-icon-caret-right chev" style="font-size:12px" aria-hidden="true"></i>
-      </div>
-    </div>
-
-    <div class="side-bottom" style="margin-top:16px">
-      <div class="sideitem" role="button" tabindex="0">
-        <i class="s-icon-help" aria-hidden="true"></i>
-        <span>Help</span>
-      </div>
-      <div class="sideitem" role="button" tabindex="0">
-        <i class="s-icon-settings" aria-hidden="true"></i>
-        <span>Settings</span>
-      </div>
-      <div class="sideitem user" role="button" tabindex="0">
-        <span class="ava" aria-hidden="true">DR</span>
-        <span>Darlene Robertson</span>
-        <i class="s-icon-caret-right chev" style="font-size:12px" aria-hidden="true"></i>
-      </div>
-    </div>
-
   </aside>
 
-  <!-- ================================================================
-       Main column
-       ================================================================ -->
-  <main class="main-col">
+  <!-- ══════════════════════════════════════════════════ CONTENT ═══ -->
+  <main class="content">
 
-    <!-- WtgMasthead -->
-    <header class="masthead">
-
-      <!-- Breadcrumbs row (.v-toolbar__content) -->
-      <div class="mh-row">
-        <nav class="crumbs" aria-label="Breadcrumbs">
-          <a href="#" class="bc-item">Portal name</a>
-          <i class="s-icon-forward-slash bc-sep" aria-hidden="true"></i>
-          <span class="bc-current">Form caption</span>
-        </nav>
-        <div class="spacer"></div>
-        <div class="mh-append">
-          <button class="icon-btn outline" aria-label="Search">
-            <i class="s-icon-search"></i>
-          </button>
-          <button class="icon-btn outline" aria-label="Warnings">
-            <i class="s-icon-status-warning"></i>
-          </button>
-        </div>
+    <!-- HERO ─────────────────────────────────────────────────────── -->
+    <div class="hero" id="foundation">
+      <div class="hero__title">Design System<br><span>documentation</span></div>
+      <p class="hero__sub">A token-driven, component-first design language. Warm stone canvas, indigo brand actions, high-density layout built for power users.</p>
+      <div class="hero__pills">
+        <span class="hero__pill"><i class="s-icon-color"></i>Supply tokens</span>
+        <span class="hero__pill"><i class="s-icon-star-empty"></i>251 icons</span>
+        <span class="hero__pill"><i class="s-icon-blocks"></i>Vue 3 + Vuetify</span>
+        <span class="hero__pill"><i class="s-icon-check"></i>WCAG 2.1 AA</span>
       </div>
+    </div>
 
-      <!-- WtgDivider -->
-      <hr class="mh-divider" aria-hidden="true">
+    <!-- ╔═══════════════════════════════════════════════════════════╗
+         ║  COLORS                                                   ║
+         ╚═══════════════════════════════════════════════════════════╝ -->
+    <div class="section" id="colors">
+      <div class="section__eyebrow">Foundation</div>
+      <h2 class="section__title">Colors</h2>
+      <p class="section__desc">A warm-neutral + indigo system. Stone-white canvas for surfaces, charcoal text, saturated indigo for brand actions and interactive states.</p>
 
-      <!-- Extension (.v-toolbar__extension) -->
-      <div class="mh-extension">
+      <!-- Primary -->
+      <div class="subsection">
+        <div class="subsection__title">Primary — Indigo</div>
+        <div class="subsection__desc">Brand action color. Used for buttons, links, focus rings, active states, and interactive elements.</div>
 
-        <!-- Record header row: back + ID | entity actions -->
-        <div class="mh-ext">
-          <div class="rec-id-group">
-            <button class="icon-btn ghost" aria-label="Back">
-              <i class="s-icon-arrow-left"></i>
-            </button>
-            <div class="rec-id">GFR-8640</div>
+        <div class="demo">
+          <div class="demo__canvas demo__canvas--white" style="gap:16px">
+            <div class="swatch-block">
+              <div class="sw-lg" style="background:#371ee1"></div>
+              <div class="sw-info">
+                <div class="sw-name">Default</div>
+                <div class="sw-token">--s-primary-bg-default</div>
+                <div class="sw-hex">#371ee1</div>
+              </div>
+            </div>
+            <div class="swatch-block">
+              <div class="sw-lg" style="background:#221098"></div>
+              <div class="sw-info">
+                <div class="sw-name">Hover</div>
+                <div class="sw-token">--s-primary-bg-hover</div>
+                <div class="sw-hex">#221098</div>
+              </div>
+            </div>
+            <div class="swatch-block">
+              <div class="sw-lg" style="background:#110662"></div>
+              <div class="sw-info">
+                <div class="sw-name">Active</div>
+                <div class="sw-token">--s-primary-bg-active</div>
+                <div class="sw-hex">#110662</div>
+              </div>
+            </div>
+            <div class="swatch-block">
+              <div class="sw-lg" style="background:#dae2fe; border:1px solid #bfbeb9"></div>
+              <div class="sw-info">
+                <div class="sw-name">Weak</div>
+                <div class="sw-token">--s-primary-bg-weak-active</div>
+                <div class="sw-hex">#dae2fe</div>
+              </div>
+            </div>
+            <div class="swatch-block">
+              <div class="sw-lg" style="background:#f6f8ff; border:1px solid #bfbeb9"></div>
+              <div class="sw-info">
+                <div class="sw-name">Weak bg</div>
+                <div class="sw-token">--s-primary-bg-weak-default</div>
+                <div class="sw-hex">#f6f8ff</div>
+              </div>
+            </div>
           </div>
-          <div class="spacer"></div>
-          <!-- WtgEntityActions -->
-          <div class="entity-actions" role="group" aria-label="Entity actions">
-            <button class="ea-btn"><i class="s-icon-workflow" aria-hidden="true"></i>Workflow</button>
-            <button class="ea-btn"><i class="s-icon-edocs" aria-hidden="true"></i>eDocs</button>
-            <button class="ea-btn"><i class="s-icon-documentation" aria-hidden="true"></i>Documents</button>
-            <button class="ea-btn"><i class="s-icon-related-records" aria-hidden="true"></i>Related items</button>
-            <button class="ea-btn"><i class="s-icon-notes" aria-hidden="true"></i>Notes</button>
-            <button class="ea-btn"><i class="s-icon-chat" aria-hidden="true"></i>Messages</button>
-            <button class="ea-btn"><i class="s-icon-logs" aria-hidden="true"></i>Logs</button>
+          <div class="demo__label">Primary palette</div>
+        </div>
+      </div>
+
+      <!-- Neutral -->
+      <div class="subsection">
+        <div class="subsection__title">Neutral — Warm Stone</div>
+        <div class="subsection__desc">Canvas, surfaces, borders, and text. Based on a warm off-white stone with charcoal dark tones.</div>
+
+        <div class="demo">
+          <div class="demo__canvas demo__canvas--white" style="flex-direction:column; gap:12px">
+            <div class="palette-grid">
+              <div class="pc" style="background:#fff; border:1px solid #e8e7e3" title="bg · #fff"></div>
+              <div class="pc" style="background:#f7f7f4" title="canvas · #f7f7f4"></div>
+              <div class="pc" style="background:#efeeeb" title="bg-hover · #efeeeb"></div>
+              <div class="pc" style="background:#e8e7e3" title="bg-active · #e8e7e3"></div>
+              <div class="pc" style="background:#dad9d5" title="disabled · #dad9d5"></div>
+              <div class="pc" style="background:#bfbeb9" title="border · #bfbeb9"></div>
+              <div class="pc" style="background:#8d8c88" title="muted · #8d8c88"></div>
+              <div class="pc" style="background:#5c5b57" title="weak txt · #5c5b57"></div>
+              <div class="pc" style="background:#383836" title="txt-default · #383836"></div>
+              <div class="pc" style="background:#1b1b1a" title="txt-active · #1b1b1a"></div>
+            </div>
+          </div>
+          <div class="demo__label">Neutral ramp — hover each swatch for label</div>
+        </div>
+
+        <table class="token-table">
+          <thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead>
+          <tbody>
+            <tr><td class="tok">--s-neutral-canvas-default</td><td class="val">#f7f7f4</td><td>Page / app background</td></tr>
+            <tr><td class="tok">--s-neutral-bg-default</td><td class="val">#ffffff</td><td>Surface / card background</td></tr>
+            <tr><td class="tok">--s-neutral-border-weak-default</td><td class="val">#bfbeb9</td><td>Dividers, input borders</td></tr>
+            <tr><td class="tok">--s-neutral-txt-default</td><td class="val">#383836</td><td>Body text</td></tr>
+            <tr><td class="tok">--s-neutral-txt-weak-default</td><td class="val">#5c5b57</td><td>Placeholder, hint text</td></tr>
+            <tr><td class="tok">--s-neutral-txt-disabled</td><td class="val">#8d8c88</td><td>Disabled labels</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Semantic -->
+      <div class="subsection">
+        <div class="subsection__title">Semantic — Sentiments</div>
+        <div class="subsection__desc">Four sentiments each with a fill, hover, active, and weak palette for backgrounds and borders.</div>
+
+        <div class="demo">
+          <div class="demo__canvas demo__canvas--white" style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:20px;">
+            <div>
+              <div class="swatch-row" style="border-radius:6px; margin-bottom:6px">
+                <div class="sw" style="background:#00795d"></div>
+                <div class="sw" style="background:#00513e"></div>
+                <div class="sw" style="background:#00382b"></div>
+              </div>
+              <div class="swatch-row" style="border-radius:4px; height:20px; border:1px solid #e8e7e3">
+                <div class="sw" style="background:#f2f9f8"></div>
+                <div class="sw" style="background:#e6f4f0"></div>
+                <div class="sw" style="background:#cce8e2"></div>
+              </div>
+              <div style="margin-top:6px; font-size:12px; font-weight:700; color:#00795d">Success</div>
+              <div style="font-family:var(--mono); font-size:11px; color:var(--stone-500)">#00795d</div>
+            </div>
+            <div>
+              <div class="swatch-row" style="border-radius:6px; margin-bottom:6px">
+                <div class="sw" style="background:#d50047"></div>
+                <div class="sw" style="background:#910031"></div>
+                <div class="sw" style="background:#670022"></div>
+              </div>
+              <div class="swatch-row" style="border-radius:4px; height:20px; border:1px solid #e8e7e3">
+                <div class="sw" style="background:#fef6f9"></div>
+                <div class="sw" style="background:#fdedf2"></div>
+                <div class="sw" style="background:#fbdae5"></div>
+              </div>
+              <div style="margin-top:6px; font-size:12px; font-weight:700; color:#d50047">Error</div>
+              <div style="font-family:var(--mono); font-size:11px; color:var(--stone-500)">#d50047</div>
+            </div>
+            <div>
+              <div class="swatch-row" style="border-radius:6px; margin-bottom:6px">
+                <div class="sw" style="background:#ece68c"></div>
+                <div class="sw" style="background:#c4bc45"></div>
+                <div class="sw" style="background:#716d28"></div>
+              </div>
+              <div class="swatch-row" style="border-radius:4px; height:20px; border:1px solid #e8e7e3">
+                <div class="sw" style="background:#faf9e3"></div>
+                <div class="sw" style="background:#f6f3c7"></div>
+                <div class="sw" style="background:#ece68c"></div>
+              </div>
+              <div style="margin-top:6px; font-size:12px; font-weight:700; color:#716d28">Warning</div>
+              <div style="font-family:var(--mono); font-size:11px; color:var(--stone-500)">#ece68c · txt #716d28</div>
+            </div>
+            <div>
+              <div class="swatch-row" style="border-radius:6px; margin-bottom:6px">
+                <div class="sw" style="background:#8351c2"></div>
+                <div class="sw" style="background:#583583"></div>
+                <div class="sw" style="background:#3c245a"></div>
+              </div>
+              <div class="swatch-row" style="border-radius:4px; height:20px; border:1px solid #e8e7e3">
+                <div class="sw" style="background:#f9f7fc"></div>
+                <div class="sw" style="background:#f3eff9"></div>
+                <div class="sw" style="background:#e8dff4"></div>
+              </div>
+              <div style="margin-top:6px; font-size:12px; font-weight:700; color:#8351c2">Info</div>
+              <div style="font-family:var(--mono); font-size:11px; color:var(--stone-500)">#8351c2</div>
+            </div>
+          </div>
+          <div class="demo__label">Each row: default → hover → active + weak bg ramp</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ╔═══════════════════════════════════════════════════════════╗
+         ║  TYPOGRAPHY                                               ║
+         ╚═══════════════════════════════════════════════════════════╝ -->
+    <div class="section" id="typography">
+      <div class="section__eyebrow">Foundation</div>
+      <h2 class="section__title">Typography</h2>
+      <p class="section__desc">Inter variable font. Two scales: display for headings, text/title for UI density. All sizes use <code style="font-family:var(--mono); font-size:12px; background:var(--canvas); padding:1px 5px; border-radius:3px">--s-*</code> token compositions.</p>
+
+      <div class="subsection">
+        <div class="subsection__title">Display scale</div>
+        <div class="demo">
+          <div class="demo__canvas demo__canvas--white demo__canvas--col" style="gap:0; padding:24px 28px;">
+            <div class="type-specimen">
+              <span class="type-specimen__sample" style="font-size:40px; font-weight:700; letter-spacing:-.02em; line-height:1.2">Design System</span>
+              <span class="type-specimen__meta">display-lg · 40/48 · 700</span>
+            </div>
+            <div class="type-specimen">
+              <span class="type-specimen__sample" style="font-size:32px; font-weight:700; letter-spacing:-.015em; line-height:1.2">Design System</span>
+              <span class="type-specimen__meta">display-md · 32/38 · 700</span>
+            </div>
+            <div class="type-specimen">
+              <span class="type-specimen__sample" style="font-size:28px; font-weight:700; letter-spacing:-.01em; line-height:1.3">Design System</span>
+              <span class="type-specimen__meta">display-sm · 28/34 · 700</span>
+            </div>
+          </div>
+          <div class="demo__label">--s-display-lg/md/sm-default</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection__title">UI scale — title & body</div>
+        <div class="demo">
+          <div class="demo__canvas demo__canvas--white demo__canvas--col" style="gap:0; padding:20px 28px;">
+            <div class="type-specimen">
+              <span class="type-specimen__sample" style="font-size:20px; font-weight:600; line-height:28px">Title large — section heading</span>
+              <span class="type-specimen__meta">title-lg · 20/28 · 600</span>
+            </div>
+            <div class="type-specimen">
+              <span class="type-specimen__sample" style="font-size:16px; font-weight:600; line-height:24px">Title medium — form labels</span>
+              <span class="type-specimen__meta">title-md · 16/24 · 600</span>
+            </div>
+            <div class="type-specimen">
+              <span class="type-specimen__sample" style="font-size:13px; font-weight:600; line-height:20px">Title small — subsection title</span>
+              <span class="type-specimen__meta">title-sm · 13/20 · 600</span>
+            </div>
+            <div class="type-specimen">
+              <span class="type-specimen__sample" style="font-size:13px; font-weight:400; line-height:20px; color:#383836">Text md — body, descriptions, paragraph copy</span>
+              <span class="type-specimen__meta">text-md · 13/20 · 400</span>
+            </div>
+            <div class="type-specimen">
+              <span class="type-specimen__sample" style="font-size:13px; font-weight:600; line-height:20px">Text md strong — labels, emphasis</span>
+              <span class="type-specimen__meta">text-md-strong · 13/20 · 600</span>
+            </div>
+            <div class="type-specimen">
+              <span class="type-specimen__sample" style="font-size:12px; font-weight:400; line-height:16px; color:#5c5b57">Text small — hints, helper text, captions</span>
+              <span class="type-specimen__meta">text-sm · 12/16 · 400</span>
+            </div>
+            <div class="type-specimen">
+              <span class="type-specimen__sample" style="font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#5c5b57">LABEL XS — section labels, table headers</span>
+              <span class="type-specimen__meta">text-xs-strong · 10/10 · 700 · uppercase</span>
+            </div>
+          </div>
+          <div class="demo__label">--s-title-* and --s-text-* tokens</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ╔═══════════════════════════════════════════════════════════╗
+         ║  SPACING & RADIUS                                         ║
+         ╚═══════════════════════════════════════════════════════════╝ -->
+    <div class="section" id="spacing">
+      <div class="section__eyebrow">Foundation</div>
+      <h2 class="section__title">Spacing & Radius</h2>
+      <p class="section__desc">A t-shirt scale for both spacing and padding. The same step names are reused for border radius.</p>
+
+      <div class="subsection">
+        <div class="subsection__title">Spacing scale</div>
+        <div class="demo">
+          <div class="demo__canvas">
+            <div class="spacing-grid">
+              <div class="spacing-item"><div class="spacing-item__bar" style="width:2px; height:32px"></div><span class="spacing-item__label">xs · 2px</span></div>
+              <div class="spacing-item"><div class="spacing-item__bar" style="width:4px; height:32px"></div><span class="spacing-item__label">s · 4px</span></div>
+              <div class="spacing-item"><div class="spacing-item__bar" style="width:8px; height:32px"></div><span class="spacing-item__label">m · 8px</span></div>
+              <div class="spacing-item"><div class="spacing-item__bar" style="width:12px; height:32px"></div><span class="spacing-item__label">l · 12px</span></div>
+              <div class="spacing-item"><div class="spacing-item__bar" style="width:16px; height:32px"></div><span class="spacing-item__label">xl · 16px</span></div>
+              <div class="spacing-item"><div class="spacing-item__bar" style="width:24px; height:32px"></div><span class="spacing-item__label">xxl · 24px</span></div>
+            </div>
+          </div>
+          <div class="demo__label">--s-spacing-xs/s/m/l/xl/xxl · --s-padding-xs/s/m/l/xl/xxl</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection__title">Radius scale</div>
+        <div class="demo">
+          <div class="demo__canvas">
+            <div class="radius-grid">
+              <div class="radius-item"><div class="radius-item__box" style="border-radius:2px"></div><span class="radius-item__label">xs<br>2px</span></div>
+              <div class="radius-item"><div class="radius-item__box" style="border-radius:4px"></div><span class="radius-item__label">s · buttons<br>4px</span></div>
+              <div class="radius-item"><div class="radius-item__box" style="border-radius:8px"></div><span class="radius-item__label">m · cards<br>8px</span></div>
+              <div class="radius-item"><div class="radius-item__box" style="border-radius:12px"></div><span class="radius-item__label">l · sheets<br>12px</span></div>
+              <div class="radius-item"><div class="radius-item__box" style="border-radius:16px"></div><span class="radius-item__label">xl<br>16px</span></div>
+              <div class="radius-item"><div class="radius-item__box" style="border-radius:24px"></div><span class="radius-item__label">xxl · pill<br>24px</span></div>
+            </div>
+          </div>
+          <div class="demo__label">--s-radius-xs/s/m/l/xl/xxl</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ╔═══════════════════════════════════════════════════════════╗
+         ║  ELEVATION                                                ║
+         ╚═══════════════════════════════════════════════════════════╝ -->
+    <div class="section" id="elevation">
+      <div class="section__eyebrow">Foundation</div>
+      <h2 class="section__title">Elevation</h2>
+      <p class="section__desc">Three surface levels plus dedicated button shadows. Each shadow includes an inset bottom edge for a subtle beveled effect.</p>
+
+      <div class="demo">
+        <div class="demo__canvas" style="background:#efeeeb; gap:24px;">
+          <div class="elevation-row">
+            <div class="elevation-tile" style="box-shadow: var(--shadow-100)">
+              <span class="elevation-tile__name">100</span>
+              <span class="elevation-tile__val">Cards, panels</span>
+            </div>
+            <div class="elevation-tile" style="box-shadow: var(--shadow-200)">
+              <span class="elevation-tile__name">200</span>
+              <span class="elevation-tile__val">Popovers, menus</span>
+            </div>
+            <div class="elevation-tile" style="box-shadow: var(--shadow-300)">
+              <span class="elevation-tile__name">300</span>
+              <span class="elevation-tile__val">Modals, dialogs</span>
+            </div>
           </div>
         </div>
+        <div class="demo__label">--s-elevation-100 / 200 / 300</div>
+      </div>
 
-        <!-- WtgTabs -->
-        <div class="mh-tabs" role="tablist" aria-label="Form sections">
-          <button class="mh-tab active" role="tab" aria-selected="true" tabindex="0">
-            <span class="mh-tab-content">Label</span>
-          </button>
-          <button class="mh-tab" role="tab" aria-selected="false" tabindex="-1">
-            <span class="mh-tab-content">Label</span>
-          </button>
-          <button class="mh-tab" role="tab" aria-selected="false" tabindex="-1">
-            <span class="mh-tab-content">Label</span>
-          </button>
-          <button class="mh-tab" role="tab" aria-selected="false" tabindex="-1">
-            <span class="mh-tab-content">Label</span>
-          </button>
-          <button class="mh-tab" role="tab" aria-selected="false" tabindex="-1">
-            <span class="mh-tab-content">Label</span>
-          </button>
+      <table class="token-table" style="margin-top:16px">
+        <thead><tr><th>Token</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td class="tok">--s-elevation-100</td><td class="val">0 1px 1px rgba(27,27,26,.06), inset 0 -1px 1px rgba(27,27,26,.12)</td></tr>
+          <tr><td class="tok">--s-elevation-200</td><td class="val">0 2px 4px rgba(27,27,26,.12), inset 0 -1px 1px rgba(27,27,26,.12)</td></tr>
+          <tr><td class="tok">--s-elevation-300</td><td class="val">0 4px 8px rgba(27,27,26,.16), inset 0 -1px 1px rgba(27,27,26,.12)</td></tr>
+          <tr><td class="tok">--s-elevation-button-default</td><td class="val">0 1px 1px rgba(27,27,26,.06), inset 0 -1px 1px 1px #efeeeb, inset 0 0 2px #f7f7f4</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ╔═══════════════════════════════════════════════════════════╗
+         ║  ICONOGRAPHY                                              ║
+         ╚═══════════════════════════════════════════════════════════╝ -->
+    <div class="section" id="iconography">
+      <div class="section__eyebrow">Foundation</div>
+      <h2 class="section__title">Iconography</h2>
+      <p class="section__desc">251 icons in a single icon font. Use <code style="font-family:var(--mono); font-size:12px; background:var(--canvas); padding:1px 5px; border-radius:3px">&lt;i class="s-icon-name"&gt;&lt;/i&gt;</code>. Click any icon to copy its class name.</p>
+
+      <div style="margin-bottom:12px; display:flex; gap:16px; flex-wrap:wrap;">
+        <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--stone-700)">
+          <i class="s-icon-search" style="font-size:16px; color:var(--stone-500)"></i>Icon sizes:
         </div>
-
+        <span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--stone-700)"><i class="s-icon-star-empty" style="font-size:12px"></i>12px</span>
+        <span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--stone-700)"><i class="s-icon-star-empty" style="font-size:16px"></i>16px sm</span>
+        <span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--stone-700)"><i class="s-icon-star-empty" style="font-size:20px"></i>20px md</span>
+        <span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--stone-700)"><i class="s-icon-star-empty" style="font-size:28px"></i>28px lg</span>
       </div>
-    </header>
 
-    <!-- Content body (framework shell — intentionally empty) -->
-    <section class="content" role="main" aria-label="Form content"></section>
+      <input class="icon-search" id="iconSearch" type="search" placeholder="Search 251 icons…" spellcheck="false" autocomplete="off">
+      <div class="icon-grid" id="iconGrid"></div>
+    </div>
 
-    <!-- WtgActionBar footer -->
-    <footer class="action-bar-footer">
-      <div class="action-bar" role="toolbar" aria-label="Form actions">
-        <button class="btn btn--outline">Cancel</button>
-        <button class="btn btn--outline">Secondary actions</button>
-        <button class="btn btn--primary">Save changes</button>
+    <div class="divider"></div>
+
+    <!-- ╔═══════════════════════════════════════════════════════════╗
+         ║  BUTTONS                                                  ║
+         ╚═══════════════════════════════════════════════════════════╝ -->
+    <div class="section" id="buttons">
+      <div class="section__eyebrow">Components</div>
+      <h2 class="section__title">Buttons</h2>
+      <p class="section__desc">Four variants × three sentiments. Radius 4px. Motion 0.28s ease. Sizes xs / s / m (default) / l.</p>
+
+      <div class="subsection">
+        <div class="subsection__title">Fill</div>
+        <div class="demo">
+          <div class="demo__canvas">
+            <button class="btn btn-fill">Default</button>
+            <button class="btn btn-primary">Primary</button>
+            <button class="btn btn-critical">Delete</button>
+            <button class="btn btn-success">Approve</button>
+            <button class="btn btn-disabled" disabled>Disabled</button>
+          </div>
+          <div class="demo__label">Fill variant · --s-elevation-button-default shadow</div>
+        </div>
       </div>
-    </footer>
+
+      <div class="subsection">
+        <div class="subsection__title">Outline · Ghost · Tonal</div>
+        <div class="demo">
+          <div class="demo__canvas" style="flex-direction:column; align-items:flex-start; gap:16px;">
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+              <button class="btn btn-outline">Cancel</button>
+              <button class="btn btn-outline-primary">Action</button>
+              <button class="btn btn-outline-critical">Delete</button>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+              <button class="btn btn-ghost">Ghost</button>
+              <button class="btn btn-ghost-primary">Ghost primary</button>
+              <button class="btn btn-tonal">Tonal primary</button>
+            </div>
+          </div>
+          <div class="demo__label">Outline / Ghost / Tonal variants</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection__title">Sizes</div>
+        <div class="demo">
+          <div class="demo__canvas" style="align-items:center; gap:12px;">
+            <button class="btn btn-primary btn-xs">XS</button>
+            <button class="btn btn-primary btn-sm">Small</button>
+            <button class="btn btn-primary">Medium</button>
+            <button class="btn btn-primary btn-lg">Large</button>
+          </div>
+          <div class="demo__label">xs / s / m (default) / l</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ╔═══════════════════════════════════════════════════════════╗
+         ║  STATUS                                                   ║
+         ╚═══════════════════════════════════════════════════════════╝ -->
+    <div class="section" id="status">
+      <div class="section__eyebrow">Components</div>
+      <h2 class="section__title">Status</h2>
+      <p class="section__desc">WtgStatus — typographic chip, 2 variants × 6 sentiments. No icons, no dots — sentiment is communicated through color alone. Radius pill (99px).</p>
+
+      <div class="demo">
+        <div class="demo__canvas demo__canvas--white" style="flex-direction:column; gap:20px;">
+          <div class="chip-section">
+            <span class="chip-section-label">Fill</span>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <span class="chip chip-neutral">Neutral</span>
+              <span class="chip chip-primary">Primary</span>
+              <span class="chip chip-info">Info</span>
+              <span class="chip chip-success">Success</span>
+              <span class="chip chip-warning">Warning</span>
+              <span class="chip chip-error">Critical</span>
+            </div>
+          </div>
+          <div class="chip-section">
+            <span class="chip-section-label">Outline</span>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <span class="chip chip-outline-neutral">Neutral</span>
+              <span class="chip chip-outline-primary">Primary</span>
+              <span class="chip chip-outline-info">Info</span>
+              <span class="chip chip-outline-success">Success</span>
+              <span class="chip chip-outline-warning">Warning</span>
+              <span class="chip chip-outline-error">Critical</span>
+            </div>
+          </div>
+        </div>
+        <div class="demo__label">WtgStatus · fill + outline × 6 sentiments</div>
+      </div>
+
+      <table class="token-table" style="margin-top:16px">
+        <thead><tr><th>Sentiment</th><th>Fill bg</th><th>Text</th><th>Outline border</th></tr></thead>
+        <tbody>
+          <tr><td>Neutral</td><td class="val">#1b1b1a</td><td class="val">#f7f7f4</td><td class="val">#bfbeb9</td></tr>
+          <tr><td>Primary</td><td class="val">#371ee1</td><td class="val">#f6f8ff</td><td class="val">#371ee1</td></tr>
+          <tr><td>Success</td><td class="val">#00795d</td><td class="val">#f2f9f8</td><td class="val">#00795d</td></tr>
+          <tr><td>Warning</td><td class="val">#ece68c</td><td class="val">#4b481b</td><td class="val">#716d28</td></tr>
+          <tr><td>Error</td><td class="val">#d50047</td><td class="val">#fef6f9</td><td class="val">#d50047</td></tr>
+          <tr><td>Info</td><td class="val">#8351c2</td><td class="val">#f9f7fc</td><td class="val">#8351c2</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ╔═══════════════════════════════════════════════════════════╗
+         ║  FORM FIELDS                                              ║
+         ╚═══════════════════════════════════════════════════════════╝ -->
+    <div class="section" id="fields">
+      <div class="section__eyebrow">Components</div>
+      <h2 class="section__title">Form fields</h2>
+      <p class="section__desc">WtgTextField — label, control row (prefix · input · suffix), hint. All states driven by Supply tokens. Min height 32px.</p>
+
+      <div class="demo">
+        <div class="demo__canvas demo__canvas--white" style="gap:24px; flex-wrap:wrap; align-items:flex-start;">
+          <!-- Default -->
+          <div class="field">
+            <label class="field__label">Shipment ID</label>
+            <div class="field__control">
+              <input class="field__input" value="S00412-AUSYD">
+            </div>
+            <span class="field__hint">Unique reference</span>
+          </div>
+          <!-- With placeholder -->
+          <div class="field">
+            <label class="field__label">Consignee <span class="field__label" style="font-weight:400; color:var(--stone-500)">(optional)</span></label>
+            <div class="field__control">
+              <input class="field__input" placeholder="Start typing…">
+            </div>
+            <span class="field__hint">&nbsp;</span>
+          </div>
+          <!-- Prefix icon -->
+          <div class="field">
+            <label class="field__label">Search</label>
+            <div class="field__control">
+              <span class="field__affix"><i class="s-icon-search" style="font-size:14px"></i></span>
+              <input class="field__input" placeholder="Search records…">
+            </div>
+            <span class="field__hint">&nbsp;</span>
+          </div>
+          <!-- Suffix text -->
+          <div class="field">
+            <label class="field__label">Weight</label>
+            <div class="field__control">
+              <input class="field__input" value="18420">
+              <span class="field__affix" style="font-size:12px; color:var(--stone-500); padding-left:4px">kg</span>
+            </div>
+            <span class="field__hint">&nbsp;</span>
+          </div>
+          <!-- Error -->
+          <div class="field field--error">
+            <label class="field__label">HAWB number <span style="color:var(--red)">*</span></label>
+            <div class="field__control">
+              <input class="field__input" value="ABC">
+            </div>
+            <span class="field__hint"><i class="s-icon-status-critical" style="font-size:12px"></i> Minimum 8 characters required</span>
+          </div>
+          <!-- Disabled -->
+          <div class="field field--disabled">
+            <label class="field__label">Created by</label>
+            <div class="field__control">
+              <input class="field__input" value="System" disabled>
+            </div>
+            <span class="field__hint">Read only from API</span>
+          </div>
+        </div>
+        <div class="demo__label">Default · placeholder · prefix icon · suffix unit · error · disabled</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ╔═══════════════════════════════════════════════════════════╗
+         ║  DATA TABLE                                               ║
+         ╚═══════════════════════════════════════════════════════════╝ -->
+    <div class="section" id="table">
+      <div class="section__eyebrow">Components</div>
+      <h2 class="section__title">Data table</h2>
+      <p class="section__desc">High-density table for power users. Uppercase column headers, tabular numerals, inline status chips. Striped on hover.</p>
+
+      <div class="demo">
+        <div class="demo__canvas demo__canvas--white" style="padding:0; overflow:auto;">
+          <table class="dt">
+            <thead>
+              <tr>
+                <th>Shipment</th>
+                <th>Consignee</th>
+                <th>Origin → Dest</th>
+                <th>Status</th>
+                <th class="num">Weight</th>
+                <th class="num">ETA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="dt-link">S00412-AUSYD</span></td>
+                <td>Pacific Imports Pty Ltd</td>
+                <td style="color:var(--stone-700)">SIN → SYD</td>
+                <td><span class="chip chip-outline-success" style="font-size:11px">Cleared</span></td>
+                <td class="num">18,420 kg</td>
+                <td class="num">24 Apr</td>
+              </tr>
+              <tr>
+                <td><span class="dt-link">S00413-USLAX</span></td>
+                <td>Northbridge Wholesale</td>
+                <td style="color:var(--stone-700)">HKG → LAX</td>
+                <td><span class="chip chip-outline-warning" style="font-size:11px">In transit</span></td>
+                <td class="num">9,110 kg</td>
+                <td class="num">26 Apr</td>
+              </tr>
+              <tr>
+                <td><span class="dt-link">S00414-NLRTM</span></td>
+                <td>Vermeer Logistics BV</td>
+                <td style="color:var(--stone-700)">BRE → RTM</td>
+                <td><span class="chip chip-outline-error" style="font-size:11px">On hold</span></td>
+                <td class="num">21,070 kg</td>
+                <td class="num">28 Apr</td>
+              </tr>
+              <tr>
+                <td><span class="dt-link">S00415-SGSIN</span></td>
+                <td>Meridian Freight</td>
+                <td style="color:var(--stone-700)">KUL → SIN</td>
+                <td><span class="chip chip-outline-primary" style="font-size:11px">Active</span></td>
+                <td class="num">5,840 kg</td>
+                <td class="num">30 Apr</td>
+              </tr>
+              <tr>
+                <td><span class="dt-link">S00416-JPNRT</span></td>
+                <td>Tanaka Freight Co.</td>
+                <td style="color:var(--stone-700)">ICN → NRT</td>
+                <td><span class="chip chip-outline-info" style="font-size:11px">Booked</span></td>
+                <td class="num">3,200 kg</td>
+                <td class="num">02 May</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="demo__label">WtgSearchDataTable · inline WtgStatus chips · tabular numerals</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ╔═══════════════════════════════════════════════════════════╗
+         ║  CALLOUTS                                                 ║
+         ╚═══════════════════════════════════════════════════════════╝ -->
+    <div class="section" id="callouts">
+      <div class="section__eyebrow">Components</div>
+      <h2 class="section__title">Callouts</h2>
+      <p class="section__desc">Inline feedback messages. Sentiment-colored backgrounds, direct and actionable copy.</p>
+
+      <div class="demo">
+        <div class="demo__canvas demo__canvas--col demo__canvas--white" style="gap:10px;">
+          <div class="callout" style="background:#f2f9f8; border-color:var(--green-border); color:#00513e">
+            <div class="callout-dot" style="background:#00795d"></div>
+            <div><strong>Shipment cleared.</strong>Customs released at 14:02 UTC. No further action required.</div>
+          </div>
+          <div class="callout" style="background:#fef6f9; border-color:var(--red-border); color:#910031">
+            <div class="callout-dot" style="background:#d50047"></div>
+            <div><strong>Weight exceeds container limit.</strong>Reduce load below 21,000 kg or split into a second consol.</div>
+          </div>
+          <div class="callout" style="background:#faf9e3; border-color:var(--yellow-border); color:#4b481b">
+            <div class="callout-dot" style="background:#716d28"></div>
+            <div><strong>Awaiting HAWB.</strong>Airline has not yet returned the house airway bill number.</div>
+          </div>
+          <div class="callout" style="background:#f9f7fc; border-color:var(--violet-border); color:#583583">
+            <div class="callout-dot" style="background:#8351c2"></div>
+            <div><strong>Rate valid until 30 Apr.</strong>Renegotiate with carrier ahead of expiry.</div>
+          </div>
+        </div>
+        <div class="demo__label">Success · Error · Warning · Info</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ╔═══════════════════════════════════════════════════════════╗
+         ║  APP SHELL                                                ║
+         ╚═══════════════════════════════════════════════════════════╝ -->
+    <div class="section" id="appshell">
+      <div class="section__eyebrow">Patterns</div>
+      <h2 class="section__title">App shell</h2>
+      <p class="section__desc">The framework template: floating indigo sidebar, WtgMasthead (breadcrumbs + record header + tabs), scrollable content, floating WtgActionBar.</p>
+
+      <div class="shell-preview">
+        <div class="shell-preview__bar">
+          <div class="shell-preview__dot" style="background:#ff5f57"></div>
+          <div class="shell-preview__dot" style="background:#ffbd2e"></div>
+          <div class="shell-preview__dot" style="background:#28c840"></div>
+        </div>
+        <div class="shell-preview__inner">
+          <!-- Sidebar -->
+          <div class="shell-preview__side">
+            <div class="mini-logo">design system</div>
+            <div class="mini-portal">
+              <div class="mp-name">Portal name</div>
+              <div class="mp-sub">Branch / Department</div>
+            </div>
+            <div style="padding:8px 12px; font-size:10px; color:rgba(255,255,255,.45); text-align:center">Slot</div>
+            <div class="mini-spacer"></div>
+            <div class="mini-nav-item"><i class="s-icon-star-empty"></i>Favorites</div>
+            <div class="mini-nav-item"><i class="s-icon-history"></i>Recently viewed</div>
+            <div style="height:1px; background:rgba(255,255,255,.1); margin:6px 12px"></div>
+            <div class="mini-nav-item"><i class="s-icon-help"></i>Help</div>
+            <div class="mini-nav-item"><i class="s-icon-settings"></i>Settings</div>
+            <div class="mini-nav-item">
+              <span style="width:16px;height:16px;border-radius:50%;background:#c4b8f5;color:#221098;font-size:8px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">DR</span>
+              Darlene Robertson
+            </div>
+          </div>
+          <!-- Main -->
+          <div class="shell-preview__main">
+            <!-- Masthead -->
+            <div class="mini-mh">
+              <div class="mini-bc">Portal name <span style="color:var(--stone-500)">/</span> Form caption</div>
+              <div class="mini-hr"></div>
+              <div class="mini-rec">
+                <span style="font-size:18px;color:var(--stone-500);cursor:default">←</span>
+                <span class="mini-rec-id">GFR-8640</span>
+                <div class="mini-ea">
+                  <button>Workflow</button>
+                  <button>eDocs</button>
+                  <button>Documents</button>
+                  <button>Related items</button>
+                  <button>Notes</button>
+                  <button>Messages</button>
+                  <button>Logs</button>
+                </div>
+              </div>
+              <div class="mini-tabs">
+                <button class="mini-tab a">Label</button>
+                <button class="mini-tab">Label</button>
+                <button class="mini-tab">Label</button>
+                <button class="mini-tab">Label</button>
+                <button class="mini-tab">Label</button>
+              </div>
+            </div>
+            <!-- Body -->
+            <div class="mini-body"></div>
+            <!-- Action bar -->
+            <div class="mini-ab-wrap">
+              <div class="mini-ab">
+                <button class="btn btn-outline btn-sm">Cancel</button>
+                <button class="btn btn-outline btn-sm">Secondary actions</button>
+                <button class="btn btn-primary btn-sm">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px">
+        <table class="token-table">
+          <thead><tr><th>Region</th><th>Component</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Sidebar</td><td>WtgNavigationDrawer</td><td>216px wide · 12px gap all sides · --s-radius-m (8px) · indigo</td></tr>
+            <tr><td>Breadcrumbs row</td><td>WtgMasthead / WtgBreadcrumbs</td><td>44px min-height · underlined primary links · hairline divider below</td></tr>
+            <tr><td>Record header</td><td>WtgMasthead extension</td><td>Back IconButton (ghost) + record ID + WtgEntityActions cluster</td></tr>
+            <tr><td>Tabs</td><td>WtgTabs / WtgTab</td><td>2px primary slider under active tab only · no full-width line</td></tr>
+            <tr><td>Action bar</td><td>WtgActionBar</td><td>Floating white card · --s-elevation-200 · 16px inset from edges</td></tr>
+          </tbody>
+        </table>
+        <a href="framework.html" class="btn btn-outline" style="margin-top:8px; text-decoration:none">
+          <i class="s-icon-full-screen" style="font-size:14px"></i> Open full-screen framework
+        </a>
+      </div>
+    </div>
 
   </main>
 </div>
 
-<script>
-  /* Tab switching — keyboard + click */
-  const tabs = document.querySelectorAll('.mh-tab');
-  tabs.forEach((tab, i) => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-        t.tabIndex = -1;
-      });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-      tab.tabIndex = 0;
-    });
-    tab.addEventListener('keydown', e => {
-      if (e.key === 'ArrowRight') { tabs[Math.min(i + 1, tabs.length - 1)].focus(); e.preventDefault(); }
-      if (e.key === 'ArrowLeft')  { tabs[Math.max(i - 1, 0)].focus(); e.preventDefault(); }
-    });
-  });
-</script>
+<!-- Copy toast -->
+<div class="toast" id="toast">Copied!</div>
 
+<script>
+/* ── Icon grid ──────────────────────────────────────────────────────── */
+const iconNames = [];
+document.querySelectorAll('[class^="s-icon-"],[class*=" s-icon-"]').forEach(el => {
+  el.classList.forEach(c => { if (c.startsWith('s-icon-') && !iconNames.includes(c)) iconNames.push(c); });
+});
+// Supplement from CSS rules
+const sheet = [...document.styleSheets].find(s => { try { return s.cssRules; } catch { return false; }});
+if (sheet) {
+  [...sheet.cssRules].forEach(r => {
+    if (r.selectorText && r.selectorText.includes('s-icon-') && r.selectorText.includes('before')) {
+      const m = r.selectorText.match(/\.(s-icon-[\w-]+)/);
+      if (m && !iconNames.includes(m[1])) iconNames.push(m[1]);
+    }
+  });
+}
+// Also parse from supply-icons.css
+fetch('project/preview/supply-icons.css').then(r => r.text()).then(css => {
+  const matches = css.matchAll(/\.(s-icon-[\w-]+):before/g);
+  for (const m of matches) { if (!iconNames.includes(m[1])) iconNames.push(m[1]); }
+  iconNames.sort();
+  renderIcons(iconNames);
+}).catch(() => { iconNames.sort(); renderIcons(iconNames); });
+
+function renderIcons(names) {
+  const grid = document.getElementById('iconGrid');
+  grid.innerHTML = names.map(n => `
+    <div class="icon-cell" data-name="${n}" title="${n}" onclick="copyIcon('${n}',this)">
+      <i class="${n}"></i>
+      <span>${n.replace('s-icon-', '')}</span>
+    </div>`).join('');
+}
+
+function copyIcon(name, el) {
+  navigator.clipboard.writeText(name).catch(() => {});
+  el.classList.add('copied');
+  setTimeout(() => el.classList.remove('copied'), 1200);
+  showToast(`Copied ${name}`);
+}
+
+/* ── Icon search ───────────────────────────────────────────────────── */
+document.getElementById('iconSearch').addEventListener('input', function() {
+  const q = this.value.toLowerCase().replace('s-icon-', '');
+  document.querySelectorAll('#iconGrid .icon-cell').forEach(el => {
+    el.style.display = el.dataset.name.includes(q) ? '' : 'none';
+  });
+});
+
+/* ── Toast ─────────────────────────────────────────────────────────── */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+/* ── Active nav highlighting on scroll ─────────────────────────────── */
+const sections = document.querySelectorAll('.section, .hero');
+const navLinks = document.querySelectorAll('.sidebar .nav-link');
+const topLinks = document.querySelectorAll('.topbar__nav a');
+
+const sectionMap = {
+  'foundation': 'Foundation', 'colors': 'Foundation', 'typography': 'Foundation',
+  'spacing': 'Foundation', 'elevation': 'Foundation', 'iconography': 'Foundation',
+  'buttons': 'Components', 'status': 'Components', 'fields': 'Components',
+  'table': 'Components', 'callouts': 'Components',
+  'appshell': 'Patterns'
+};
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+      const section = sectionMap[id];
+      topLinks.forEach(l => l.classList.toggle('active',
+        l.textContent.trim() === section));
+    }
+  });
+}, { threshold: 0.25 });
+
+sections.forEach(s => obs.observe(s));
+</script>
 </body>
 </html>
