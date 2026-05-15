@@ -1,0 +1,264 @@
+/* =========================================================
+   WtgButton — faithful port from WTG.WebComponents
+   src/packages/wtg-components/src/components/WtgButton/WtgButton.vue
+   ========================================================= */
+
+.wtg-button {
+  align-items: center;
+  border-radius: var(--s-radius-s);
+  border: 1px solid;
+  cursor: pointer;
+  display: inline-flex;
+  font: var(--s-text-md-strong);
+  gap: var(--s-spacing-null);
+  justify-content: center;
+  padding: var(--s-padding-s);
+  position: relative;
+  text-decoration: none;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  background: transparent;
+  white-space: nowrap;
+}
+.wtg-button:link, .wtg-button:visited, .wtg-button:hover, .wtg-button:active { text-decoration: none; }
+
+.wtg-button:disabled, .wtg-button--disabled {
+  background: var(--s-neutral-bg-disabled) !important;
+  border-color: var(--s-neutral-bg-disabled) !important;
+  color: var(--s-neutral-txt-disabled) !important;
+  cursor: default;
+  pointer-events: none;
+}
+
+.wtg-button:focus-visible {
+  outline-offset: 1px;
+  outline: 2px solid var(--s-primary-border-default);
+  z-index: 1;
+}
+
+/* Inset elevation layer — present on fill + outline */
+.wtg-button__shadow {
+  position: absolute;
+  inset: 0;
+  margin: -1px;
+  border-radius: var(--s-radius-s);
+  box-shadow: var(--s-elevation-button-default);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.wtg-button:disabled .wtg-button__shadow { box-shadow: none; margin: 0; }
+
+.wtg-button__content {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 1;
+  padding: 0 var(--s-padding-s);
+}
+.wtg-button__icon {
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+.wtg-button__icon svg { width: 16px; height: 16px; }
+
+/* --- OUTLINE (default) --- */
+.wtg-button--outline {
+  background: var(--s-neutral-bg-default);
+  border-color: var(--s-neutral-border-weak-default);
+  color: var(--s-neutral-txt-default);
+}
+.wtg-button--outline:not(.wtg-button--selected):not(:disabled):hover:not(:active) {
+  background: var(--s-neutral-bg-weak-hover);
+  border-color: var(--s-neutral-border-weak-hover);
+  color: var(--s-neutral-txt-hover);
+}
+.wtg-button--outline:not(.wtg-button--selected):not(:disabled):active,
+.wtg-button--outline:not(.wtg-button--selected):not(:disabled).wtg-button--active {
+  background: var(--s-neutral-bg-default);
+  border-color: var(--s-neutral-border-weak-active);
+  color: var(--s-neutral-txt-active);
+}
+.wtg-button--outline.wtg-button--selected { background: var(--s-neutral-bg-weak-active); }
+.wtg-button--outline:not(:disabled):hover .wtg-button__shadow { box-shadow: var(--s-elevation-200); }
+.wtg-button--outline:not(:disabled):active .wtg-button__shadow,
+.wtg-button--outline:not(:disabled).wtg-button--active:not(:hover) .wtg-button__shadow { box-shadow: var(--s-elevation-button-pressed); }
+
+/* outline + primary sentiment */
+.wtg-button--outline.wtg-button--primary {
+  border-color: var(--s-primary-border-weak-default, #a4b6fb);
+  color: var(--s-primary-txt-default);
+}
+.wtg-button--outline.wtg-button--primary:not(.wtg-button--selected):not(:disabled):hover:not(:active) {
+  background: var(--s-primary-bg-weak-hover);
+  border-color: var(--s-primary-border-hover);
+  color: var(--s-primary-txt-hover);
+}
+.wtg-button--outline.wtg-button--primary:not(.wtg-button--selected):not(:disabled):active {
+  background: var(--s-neutral-bg-default);
+  border-color: var(--s-primary-border-active);
+  color: var(--s-primary-txt-active);
+}
+
+.wtg-button--outline.wtg-button--critical {
+  border-color: rgba(213,0,71,0.5);
+  color: var(--s-error-txt-default);
+}
+.wtg-button--outline.wtg-button--critical:not(.wtg-button--selected):not(:disabled):hover:not(:active) {
+  background: var(--s-error-bg-weak-hover);
+  border-color: var(--s-error-bg-hover);
+  color: var(--s-error-txt-hover);
+}
+.wtg-button--outline.wtg-button--critical:not(.wtg-button--selected):not(:disabled):active {
+  background: var(--s-neutral-bg-default);
+  border-color: var(--s-error-bg-active);
+  color: var(--s-error-bg-active);
+}
+
+.wtg-button--outline.wtg-button--success {
+  border-color: rgba(0,121,93,0.5);
+  color: var(--s-success-txt-default);
+}
+.wtg-button--outline.wtg-button--success:not(.wtg-button--selected):not(:disabled):hover:not(:active) {
+  background: var(--s-success-bg-weak-hover);
+  border-color: var(--s-success-bg-hover);
+  color: var(--s-success-txt-hover);
+}
+
+/* --- FILL --- */
+.wtg-button--fill {
+  background: var(--s-neutral-bg-weak-default);
+  border-color: var(--s-neutral-bg-weak-default);
+  color: var(--s-neutral-txt-default);
+}
+.wtg-button--fill:not(:disabled):hover {
+  background: var(--s-neutral-bg-weak-hover);
+  border-color: var(--s-neutral-bg-weak-hover);
+}
+.wtg-button--fill:not(:disabled):active {
+  background: var(--s-neutral-bg-weak-active);
+  border-color: var(--s-neutral-bg-weak-active);
+}
+
+.wtg-button--fill.wtg-button--primary {
+  background: var(--s-primary-bg-default);
+  border-color: var(--s-primary-border-default);
+  color: var(--s-primary-txt-inv-default);
+}
+.wtg-button--fill.wtg-button--primary:not(:disabled):hover {
+  background: var(--s-primary-bg-hover);
+  border-color: var(--s-primary-border-hover);
+}
+.wtg-button--fill.wtg-button--primary:not(:disabled):active,
+.wtg-button--fill.wtg-button--primary.wtg-button--active:not(:hover) {
+  background: var(--s-primary-bg-active);
+  border-color: var(--s-primary-bg-active);
+}
+
+.wtg-button--fill.wtg-button--critical {
+  background: var(--s-error-bg-default);
+  border-color: var(--s-error-border-default);
+  color: var(--s-error-txt-inv-default);
+}
+.wtg-button--fill.wtg-button--critical:not(:disabled):hover {
+  background: var(--s-error-bg-hover);
+  border-color: var(--s-error-bg-hover);
+}
+.wtg-button--fill.wtg-button--critical:not(:disabled):active {
+  background: var(--s-error-bg-active);
+  border-color: var(--s-error-bg-active);
+}
+
+.wtg-button--fill.wtg-button--success {
+  background: var(--s-success-bg-default);
+  border-color: var(--s-success-border-default);
+  color: var(--s-success-txt-inv-default);
+}
+.wtg-button--fill.wtg-button--success:not(:disabled):hover {
+  background: var(--s-success-bg-hover);
+  border-color: var(--s-success-bg-hover);
+}
+
+.wtg-button--fill:not(:disabled):hover .wtg-button__shadow { box-shadow: var(--s-elevation-200); }
+.wtg-button--fill:not(:disabled):active .wtg-button__shadow { box-shadow: var(--s-elevation-button-pressed); }
+
+/* --- GHOST --- */
+.wtg-button--ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--s-neutral-txt-default);
+}
+.wtg-button--ghost .wtg-button__shadow { box-shadow: none; margin: 0; }
+
+.wtg-button--ghost:not(.wtg-button--selected):not(:disabled):hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: currentColor;
+  opacity: 0.12;
+  pointer-events: none;
+}
+.wtg-button--ghost:not(.wtg-button--selected):not(:disabled):active::before,
+.wtg-button--ghost:not(.wtg-button--selected):not(:disabled).wtg-button--active:not(:hover)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: currentColor;
+  opacity: 0.24;
+  pointer-events: none;
+}
+.wtg-button--ghost.wtg-button--primary { color: var(--s-primary-txt-default); }
+.wtg-button--ghost.wtg-button--critical { color: var(--s-error-txt-default); }
+.wtg-button--ghost.wtg-button--success { color: var(--s-success-txt-default); }
+.wtg-button--ghost.wtg-button--selected { background: var(--s-neutral-bg-weak-active); }
+.wtg-button--ghost.wtg-button--primary.wtg-button--selected { background: var(--s-primary-bg-weak-active); }
+
+/* --- TONAL --- */
+.wtg-button--tonal {
+  background: var(--s-neutral-bg-tonal-default);
+  border-color: transparent;
+  color: var(--s-neutral-txt-default);
+}
+.wtg-button--tonal .wtg-button__shadow { box-shadow: none; margin: 0; }
+.wtg-button--tonal:not(.wtg-button--selected):not(:disabled):hover:not(:active) { background: var(--s-neutral-bg-tonal-hover); }
+.wtg-button--tonal:not(.wtg-button--selected):not(:disabled):active { background: var(--s-neutral-bg-tonal-active); }
+
+.wtg-button--tonal.wtg-button--primary { background: var(--s-primary-bg-tonal-default); color: var(--s-primary-txt-default); }
+.wtg-button--tonal.wtg-button--primary:not(:disabled):hover:not(:active) { background: var(--s-primary-bg-tonal-hover); color: var(--s-primary-txt-hover); }
+.wtg-button--tonal.wtg-button--primary:not(:disabled):active { background: var(--s-primary-bg-tonal-active); color: var(--s-primary-txt-active); }
+
+.wtg-button--tonal.wtg-button--success { background: var(--s-success-bg-tonal-default); color: var(--s-success-txt-default); }
+.wtg-button--tonal.wtg-button--critical { background: var(--s-error-bg-tonal-default); color: var(--s-error-txt-default); }
+
+/* --- Sizes --- */
+.wtg-button--xs { padding: var(--s-padding-xs); font: var(--s-text-sm-strong); }
+.wtg-button--s  { padding: var(--s-padding-s); }
+.wtg-button--m  { padding: var(--s-padding-m); }
+.wtg-button--l  { padding: var(--s-padding-l); }
+.wtg-button--xl { padding: var(--s-padding-xl); }
+
+.wtg-button--fill-available { flex: 1 0 auto; min-width: 100% !important; max-width: none; }
+
+/* Split-button affordance (primary fill, dropdown caret on right) */
+.wtg-button--split { padding-right: var(--s-padding-xs); }
+.wtg-button--split .wtg-button__split {
+  border-left: 1px solid rgba(255,255,255,0.28);
+  margin-left: var(--s-spacing-xs);
+  padding-left: var(--s-padding-xs);
+  display: inline-flex;
+  align-items: center;
+  z-index: 1;
+}
+.wtg-button--split.wtg-button--outline .wtg-button__split,
+.wtg-button--split.wtg-button--ghost .wtg-button__split,
+.wtg-button--split.wtg-button--tonal .wtg-button__split { border-left-color: var(--divider); }
+
+/* Compat shims for legacy class names still in markup */
+.btn { composes: wtg-button; }

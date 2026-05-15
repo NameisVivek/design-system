@@ -1,0 +1,25 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Data table</title>
+<link rel="stylesheet" href="card.css">
+<style>
+  table { border-collapse:collapse; width:100%; font:var(--s-text-sm-default); }
+  th { text-align:left; background:#f7f7f4; color:#383836; font:var(--s-text-xs-strong); text-transform:uppercase; letter-spacing:0.04em; padding:6px 10px; border-bottom:1px solid #bfbeb9; }
+  td { padding:6px 10px; border-bottom:1px solid #e8e7e3; color:#383836; }
+  tr:nth-child(even) td { background:#f7f7f4; }
+  tr:hover td { background:#ecf1ff; }
+  .num { font-variant-numeric: tabular-nums; text-align:right; }
+  .pill { display:inline-flex; gap:6px; align-items:center; padding:1px 8px; border-radius:9999px; font:var(--s-text-xs-strong); }
+  .dot { width:6px; height:6px; border-radius:50%; }
+</style></head>
+<body style="padding:0;background:#fff">
+<div style="padding:10px;background:#fff;border:1px solid #bfbeb9;border-radius:8px;overflow:hidden">
+<table>
+  <thead><tr><th>Shipment</th><th>Consignee</th><th>Status</th><th class="num">Weight</th><th class="num">ETA</th></tr></thead>
+  <tbody>
+    <tr><td><strong style="color:#221098">S00412-AUSYD</strong></td><td>Pacific Imports Pty Ltd</td><td><span class="pill" style="background:#f2f9f8;color:#00513e"><span class="dot" style="background:#00795d"></span>Cleared</span></td><td class="num">18,420 kg</td><td class="num">24 Apr</td></tr>
+    <tr><td><strong style="color:#221098">S00413-USLAX</strong></td><td>Northbridge Wholesale</td><td><span class="pill" style="background:#faf9e3;color:#4b481b"><span class="dot" style="background:#716d28"></span>In progress</span></td><td class="num">9,110 kg</td><td class="num">26 Apr</td></tr>
+    <tr><td><strong style="color:#221098">S00414-NLRTM</strong></td><td>Vermeer Logistics BV</td><td><span class="pill" style="background:#fef6f9;color:#910031"><span class="dot" style="background:#d50047"></span>Hold</span></td><td class="num">21,070 kg</td><td class="num">28 Apr</td></tr>
+    <tr><td><strong style="color:#221098">S00415-SGSIN</strong></td><td>Meridian Freight</td><td><span class="pill" style="background:#f6f8ff;color:#221098"><span class="dot" style="background:#371ee1"></span>Active</span></td><td class="num">5,840 kg</td><td class="num">30 Apr</td></tr>
+  </tbody>
+</table>
+</div>
+</body></html>

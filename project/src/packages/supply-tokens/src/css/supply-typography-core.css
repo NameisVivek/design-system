@@ -1,0 +1,74 @@
+:root {
+    --s-display-lg-default-num: var(--s-fontweight-700) var(--s-fontsize-800) / var(--s-lineheight-800)
+        var(--s-fontfamily-primary);
+    --s-display-lg-default: var(--s-fontweight-700) var(--s-fontsize-800) / var(--s-lineheight-800)
+        var(--s-fontfamily-primary);
+    --s-display-md-default-num: var(--s-fontweight-700) var(--s-fontsize-700) / var(--s-lineheight-700)
+        var(--s-fontfamily-primary);
+    --s-display-md-default: var(--s-fontweight-700) var(--s-fontsize-700) / var(--s-lineheight-700)
+        var(--s-fontfamily-primary);
+    --s-display-sm-default-num: var(--s-fontweight-700) var(--s-fontsize-600) / var(--s-lineheight-600)
+        var(--s-fontfamily-primary);
+    --s-display-sm-default: var(--s-fontweight-700) var(--s-fontsize-600) / var(--s-lineheight-600)
+        var(--s-fontfamily-primary);
+    --s-text-md-default-link: var(--s-fontweight-400) var(--s-fontsize-300) / var(--s-lineheight-300)
+        var(--s-fontfamily-primary);
+    --s-text-md-default-num-link: var(--s-fontweight-400) var(--s-fontsize-300) / var(--s-lineheight-300)
+        var(--s-fontfamily-primary);
+    --s-text-md-default-num: var(--s-fontweight-400) var(--s-fontsize-300) / var(--s-lineheight-300)
+        var(--s-fontfamily-primary);
+    --s-text-md-default: var(--s-fontweight-400) var(--s-fontsize-300) / var(--s-lineheight-300)
+        var(--s-fontfamily-primary);
+    --s-text-md-strong-link: var(--s-fontweight-600) var(--s-fontsize-300) / var(--s-lineheight-300)
+        var(--s-fontfamily-primary);
+    --s-text-md-strong-num-link: var(--s-fontweight-600) var(--s-fontsize-300) / var(--s-lineheight-300)
+        var(--s-fontfamily-primary);
+    --s-text-md-strong-num: var(--s-fontweight-600) var(--s-fontsize-300) / var(--s-lineheight-300)
+        var(--s-fontfamily-primary);
+    --s-text-md-strong: var(--s-fontweight-600) var(--s-fontsize-300) / var(--s-lineheight-300)
+        var(--s-fontfamily-primary);
+    --s-text-sm-default-link: var(--s-fontweight-400) var(--s-fontsize-200) / var(--s-lineheight-200)
+        var(--s-fontfamily-primary);
+    --s-text-sm-default-num-link: var(--s-fontweight-400) var(--s-fontsize-200) / var(--s-lineheight-200)
+        var(--s-fontfamily-primary);
+    --s-text-sm-default-num: var(--s-fontweight-400) var(--s-fontsize-200) / var(--s-lineheight-200)
+        var(--s-fontfamily-primary);
+    --s-text-sm-default: var(--s-fontweight-400) var(--s-fontsize-200) / var(--s-lineheight-200)
+        var(--s-fontfamily-primary);
+    --s-text-sm-strong-link: var(--s-fontweight-600) var(--s-fontsize-200) / var(--s-lineheight-200)
+        var(--s-fontfamily-primary);
+    --s-text-sm-strong-num-link: var(--s-fontweight-600) var(--s-fontsize-200) / var(--s-lineheight-200)
+        var(--s-fontfamily-primary);
+    --s-text-sm-strong-num: var(--s-fontweight-600) var(--s-fontsize-200) / var(--s-lineheight-200)
+        var(--s-fontfamily-primary);
+    --s-text-sm-strong: var(--s-fontweight-600) var(--s-fontsize-200) / var(--s-lineheight-200)
+        var(--s-fontfamily-primary);
+    --s-text-xs-default-link: var(--s-fontweight-400) var(--s-fontsize-100) / var(--s-lineheight-100)
+        var(--s-fontfamily-primary);
+    --s-text-xs-default-num-link: var(--s-fontweight-400) var(--s-fontsize-100) / var(--s-lineheight-100)
+        var(--s-fontfamily-primary);
+    --s-text-xs-default-num: var(--s-fontweight-400) var(--s-fontsize-100) / var(--s-lineheight-100)
+        var(--s-fontfamily-primary);
+    --s-text-xs-default: var(--s-fontweight-400) var(--s-fontsize-100) / var(--s-lineheight-100)
+        var(--s-fontfamily-primary);
+    --s-text-xs-strong-link: var(--s-fontweight-600) var(--s-fontsize-100) / var(--s-lineheight-100)
+        var(--s-fontfamily-primary);
+    --s-text-xs-strong-num-link: var(--s-fontweight-600) var(--s-fontsize-100) / var(--s-lineheight-100)
+        var(--s-fontfamily-primary);
+    --s-text-xs-strong-num: var(--s-fontweight-600) var(--s-fontsize-100) / var(--s-lineheight-100)
+        var(--s-fontfamily-primary);
+    --s-text-xs-strong: var(--s-fontweight-600) var(--s-fontsize-100) / var(--s-lineheight-100)
+        var(--s-fontfamily-primary);
+    --s-title-lg-default-num: var(--s-fontweight-600) var(--s-fontsize-500) / var(--s-lineheight-500)
+        var(--s-fontfamily-primary);
+    --s-title-lg-default: var(--s-fontweight-600) var(--s-fontsize-500) / var(--s-lineheight-500)
+        var(--s-fontfamily-primary);
+    --s-title-md-default-num: var(--s-fontweight-600) var(--s-fontsize-400) / var(--s-lineheight-400)
+        var(--s-fontfamily-primary);
+    --s-title-md-default: var(--s-fontweight-600) var(--s-fontsize-400) / var(--s-lineheight-400)
+        var(--s-fontfamily-primary);
+    --s-title-sm-default-num: var(--s-fontweight-600) var(--s-fontsize-300) / var(--s-lineheight-300)
+        var(--s-fontfamily-primary);
+    --s-title-sm-default: var(--s-fontweight-600) var(--s-fontsize-300) / var(--s-lineheight-300)
+        var(--s-fontfamily-primary);
+}

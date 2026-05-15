@@ -1,0 +1,40 @@
+/* Shared card styles for preview/ */
+@import url('../colors_and_type.css');
+
+body {
+  margin: 0;
+  padding: 20px;
+  background: #fafaf7;
+  font: var(--s-text-md-default);
+  color: var(--s-neutral-txt-default);
+}
+
+.card {
+  background: var(--s-neutral-bg-default);
+  border: 1px solid var(--s-neutral-border-weak-default);
+  border-radius: var(--s-radius-m);
+  padding: var(--s-padding-xxl);
+  box-shadow: var(--s-elevation-100);
+}
+
+.row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.col { display: flex; flex-direction: column; gap: 8px; }
+.stack-tight { display: flex; flex-direction: column; gap: 4px; }
+
+.mono {
+  font-family: 'SF Mono', 'JetBrains Mono', Consolas, Menlo, monospace;
+  font-size: 11px;
+  color: var(--s-neutral-txt-weak-default);
+}
+
+.swatch {
+  border-radius: var(--s-radius-s);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.label {
+  font: var(--s-text-xs-strong);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--s-neutral-txt-weak-default);
+}

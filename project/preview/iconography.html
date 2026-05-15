@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Iconography — Supply</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="supply-icons.css">
+<link rel="stylesheet" href="card.css">
+<style>
+  .ico-header {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 20px;
+  }
+  .ico-header .count {
+    font: var(--s-text-sm-default);
+    color: var(--s-neutral-txt-weak-default);
+  }
+  .ico-header .usage {
+    margin-left: auto;
+    font: var(--s-text-sm-default);
+    color: var(--s-neutral-txt-weak-default);
+    padding: 4px 10px;
+    background: var(--s-neutral-bg-weak-default);
+    border-radius: var(--s-radius-s);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  .ico-row-sizes {
+    display: flex; align-items: center; gap: 32px;
+    padding: 18px 20px;
+    background: var(--s-neutral-bg-weak-default);
+    border-radius: var(--s-radius-m, 8px);
+    margin-bottom: 28px;
+  }
+  .ico-size { display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--s-neutral-txt-weak-default); font: var(--s-text-xs-default); }
+  .ico-size .sample { color: var(--s-neutral-icon-default); display: inline-flex; align-items: center; justify-content: center; }
+  .ico-size .sample.s12 { font-size: 12px; }
+  .ico-size .sample.s14 { font-size: 14px; }
+  .ico-size .sample.s16 { font-size: 16px; }
+  .ico-size .sample.s20 { font-size: 20px; }
+  .ico-size .sample.s24 { font-size: 24px; }
+  .ico-size .sample.s32 { font-size: 32px; }
+
+  .ico-row-colors { display: flex; gap: 12px; margin-bottom: 28px; }
+  .ico-swatch {
+    flex: 1;
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 16px;
+    border: 1px solid var(--s-neutral-border-weak-default);
+    border-radius: var(--s-radius-s);
+  }
+  .ico-swatch .lbl { display: flex; flex-direction: column; gap: 2px; }
+  .ico-swatch .name { font: var(--s-text-sm-strong); color: var(--s-neutral-txt-default); }
+  .ico-swatch .tok { font: var(--s-text-xs-default); color: var(--s-neutral-txt-weak-default); font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .ico-swatch i { font-size: 20px; }
+
+  .ico-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+  }
+  .ico-cell {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    padding: 14px 8px;
+    border: 1px solid var(--s-neutral-border-weak-default);
+    border-radius: var(--s-radius-s);
+    background: var(--s-neutral-bg-default);
+    transition: border-color 0.15s ease, background 0.15s ease;
+    cursor: pointer;
+  }
+  .ico-cell:hover {
+    border-color: var(--s-primary-border-weak-default, #a4b6fb);
+    background: var(--s-primary-bg-weak-hover);
+  }
+  .ico-cell i { font-size: 20px; color: var(--s-neutral-icon-default); }
+  .ico-cell:hover i { color: var(--s-primary-icon-default); }
+  .ico-cell .nm {
+    font: var(--s-text-xs-default);
+    color: var(--s-neutral-txt-weak-default);
+    text-align: center;
+    word-break: break-word;
+    line-height: 1.3;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+  }
+
+  .filter {
+    display: flex; align-items: center; gap: 8px;
+    margin: 24px 0 14px;
+    padding: 8px 12px;
+    border: 1px solid var(--s-neutral-border-weak-default);
+    border-radius: var(--s-radius-s);
+    background: var(--s-neutral-bg-default);
+  }
+  .filter i { color: var(--s-neutral-icon-weak-default); font-size: 16px; }
+  .filter input {
+    flex: 1; border: 0; outline: 0; background: transparent;
+    font: var(--s-text-md-default);
+    color: var(--s-neutral-txt-active);
+  }
+  .filter input::placeholder { color: var(--s-neutral-txt-weak-default); }
+
+  .section-title {
+    font: var(--s-text-md-strong);
+    color: var(--s-neutral-txt-active);
+    margin: 28px 0 10px;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="ico-header">
+    <div class="label" style="margin: 0">Supply icon library</div>
+    <span class="count">251 icons</span>
+    <span class="usage">&lt;i class="s-icon-<em style="font-style: italic; color: var(--s-primary-txt-default)">name</em>"&gt;&lt;/i&gt;</span>
+  </div>
+
+  <h4 class="section-title" style="margin-top: 0">Size scale</h4>
+  <div class="ico-row-sizes">
+    <div class="ico-size"><span class="sample s12"><i class="s-icon-anchor"></i></span><span>12</span></div>
+    <div class="ico-size"><span class="sample s14"><i class="s-icon-anchor"></i></span><span>14</span></div>
+    <div class="ico-size"><span class="sample s16"><i class="s-icon-anchor"></i></span><span>16 · default</span></div>
+    <div class="ico-size"><span class="sample s20"><i class="s-icon-anchor"></i></span><span>20</span></div>
+    <div class="ico-size"><span class="sample s24"><i class="s-icon-anchor"></i></span><span>24</span></div>
+    <div class="ico-size"><span class="sample s32"><i class="s-icon-anchor"></i></span><span>32</span></div>
+  </div>
+
+  <h4 class="section-title">Color via token</h4>
+  <div class="ico-row-colors">
+    <div class="ico-swatch" style="color: var(--s-neutral-icon-default)"><i class="s-icon-ai-sparkle"></i><div class="lbl"><span class="name">Default</span><span class="tok">--s-neutral-icon-default</span></div></div>
+    <div class="ico-swatch" style="color: var(--s-neutral-icon-weak-default)"><i class="s-icon-ai-sparkle"></i><div class="lbl"><span class="name">Weak</span><span class="tok">--s-neutral-icon-weak-default</span></div></div>
+    <div class="ico-swatch" style="color: var(--s-primary-icon-default)"><i class="s-icon-ai-sparkle"></i><div class="lbl"><span class="name">Primary</span><span class="tok">--s-primary-icon-default</span></div></div>
+    <div class="ico-swatch" style="color: var(--s-success-txt-default)"><i class="s-icon-ai-sparkle"></i><div class="lbl"><span class="name">Success</span><span class="tok">--s-success-txt-default</span></div></div>
+    <div class="ico-swatch" style="color: var(--s-error-txt-default)"><i class="s-icon-ai-sparkle"></i><div class="lbl"><span class="name">Critical</span><span class="tok">--s-error-txt-default</span></div></div>
+  </div>
+
+  <h4 class="section-title">Full set</h4>
+  <div class="filter">
+    <i class="s-icon-search"></i>
+    <input id="q" type="search" placeholder="Search 251 icons — e.g. 'add', 'arrow', 'cargo'">
+  </div>
+
+  <div class="ico-grid" id="grid">
+    <div class="ico-cell" data-name="accessibility" title="s-icon-accessibility"><i class="s-icon-accessibility"></i><span class="nm">accessibility</span></div>
+    <div class="ico-cell" data-name="add" title="s-icon-add"><i class="s-icon-add"></i><span class="nm">add</span></div>
+    <div class="ico-cell" data-name="ai-sparkle" title="s-icon-ai-sparkle"><i class="s-icon-ai-sparkle"></i><span class="nm">ai-sparkle</span></div>
+    <div class="ico-cell" data-name="analytics-bars" title="s-icon-analytics-bars"><i class="s-icon-analytics-bars"></i><span class="nm">analytics-bars</span></div>
+    <div class="ico-cell" data-name="anchor" title="s-icon-anchor"><i class="s-icon-anchor"></i><span class="nm">anchor</span></div>
+    <div class="ico-cell" data-name="apps" title="s-icon-apps"><i class="s-icon-apps"></i><span class="nm">apps</span></div>
+    <div class="ico-cell" data-name="arrow-down" title="s-icon-arrow-down"><i class="s-icon-arrow-down"></i><span class="nm">arrow-down</span></div>
+    <div class="ico-cell" data-name="arrow-left" title="s-icon-arrow-left"><i class="s-icon-arrow-left"></i><span class="nm">arrow-left</span></div>
+    <div class="ico-cell" data-name="arrow-right-split" title="s-icon-arrow-right-split"><i class="s-icon-arrow-right-split"></i><span class="nm">arrow-right-split</span></div>
+    <div class="ico-cell" data-name="arrow-right" title="s-icon-arrow-right"><i class="s-icon-arrow-right"></i><span class="nm">arrow-right</span></div>
+    <div class="ico-cell" data-name="arrow-up" title="s-icon-arrow-up"><i class="s-icon-arrow-up"></i><span class="nm">arrow-up</span></div>
+    <div class="ico-cell" data-name="asterisk" title="s-icon-asterisk"><i class="s-icon-asterisk"></i><span class="nm">asterisk</span></div>
+    <div class="ico-cell" data-name="at-email" title="s-icon-at-email"><i class="s-icon-at-email"></i><span class="nm">at-email</span></div>
+    <div class="ico-cell" data-name="attach" title="s-icon-attach"><i class="s-icon-attach"></i><span class="nm">attach</span></div>
+    <div class="ico-cell" data-name="barcode" title="s-icon-barcode"><i class="s-icon-barcode"></i><span class="nm">barcode</span></div>
+    <div class="ico-cell" data-name="barge" title="s-icon-barge"><i class="s-icon-barge"></i><span class="nm">barge</span></div>
+    <div class="ico-cell" data-name="bell" title="s-icon-bell"><i class="s-icon-bell"></i><span class="nm">bell</span></div>
+    <div class="ico-cell" data-name="blocks" title="s-icon-blocks"><i class="s-icon-blocks"></i><span class="nm">blocks</span></div>
+    <div class="ico-cell" data-name="book-open" title="s-icon-book-open"><i class="s-icon-book-open"></i><span class="nm">book-open</span></div>
+    <div class="ico-cell" data-name="bookmark-empty" title="s-icon-bookmark-empty"><i class="s-icon-bookmark-empty"></i><span class="nm">bookmark-empty</span></div>
+    <div class="ico-cell" data-name="bookmark-filled" title="s-icon-bookmark-filled"><i class="s-icon-bookmark-filled"></i><span class="nm">bookmark-filled</span></div>
+    <div class="ico-cell" data-name="boom-gate" title="s-icon-boom-gate"><i class="s-icon-boom-gate"></i><span class="nm">boom-gate</span></div>
+    <div class="ico-cell" data-name="boxes" title="s-icon-boxes"><i class="s-icon-boxes"></i><span class="nm">boxes</span></div>
+    <div class="ico-cell" data-name="branch-main" title="s-icon-branch-main"><i class="s-icon-branch-main"></i><span class="nm">branch-main</span></div>
+    <div class="ico-cell" data-name="branch-merge" title="s-icon-branch-merge"><i class="s-icon-branch-merge"></i><span class="nm">branch-merge</span></div>
+    <div class="ico-cell" data-name="building" title="s-icon-building"><i class="s-icon-building"></i><span class="nm">building</span></div>
+    <div class="ico-cell" data-name="calculator" title="s-icon-calculator"><i class="s-icon-calculator"></i><span class="nm">calculator</span></div>
+    <div class="ico-cell" data-name="calendar-arrow-right" title="s-icon-calendar-arrow-right"><i class="s-icon-calendar-arrow-right"></i><span class="nm">calendar-arrow-right</span></div>
+    <div class="ico-cell" data-name="calendar-blank" title="s-icon-calendar-blank"><i class="s-icon-calendar-blank"></i><span class="nm">calendar-blank</span></div>
+    <div class="ico-cell" data-name="calendar-range" title="s-icon-calendar-range"><i class="s-icon-calendar-range"></i><span class="nm">calendar-range</span></div>
+    <div class="ico-cell" data-name="camera" title="s-icon-camera"><i class="s-icon-camera"></i><span class="nm">camera</span></div>
+    <div class="ico-cell" data-name="car" title="s-icon-car"><i class="s-icon-car"></i><span class="nm">car</span></div>
+    <div class="ico-cell" data-name="caret-down" title="s-icon-caret-down"><i class="s-icon-caret-down"></i><span class="nm">caret-down</span></div>
+    <div class="ico-cell" data-name="caret-left" title="s-icon-caret-left"><i class="s-icon-caret-left"></i><span class="nm">caret-left</span></div>
+    <div class="ico-cell" data-name="caret-right" title="s-icon-caret-right"><i class="s-icon-caret-right"></i><span class="nm">caret-right</span></div>
+    <div class="ico-cell" data-name="caret-switch" title="s-icon-caret-switch"><i class="s-icon-caret-switch"></i><span class="nm">caret-switch</span></div>
+    <div class="ico-cell" data-name="caret-up" title="s-icon-caret-up"><i class="s-icon-caret-up"></i><span class="nm">caret-up</span></div>
+    <div class="ico-cell" data-name="cargowise" title="s-icon-cargowise"><i class="s-icon-cargowise"></i><span class="nm">cargowise</span></div>
+    <div class="ico-cell" data-name="cart" title="s-icon-cart"><i class="s-icon-cart"></i><span class="nm">cart</span></div>
+    <div class="ico-cell" data-name="chat" title="s-icon-chat"><i class="s-icon-chat"></i><span class="nm">chat</span></div>
+    <div class="ico-cell" data-name="check" title="s-icon-check"><i class="s-icon-check"></i><span class="nm">check</span></div>
+    <div class="ico-cell" data-name="checkbox-indeterminate-mark" title="s-icon-checkbox-indeterminate-mark"><i class="s-icon-checkbox-indeterminate-mark"></i><span class="nm">checkbox-indeterminate-mark</span></div>
+    <div class="ico-cell" data-name="checkbox-indeterminate" title="s-icon-checkbox-indeterminate"><i class="s-icon-checkbox-indeterminate"></i><span class="nm">checkbox-indeterminate</span></div>
+    <div class="ico-cell" data-name="checkbox-mark" title="s-icon-checkbox-mark"><i class="s-icon-checkbox-mark"></i><span class="nm">checkbox-mark</span></div>
+    <div class="ico-cell" data-name="checkbox-off" title="s-icon-checkbox-off"><i class="s-icon-checkbox-off"></i><span class="nm">checkbox-off</span></div>
+    <div class="ico-cell" data-name="checkbox-on" title="s-icon-checkbox-on"><i class="s-icon-checkbox-on"></i><span class="nm">checkbox-on</span></div>
+    <div class="ico-cell" data-name="clipboard" title="s-icon-clipboard"><i class="s-icon-clipboard"></i><span class="nm">clipboard</span></div>
+    <div class="ico-cell" data-name="clone" title="s-icon-clone"><i class="s-icon-clone"></i><span class="nm">clone</span></div>
+    <div class="ico-cell" data-name="close-circle" title="s-icon-close-circle"><i class="s-icon-close-circle"></i><span class="nm">close-circle</span></div>
+    <div class="ico-cell" data-name="close" title="s-icon-close"><i class="s-icon-close"></i><span class="nm">close</span></div>
+    <div class="ico-cell" data-name="color" title="s-icon-color"><i class="s-icon-color"></i><span class="nm">color</span></div>
+    <div class="ico-cell" data-name="columns" title="s-icon-columns"><i class="s-icon-columns"></i><span class="nm">columns</span></div>
+    <div class="ico-cell" data-name="container-crane-lift" title="s-icon-container-crane-lift"><i class="s-icon-container-crane-lift"></i><span class="nm">container-crane-lift</span></div>
+    <div class="ico-cell" data-name="container-down" title="s-icon-container-down"><i class="s-icon-container-down"></i><span class="nm">container-down</span></div>
+    <div class="ico-cell" data-name="container-trailer" title="s-icon-container-trailer"><i class="s-icon-container-trailer"></i><span class="nm">container-trailer</span></div>
+    <div class="ico-cell" data-name="container-up" title="s-icon-container-up"><i class="s-icon-container-up"></i><span class="nm">container-up</span></div>
+    <div class="ico-cell" data-name="container" title="s-icon-container"><i class="s-icon-container"></i><span class="nm">container</span></div>
+    <div class="ico-cell" data-name="copy-headers" title="s-icon-copy-headers"><i class="s-icon-copy-headers"></i><span class="nm">copy-headers</span></div>
+    <div class="ico-cell" data-name="copy" title="s-icon-copy"><i class="s-icon-copy"></i><span class="nm">copy</span></div>
+    <div class="ico-cell" data-name="currency-dollar-circle" title="s-icon-currency-dollar-circle"><i class="s-icon-currency-dollar-circle"></i><span class="nm">currency-dollar-circle</span></div>
+    <div class="ico-cell" data-name="currency-dollar" title="s-icon-currency-dollar"><i class="s-icon-currency-dollar"></i><span class="nm">currency-dollar</span></div>
+    <div class="ico-cell" data-name="cursor-move" title="s-icon-cursor-move"><i class="s-icon-cursor-move"></i><span class="nm">cursor-move</span></div>
+    <div class="ico-cell" data-name="dashed-circle" title="s-icon-dashed-circle"><i class="s-icon-dashed-circle"></i><span class="nm">dashed-circle</span></div>
+    <div class="ico-cell" data-name="data-overlay" title="s-icon-data-overlay"><i class="s-icon-data-overlay"></i><span class="nm">data-overlay</span></div>
+    <div class="ico-cell" data-name="delete" title="s-icon-delete"><i class="s-icon-delete"></i><span class="nm">delete</span></div>
+    <div class="ico-cell" data-name="density-compact" title="s-icon-density-compact"><i class="s-icon-density-compact"></i><span class="nm">density-compact</span></div>
+    <div class="ico-cell" data-name="density-relaxed" title="s-icon-density-relaxed"><i class="s-icon-density-relaxed"></i><span class="nm">density-relaxed</span></div>
+    <div class="ico-cell" data-name="density-tight" title="s-icon-density-tight"><i class="s-icon-density-tight"></i><span class="nm">density-tight</span></div>
+    <div class="ico-cell" data-name="documentation" title="s-icon-documentation"><i class="s-icon-documentation"></i><span class="nm">documentation</span></div>
+    <div class="ico-cell" data-name="download-file" title="s-icon-download-file"><i class="s-icon-download-file"></i><span class="nm">download-file</span></div>
+    <div class="ico-cell" data-name="drag" title="s-icon-drag"><i class="s-icon-drag"></i><span class="nm">drag</span></div>
+    <div class="ico-cell" data-name="drawer-close" title="s-icon-drawer-close"><i class="s-icon-drawer-close"></i><span class="nm">drawer-close</span></div>
+    <div class="ico-cell" data-name="drawer-open" title="s-icon-drawer-open"><i class="s-icon-drawer-open"></i><span class="nm">drawer-open</span></div>
+    <div class="ico-cell" data-name="earth-check" title="s-icon-earth-check"><i class="s-icon-earth-check"></i><span class="nm">earth-check</span></div>
+    <div class="ico-cell" data-name="earth" title="s-icon-earth"><i class="s-icon-earth"></i><span class="nm">earth</span></div>
+    <div class="ico-cell" data-name="edit" title="s-icon-edit"><i class="s-icon-edit"></i><span class="nm">edit</span></div>
+    <div class="ico-cell" data-name="edocs" title="s-icon-edocs"><i class="s-icon-edocs"></i><span class="nm">edocs</span></div>
+    <div class="ico-cell" data-name="email" title="s-icon-email"><i class="s-icon-email"></i><span class="nm">email</span></div>
+    <div class="ico-cell" data-name="figma" title="s-icon-figma"><i class="s-icon-figma"></i><span class="nm">figma</span></div>
+    <div class="ico-cell" data-name="file-rotate" title="s-icon-file-rotate"><i class="s-icon-file-rotate"></i><span class="nm">file-rotate</span></div>
+    <div class="ico-cell" data-name="file" title="s-icon-file"><i class="s-icon-file"></i><span class="nm">file</span></div>
+    <div class="ico-cell" data-name="filter-clear" title="s-icon-filter-clear"><i class="s-icon-filter-clear"></i><span class="nm">filter-clear</span></div>
+    <div class="ico-cell" data-name="filter-sliders" title="s-icon-filter-sliders"><i class="s-icon-filter-sliders"></i><span class="nm">filter-sliders</span></div>
+    <div class="ico-cell" data-name="filter" title="s-icon-filter"><i class="s-icon-filter"></i><span class="nm">filter</span></div>
+    <div class="ico-cell" data-name="first" title="s-icon-first"><i class="s-icon-first"></i><span class="nm">first</span></div>
+    <div class="ico-cell" data-name="flag-filled" title="s-icon-flag-filled"><i class="s-icon-flag-filled"></i><span class="nm">flag-filled</span></div>
+    <div class="ico-cell" data-name="flag" title="s-icon-flag"><i class="s-icon-flag"></i><span class="nm">flag</span></div>
+    <div class="ico-cell" data-name="flash" title="s-icon-flash"><i class="s-icon-flash"></i><span class="nm">flash</span></div>
+    <div class="ico-cell" data-name="folder" title="s-icon-folder"><i class="s-icon-folder"></i><span class="nm">folder</span></div>
+    <div class="ico-cell" data-name="forklift" title="s-icon-forklift"><i class="s-icon-forklift"></i><span class="nm">forklift</span></div>
+    <div class="ico-cell" data-name="forward-slash" title="s-icon-forward-slash"><i class="s-icon-forward-slash"></i><span class="nm">forward-slash</span></div>
+    <div class="ico-cell" data-name="forwarding" title="s-icon-forwarding"><i class="s-icon-forwarding"></i><span class="nm">forwarding</span></div>
+    <div class="ico-cell" data-name="full-screen" title="s-icon-full-screen"><i class="s-icon-full-screen"></i><span class="nm">full-screen</span></div>
+    <div class="ico-cell" data-name="gauge" title="s-icon-gauge"><i class="s-icon-gauge"></i><span class="nm">gauge</span></div>
+    <div class="ico-cell" data-name="group-by" title="s-icon-group-by"><i class="s-icon-group-by"></i><span class="nm">group-by</span></div>
+    <div class="ico-cell" data-name="group-screening" title="s-icon-group-screening"><i class="s-icon-group-screening"></i><span class="nm">group-screening</span></div>
+    <div class="ico-cell" data-name="group" title="s-icon-group"><i class="s-icon-group"></i><span class="nm">group</span></div>
+    <div class="ico-cell" data-name="help" title="s-icon-help"><i class="s-icon-help"></i><span class="nm">help</span></div>
+    <div class="ico-cell" data-name="hide" title="s-icon-hide"><i class="s-icon-hide"></i><span class="nm">hide</span></div>
+    <div class="ico-cell" data-name="history" title="s-icon-history"><i class="s-icon-history"></i><span class="nm">history</span></div>
+    <div class="ico-cell" data-name="home" title="s-icon-home"><i class="s-icon-home"></i><span class="nm">home</span></div>
+    <div class="ico-cell" data-name="hourglass" title="s-icon-hourglass"><i class="s-icon-hourglass"></i><span class="nm">hourglass</span></div>
+    <div class="ico-cell" data-name="image" title="s-icon-image"><i class="s-icon-image"></i><span class="nm">image</span></div>
+    <div class="ico-cell" data-name="info-circle-filled" title="s-icon-info-circle-filled"><i class="s-icon-info-circle-filled"></i><span class="nm">info-circle-filled</span></div>
+    <div class="ico-cell" data-name="info-circle" title="s-icon-info-circle"><i class="s-icon-info-circle"></i><span class="nm">info-circle</span></div>
+    <div class="ico-cell" data-name="invoice" title="s-icon-invoice"><i class="s-icon-invoice"></i><span class="nm">invoice</span></div>
+    <div class="ico-cell" data-name="last" title="s-icon-last"><i class="s-icon-last"></i><span class="nm">last</span></div>
+    <div class="ico-cell" data-name="leaf" title="s-icon-leaf"><i class="s-icon-leaf"></i><span class="nm">leaf</span></div>
+    <div class="ico-cell" data-name="link" title="s-icon-link"><i class="s-icon-link"></i><span class="nm">link</span></div>
+    <div class="ico-cell" data-name="list-bullet" title="s-icon-list-bullet"><i class="s-icon-list-bullet"></i><span class="nm">list-bullet</span></div>
+    <div class="ico-cell" data-name="list-search" title="s-icon-list-search"><i class="s-icon-list-search"></i><span class="nm">list-search</span></div>
+    <div class="ico-cell" data-name="loading" title="s-icon-loading"><i class="s-icon-loading"></i><span class="nm">loading</span></div>
+    <div class="ico-cell" data-name="location-arrow" title="s-icon-location-arrow"><i class="s-icon-location-arrow"></i><span class="nm">location-arrow</span></div>
+    <div class="ico-cell" data-name="location" title="s-icon-location"><i class="s-icon-location"></i><span class="nm">location</span></div>
+    <div class="ico-cell" data-name="lock" title="s-icon-lock"><i class="s-icon-lock"></i><span class="nm">lock</span></div>
+    <div class="ico-cell" data-name="logs" title="s-icon-logs"><i class="s-icon-logs"></i><span class="nm">logs</span></div>
+    <div class="ico-cell" data-name="lookup" title="s-icon-lookup"><i class="s-icon-lookup"></i><span class="nm">lookup</span></div>
+    <div class="ico-cell" data-name="map" title="s-icon-map"><i class="s-icon-map"></i><span class="nm">map</span></div>
+    <div class="ico-cell" data-name="maximize" title="s-icon-maximize"><i class="s-icon-maximize"></i><span class="nm">maximize</span></div>
+    <div class="ico-cell" data-name="menu-hamburger" title="s-icon-menu-hamburger"><i class="s-icon-menu-hamburger"></i><span class="nm">menu-hamburger</span></div>
+    <div class="ico-cell" data-name="menu-kebab" title="s-icon-menu-kebab"><i class="s-icon-menu-kebab"></i><span class="nm">menu-kebab</span></div>
+    <div class="ico-cell" data-name="menu-meatballs" title="s-icon-menu-meatballs"><i class="s-icon-menu-meatballs"></i><span class="nm">menu-meatballs</span></div>
+    <div class="ico-cell" data-name="message-alert" title="s-icon-message-alert"><i class="s-icon-message-alert"></i><span class="nm">message-alert</span></div>
+    <div class="ico-cell" data-name="minus" title="s-icon-minus"><i class="s-icon-minus"></i><span class="nm">minus</span></div>
+    <div class="ico-cell" data-name="mobile" title="s-icon-mobile"><i class="s-icon-mobile"></i><span class="nm">mobile</span></div>
+    <div class="ico-cell" data-name="move-bottom" title="s-icon-move-bottom"><i class="s-icon-move-bottom"></i><span class="nm">move-bottom</span></div>
+    <div class="ico-cell" data-name="move-down" title="s-icon-move-down"><i class="s-icon-move-down"></i><span class="nm">move-down</span></div>
+    <div class="ico-cell" data-name="move-left" title="s-icon-move-left"><i class="s-icon-move-left"></i><span class="nm">move-left</span></div>
+    <div class="ico-cell" data-name="move-right" title="s-icon-move-right"><i class="s-icon-move-right"></i><span class="nm">move-right</span></div>
+    <div class="ico-cell" data-name="move-top" title="s-icon-move-top"><i class="s-icon-move-top"></i><span class="nm">move-top</span></div>
+    <div class="ico-cell" data-name="move-up" title="s-icon-move-up"><i class="s-icon-move-up"></i><span class="nm">move-up</span></div>
+    <div class="ico-cell" data-name="ms-teams" title="s-icon-ms-teams"><i class="s-icon-ms-teams"></i><span class="nm">ms-teams</span></div>
+    <div class="ico-cell" data-name="new-window" title="s-icon-new-window"><i class="s-icon-new-window"></i><span class="nm">new-window</span></div>
+    <div class="ico-cell" data-name="notes" title="s-icon-notes"><i class="s-icon-notes"></i><span class="nm">notes</span></div>
+    <div class="ico-cell" data-name="operational-actions" title="s-icon-operational-actions"><i class="s-icon-operational-actions"></i><span class="nm">operational-actions</span></div>
+    <div class="ico-cell" data-name="package-check" title="s-icon-package-check"><i class="s-icon-package-check"></i><span class="nm">package-check</span></div>
+    <div class="ico-cell" data-name="package-cross" title="s-icon-package-cross"><i class="s-icon-package-cross"></i><span class="nm">package-cross</span></div>
+    <div class="ico-cell" data-name="package-cycle" title="s-icon-package-cycle"><i class="s-icon-package-cycle"></i><span class="nm">package-cycle</span></div>
+    <div class="ico-cell" data-name="package-dimension" title="s-icon-package-dimension"><i class="s-icon-package-dimension"></i><span class="nm">package-dimension</span></div>
+    <div class="ico-cell" data-name="package-down" title="s-icon-package-down"><i class="s-icon-package-down"></i><span class="nm">package-down</span></div>
+    <div class="ico-cell" data-name="package-movement" title="s-icon-package-movement"><i class="s-icon-package-movement"></i><span class="nm">package-movement</span></div>
+    <div class="ico-cell" data-name="package-truck" title="s-icon-package-truck"><i class="s-icon-package-truck"></i><span class="nm">package-truck</span></div>
+    <div class="ico-cell" data-name="package-up" title="s-icon-package-up"><i class="s-icon-package-up"></i><span class="nm">package-up</span></div>
+    <div class="ico-cell" data-name="package" title="s-icon-package"><i class="s-icon-package"></i><span class="nm">package</span></div>
+    <div class="ico-cell" data-name="packing-consolidation" title="s-icon-packing-consolidation"><i class="s-icon-packing-consolidation"></i><span class="nm">packing-consolidation</span></div>
+    <div class="ico-cell" data-name="password" title="s-icon-password"><i class="s-icon-password"></i><span class="nm">password</span></div>
+    <div class="ico-cell" data-name="paste" title="s-icon-paste"><i class="s-icon-paste"></i><span class="nm">paste</span></div>
+    <div class="ico-cell" data-name="pause" title="s-icon-pause"><i class="s-icon-pause"></i><span class="nm">pause</span></div>
+    <div class="ico-cell" data-name="person-custom-officer" title="s-icon-person-custom-officer"><i class="s-icon-person-custom-officer"></i><span class="nm">person-custom-officer</span></div>
+    <div class="ico-cell" data-name="person-delivery-a" title="s-icon-person-delivery-a"><i class="s-icon-person-delivery-a"></i><span class="nm">person-delivery-a</span></div>
+    <div class="ico-cell" data-name="person-delivery-b" title="s-icon-person-delivery-b"><i class="s-icon-person-delivery-b"></i><span class="nm">person-delivery-b</span></div>
+    <div class="ico-cell" data-name="person-inspect" title="s-icon-person-inspect"><i class="s-icon-person-inspect"></i><span class="nm">person-inspect</span></div>
+    <div class="ico-cell" data-name="phone" title="s-icon-phone"><i class="s-icon-phone"></i><span class="nm">phone</span></div>
+    <div class="ico-cell" data-name="pin-empty" title="s-icon-pin-empty"><i class="s-icon-pin-empty"></i><span class="nm">pin-empty</span></div>
+    <div class="ico-cell" data-name="pin-filled" title="s-icon-pin-filled"><i class="s-icon-pin-filled"></i><span class="nm">pin-filled</span></div>
+    <div class="ico-cell" data-name="placeholder" title="s-icon-placeholder"><i class="s-icon-placeholder"></i><span class="nm">placeholder</span></div>
+    <div class="ico-cell" data-name="plane" title="s-icon-plane"><i class="s-icon-plane"></i><span class="nm">plane</span></div>
+    <div class="ico-cell" data-name="play" title="s-icon-play"><i class="s-icon-play"></i><span class="nm">play</span></div>
+    <div class="ico-cell" data-name="plus" title="s-icon-plus"><i class="s-icon-plus"></i><span class="nm">plus</span></div>
+    <div class="ico-cell" data-name="popup" title="s-icon-popup"><i class="s-icon-popup"></i><span class="nm">popup</span></div>
+    <div class="ico-cell" data-name="print" title="s-icon-print"><i class="s-icon-print"></i><span class="nm">print</span></div>
+    <div class="ico-cell" data-name="property" title="s-icon-property"><i class="s-icon-property"></i><span class="nm">property</span></div>
+    <div class="ico-cell" data-name="pt-devtools" title="s-icon-pt-devtools"><i class="s-icon-pt-devtools"></i><span class="nm">pt-devtools</span></div>
+    <div class="ico-cell" data-name="pt-incident" title="s-icon-pt-incident"><i class="s-icon-pt-incident"></i><span class="nm">pt-incident</span></div>
+    <div class="ico-cell" data-name="pt-issue-manager" title="s-icon-pt-issue-manager"><i class="s-icon-pt-issue-manager"></i><span class="nm">pt-issue-manager</span></div>
+    <div class="ico-cell" data-name="pt-networkdiagram" title="s-icon-pt-networkdiagram"><i class="s-icon-pt-networkdiagram"></i><span class="nm">pt-networkdiagram</span></div>
+    <div class="ico-cell" data-name="pt-projects" title="s-icon-pt-projects"><i class="s-icon-pt-projects"></i><span class="nm">pt-projects</span></div>
+    <div class="ico-cell" data-name="pt-releasesequencing" title="s-icon-pt-releasesequencing"><i class="s-icon-pt-releasesequencing"></i><span class="nm">pt-releasesequencing</span></div>
+    <div class="ico-cell" data-name="pt-visualboard" title="s-icon-pt-visualboard"><i class="s-icon-pt-visualboard"></i><span class="nm">pt-visualboard</span></div>
+    <div class="ico-cell" data-name="pt-workitem" title="s-icon-pt-workitem"><i class="s-icon-pt-workitem"></i><span class="nm">pt-workitem</span></div>
+    <div class="ico-cell" data-name="pulse" title="s-icon-pulse"><i class="s-icon-pulse"></i><span class="nm">pulse</span></div>
+    <div class="ico-cell" data-name="radio-off" title="s-icon-radio-off"><i class="s-icon-radio-off"></i><span class="nm">radio-off</span></div>
+    <div class="ico-cell" data-name="radio-on" title="s-icon-radio-on"><i class="s-icon-radio-on"></i><span class="nm">radio-on</span></div>
+    <div class="ico-cell" data-name="record" title="s-icon-record"><i class="s-icon-record"></i><span class="nm">record</span></div>
+    <div class="ico-cell" data-name="refresh" title="s-icon-refresh"><i class="s-icon-refresh"></i><span class="nm">refresh</span></div>
+    <div class="ico-cell" data-name="register" title="s-icon-register"><i class="s-icon-register"></i><span class="nm">register</span></div>
+    <div class="ico-cell" data-name="related-records" title="s-icon-related-records"><i class="s-icon-related-records"></i><span class="nm">related-records</span></div>
+    <div class="ico-cell" data-name="remove" title="s-icon-remove"><i class="s-icon-remove"></i><span class="nm">remove</span></div>
+    <div class="ico-cell" data-name="reorder" title="s-icon-reorder"><i class="s-icon-reorder"></i><span class="nm">reorder</span></div>
+    <div class="ico-cell" data-name="reporting" title="s-icon-reporting"><i class="s-icon-reporting"></i><span class="nm">reporting</span></div>
+    <div class="ico-cell" data-name="resize" title="s-icon-resize"><i class="s-icon-resize"></i><span class="nm">resize</span></div>
+    <div class="ico-cell" data-name="restore" title="s-icon-restore"><i class="s-icon-restore"></i><span class="nm">restore</span></div>
+    <div class="ico-cell" data-name="right-panel" title="s-icon-right-panel"><i class="s-icon-right-panel"></i><span class="nm">right-panel</span></div>
+    <div class="ico-cell" data-name="route" title="s-icon-route"><i class="s-icon-route"></i><span class="nm">route</span></div>
+    <div class="ico-cell" data-name="save" title="s-icon-save"><i class="s-icon-save"></i><span class="nm">save</span></div>
+    <div class="ico-cell" data-name="search" title="s-icon-search"><i class="s-icon-search"></i><span class="nm">search</span></div>
+    <div class="ico-cell" data-name="segment" title="s-icon-segment"><i class="s-icon-segment"></i><span class="nm">segment</span></div>
+    <div class="ico-cell" data-name="settings" title="s-icon-settings"><i class="s-icon-settings"></i><span class="nm">settings</span></div>
+    <div class="ico-cell" data-name="share" title="s-icon-share"><i class="s-icon-share"></i><span class="nm">share</span></div>
+    <div class="ico-cell" data-name="shipment-crane" title="s-icon-shipment-crane"><i class="s-icon-shipment-crane"></i><span class="nm">shipment-crane</span></div>
+    <div class="ico-cell" data-name="show" title="s-icon-show"><i class="s-icon-show"></i><span class="nm">show</span></div>
+    <div class="ico-cell" data-name="sign-in" title="s-icon-sign-in"><i class="s-icon-sign-in"></i><span class="nm">sign-in</span></div>
+    <div class="ico-cell" data-name="sign-out" title="s-icon-sign-out"><i class="s-icon-sign-out"></i><span class="nm">sign-out</span></div>
+    <div class="ico-cell" data-name="sorting" title="s-icon-sorting"><i class="s-icon-sorting"></i><span class="nm">sorting</span></div>
+    <div class="ico-cell" data-name="spinner" title="s-icon-spinner"><i class="s-icon-spinner"></i><span class="nm">spinner</span></div>
+    <div class="ico-cell" data-name="stamp" title="s-icon-stamp"><i class="s-icon-stamp"></i><span class="nm">stamp</span></div>
+    <div class="ico-cell" data-name="standalone-screening" title="s-icon-standalone-screening"><i class="s-icon-standalone-screening"></i><span class="nm">standalone-screening</span></div>
+    <div class="ico-cell" data-name="star-empty" title="s-icon-star-empty"><i class="s-icon-star-empty"></i><span class="nm">star-empty</span></div>
+    <div class="ico-cell" data-name="star-filled" title="s-icon-star-filled"><i class="s-icon-star-filled"></i><span class="nm">star-filled</span></div>
+    <div class="ico-cell" data-name="status-critical-filled" title="s-icon-status-critical-filled"><i class="s-icon-status-critical-filled"></i><span class="nm">status-critical-filled</span></div>
+    <div class="ico-cell" data-name="status-critical" title="s-icon-status-critical"><i class="s-icon-status-critical"></i><span class="nm">status-critical</span></div>
+    <div class="ico-cell" data-name="status-inprogress-filled" title="s-icon-status-inprogress-filled"><i class="s-icon-status-inprogress-filled"></i><span class="nm">status-inprogress-filled</span></div>
+    <div class="ico-cell" data-name="status-inprogress" title="s-icon-status-inprogress"><i class="s-icon-status-inprogress"></i><span class="nm">status-inprogress</span></div>
+    <div class="ico-cell" data-name="status-success-filled" title="s-icon-status-success-filled"><i class="s-icon-status-success-filled"></i><span class="nm">status-success-filled</span></div>
+    <div class="ico-cell" data-name="status-success" title="s-icon-status-success"><i class="s-icon-status-success"></i><span class="nm">status-success</span></div>
+    <div class="ico-cell" data-name="status-warning-filled" title="s-icon-status-warning-filled"><i class="s-icon-status-warning-filled"></i><span class="nm">status-warning-filled</span></div>
+    <div class="ico-cell" data-name="status-warning" title="s-icon-status-warning"><i class="s-icon-status-warning"></i><span class="nm">status-warning</span></div>
+    <div class="ico-cell" data-name="status" title="s-icon-status"><i class="s-icon-status"></i><span class="nm">status</span></div>
+    <div class="ico-cell" data-name="stop" title="s-icon-stop"><i class="s-icon-stop"></i><span class="nm">stop</span></div>
+    <div class="ico-cell" data-name="supplier-bookings" title="s-icon-supplier-bookings"><i class="s-icon-supplier-bookings"></i><span class="nm">supplier-bookings</span></div>
+    <div class="ico-cell" data-name="swap" title="s-icon-swap"><i class="s-icon-swap"></i><span class="nm">swap</span></div>
+    <div class="ico-cell" data-name="system-preferences" title="s-icon-system-preferences"><i class="s-icon-system-preferences"></i><span class="nm">system-preferences</span></div>
+    <div class="ico-cell" data-name="task" title="s-icon-task"><i class="s-icon-task"></i><span class="nm">task</span></div>
+    <div class="ico-cell" data-name="text-bold" title="s-icon-text-bold"><i class="s-icon-text-bold"></i><span class="nm">text-bold</span></div>
+    <div class="ico-cell" data-name="text-centeralign" title="s-icon-text-centeralign"><i class="s-icon-text-centeralign"></i><span class="nm">text-centeralign</span></div>
+    <div class="ico-cell" data-name="text-hrule" title="s-icon-text-hrule"><i class="s-icon-text-hrule"></i><span class="nm">text-hrule</span></div>
+    <div class="ico-cell" data-name="text-italic" title="s-icon-text-italic"><i class="s-icon-text-italic"></i><span class="nm">text-italic</span></div>
+    <div class="ico-cell" data-name="text-leftalign" title="s-icon-text-leftalign"><i class="s-icon-text-leftalign"></i><span class="nm">text-leftalign</span></div>
+    <div class="ico-cell" data-name="text-link" title="s-icon-text-link"><i class="s-icon-text-link"></i><span class="nm">text-link</span></div>
+    <div class="ico-cell" data-name="text-rightalign" title="s-icon-text-rightalign"><i class="s-icon-text-rightalign"></i><span class="nm">text-rightalign</span></div>
+    <div class="ico-cell" data-name="text-underline" title="s-icon-text-underline"><i class="s-icon-text-underline"></i><span class="nm">text-underline</span></div>
+    <div class="ico-cell" data-name="thermometer" title="s-icon-thermometer"><i class="s-icon-thermometer"></i><span class="nm">thermometer</span></div>
+    <div class="ico-cell" data-name="thumbnails" title="s-icon-thumbnails"><i class="s-icon-thumbnails"></i><span class="nm">thumbnails</span></div>
+    <div class="ico-cell" data-name="thumbs-down" title="s-icon-thumbs-down"><i class="s-icon-thumbs-down"></i><span class="nm">thumbs-down</span></div>
+    <div class="ico-cell" data-name="thumbs-up" title="s-icon-thumbs-up"><i class="s-icon-thumbs-up"></i><span class="nm">thumbs-up</span></div>
+    <div class="ico-cell" data-name="time" title="s-icon-time"><i class="s-icon-time"></i><span class="nm">time</span></div>
+    <div class="ico-cell" data-name="toggle-light-dark" title="s-icon-toggle-light-dark"><i class="s-icon-toggle-light-dark"></i><span class="nm">toggle-light-dark</span></div>
+    <div class="ico-cell" data-name="train" title="s-icon-train"><i class="s-icon-train"></i><span class="nm">train</span></div>
+    <div class="ico-cell" data-name="truck-completed" title="s-icon-truck-completed"><i class="s-icon-truck-completed"></i><span class="nm">truck-completed</span></div>
+    <div class="ico-cell" data-name="truck-loading" title="s-icon-truck-loading"><i class="s-icon-truck-loading"></i><span class="nm">truck-loading</span></div>
+    <div class="ico-cell" data-name="truck-pending" title="s-icon-truck-pending"><i class="s-icon-truck-pending"></i><span class="nm">truck-pending</span></div>
+    <div class="ico-cell" data-name="truck-unloading" title="s-icon-truck-unloading"><i class="s-icon-truck-unloading"></i><span class="nm">truck-unloading</span></div>
+    <div class="ico-cell" data-name="truck" title="s-icon-truck"><i class="s-icon-truck"></i><span class="nm">truck</span></div>
+    <div class="ico-cell" data-name="unlock" title="s-icon-unlock"><i class="s-icon-unlock"></i><span class="nm">unlock</span></div>
+    <div class="ico-cell" data-name="upload-cloud" title="s-icon-upload-cloud"><i class="s-icon-upload-cloud"></i><span class="nm">upload-cloud</span></div>
+    <div class="ico-cell" data-name="upload-file" title="s-icon-upload-file"><i class="s-icon-upload-file"></i><span class="nm">upload-file</span></div>
+    <div class="ico-cell" data-name="user-shield" title="s-icon-user-shield"><i class="s-icon-user-shield"></i><span class="nm">user-shield</span></div>
+    <div class="ico-cell" data-name="user" title="s-icon-user"><i class="s-icon-user"></i><span class="nm">user</span></div>
+    <div class="ico-cell" data-name="vessel" title="s-icon-vessel"><i class="s-icon-vessel"></i><span class="nm">vessel</span></div>
+    <div class="ico-cell" data-name="vue" title="s-icon-vue"><i class="s-icon-vue"></i><span class="nm">vue</span></div>
+    <div class="ico-cell" data-name="warehouse-in" title="s-icon-warehouse-in"><i class="s-icon-warehouse-in"></i><span class="nm">warehouse-in</span></div>
+    <div class="ico-cell" data-name="warehouse-out" title="s-icon-warehouse-out"><i class="s-icon-warehouse-out"></i><span class="nm">warehouse-out</span></div>
+    <div class="ico-cell" data-name="warehouse-storage" title="s-icon-warehouse-storage"><i class="s-icon-warehouse-storage"></i><span class="nm">warehouse-storage</span></div>
+    <div class="ico-cell" data-name="warehouse-truck" title="s-icon-warehouse-truck"><i class="s-icon-warehouse-truck"></i><span class="nm">warehouse-truck</span></div>
+    <div class="ico-cell" data-name="warehouse" title="s-icon-warehouse"><i class="s-icon-warehouse"></i><span class="nm">warehouse</span></div>
+    <div class="ico-cell" data-name="weather-partly-rain" title="s-icon-weather-partly-rain"><i class="s-icon-weather-partly-rain"></i><span class="nm">weather-partly-rain</span></div>
+    <div class="ico-cell" data-name="wisetech-global" title="s-icon-wisetech-global"><i class="s-icon-wisetech-global"></i><span class="nm">wisetech-global</span></div>
+    <div class="ico-cell" data-name="workflow" title="s-icon-workflow"><i class="s-icon-workflow"></i><span class="nm">workflow</span></div>
+    <div class="ico-cell" data-name="wrench" title="s-icon-wrench"><i class="s-icon-wrench"></i><span class="nm">wrench</span></div>
+    <div class="ico-cell" data-name="zoom-in" title="s-icon-zoom-in"><i class="s-icon-zoom-in"></i><span class="nm">zoom-in</span></div>
+    <div class="ico-cell" data-name="zoom-out" title="s-icon-zoom-out"><i class="s-icon-zoom-out"></i><span class="nm">zoom-out</span></div>
+  </div>
+</div>
+
+<script>
+  const grid = document.getElementById('grid');
+  const q = document.getElementById('q');
+  q.addEventListener('input', () => {
+    const v = q.value.trim().toLowerCase();
+    grid.querySelectorAll('.ico-cell').forEach(c => {
+      c.style.display = !v || c.dataset.name.includes(v) ? '' : 'none';
+    });
+  });
+  grid.addEventListener('click', e => {
+    const c = e.target.closest('.ico-cell'); if (!c) return;
+    navigator.clipboard?.writeText('s-icon-' + c.dataset.name);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>WtgStatus · sentiments & variants</title>
+<link rel="stylesheet" href="card.css">
+<style>
+  /* =============================================================
+     WtgStatus — direct port of
+     src/packages/wtg-components/src/components/WtgStatus/WtgStatus.vue
+     ============================================================= */
+  .wtg-status {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--s-padding-xs) var(--s-padding-s);
+    font: var(--s-text-sm-strong);
+    border-radius: var(--s-radius-xl);
+    color: var(--s-neutral-bg-weak-default);
+    background: var(--s-neutral-bg-inv-default);
+  }
+  .wtg-status > .wtg-status__content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 var(--s-padding-xs);
+  }
+
+  /* ---- FILL (default) — solid sentiment bg + inverse text ---- */
+  .wtg-status--primary {
+    color: var(--s-primary-txt-inv-default);
+    background: var(--s-primary-bg-default);
+  }
+  .wtg-status--info {
+    color: var(--s-info-txt-inv-default);
+    background: var(--s-info-bg-default);
+  }
+  .wtg-status--success {
+    color: var(--s-success-txt-inv-default);
+    background: var(--s-success-bg-default);
+  }
+  .wtg-status--warning {
+    /* warning uses dark text on light-chartreuse bg — see WtgStatus.vue */
+    color: var(--s-warning-txt-inv-default);
+    background: var(--s-warning-bg-default);
+  }
+  .wtg-status--critical {
+    color: var(--s-error-txt-inv-default);
+    background: var(--s-error-bg-default);
+  }
+  /* neutral = inherited default (dark pill, light text) */
+
+  /* ---- OUTLINE — weak bg, sentiment border + text ---- */
+  .wtg-status--outline {
+    border-radius: var(--s-radius-xl);
+    border: 1px solid var(--s-neutral-border-weak-default);
+    background: var(--s-neutral-bg-weak-default);
+    color: var(--s-neutral-txt-default);
+  }
+  .wtg-status--outline.wtg-status--primary {
+    border-color: var(--s-primary-txt-default);
+    color: var(--s-primary-txt-default);
+    background: var(--s-primary-bg-weak-default);
+  }
+  .wtg-status--outline.wtg-status--info {
+    border-color: var(--s-info-txt-default);
+    color: var(--s-info-txt-default);
+    background: var(--s-info-bg-weak-default);
+  }
+  .wtg-status--outline.wtg-status--success {
+    border-color: var(--s-success-border-default);
+    color: var(--s-success-txt-default);
+    background: var(--s-success-bg-weak-default);
+  }
+  .wtg-status--outline.wtg-status--warning {
+    border-color: var(--s-warning-border-default);
+    color: var(--s-warning-txt-default);
+    background: var(--s-warning-bg-weak-default);
+  }
+  .wtg-status--outline.wtg-status--critical {
+    border-color: var(--s-error-txt-default);
+    color: var(--s-error-txt-default);
+    background: var(--s-error-bg-weak-default);
+  }
+
+  /* page layout helpers — keep the card consistent with other preview tiles */
+  .chips-grid {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    row-gap: 10px;
+    column-gap: 16px;
+    align-items: center;
+  }
+  .chips-grid .head {
+    font: var(--s-text-xs-default);
+    color: var(--s-neutral-txt-weak-default);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .chips-grid .cell {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .divider {
+    height: 1px;
+    background: var(--s-neutral-border-weak-default);
+    margin: 18px 0 14px;
+    grid-column: 1 / -1;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="label" style="margin-bottom:4px">WtgStatus</div>
+  <div style="font: var(--s-text-sm-default); color: var(--s-neutral-txt-weak-default); margin-bottom:16px">
+    Ported directly from <code>WtgStatus.vue</code>. Two variants × six sentiments.
+  </div>
+
+  <div class="chips-grid">
+    <div class="head">Fill</div>
+    <div class="cell">
+      <span class="wtg-status"><span class="wtg-status__content">Neutral</span></span>
+      <span class="wtg-status wtg-status--primary"><span class="wtg-status__content">Primary</span></span>
+      <span class="wtg-status wtg-status--info"><span class="wtg-status__content">Info</span></span>
+      <span class="wtg-status wtg-status--success"><span class="wtg-status__content">Success</span></span>
+      <span class="wtg-status wtg-status--warning"><span class="wtg-status__content">Warning</span></span>
+      <span class="wtg-status wtg-status--critical"><span class="wtg-status__content">Critical</span></span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="head">Outline</div>
+    <div class="cell">
+      <span class="wtg-status wtg-status--outline"><span class="wtg-status__content">Neutral</span></span>
+      <span class="wtg-status wtg-status--outline wtg-status--primary"><span class="wtg-status__content">Primary</span></span>
+      <span class="wtg-status wtg-status--outline wtg-status--info"><span class="wtg-status__content">Info</span></span>
+      <span class="wtg-status wtg-status--outline wtg-status--success"><span class="wtg-status__content">Success</span></span>
+      <span class="wtg-status wtg-status--outline wtg-status--warning"><span class="wtg-status__content">Warning</span></span>
+      <span class="wtg-status wtg-status--outline wtg-status--critical"><span class="wtg-status__content">Critical</span></span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

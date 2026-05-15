@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Text fields — WtgTextField</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="card.css">
+<style>
+  /* =======================================================================
+     WtgTextField — Supply token-driven implementation
+     Anatomy: label (top) · affixes + input row · hint / error (bottom)
+     Variants: default · filled · readonly · disabled · error
+     States  : rest · hover · focus · disabled
+     ======================================================================= */
+
+  .wtg-field {
+    display: flex; flex-direction: column;
+    gap: var(--s-spacing-xs);
+    width: 240px;
+    font: var(--s-text-md-default);
+    color: var(--s-neutral-txt-default);
+  }
+
+  .wtg-field__label {
+    font: var(--s-text-sm-strong);
+    color: var(--s-neutral-txt-default);
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .wtg-field__required { color: var(--s-error-txt-default); }
+  .wtg-field__optional { font: var(--s-text-sm-default); color: var(--s-neutral-txt-weak-default); }
+
+  /* Control row — holds prefix icon, input, suffix */
+  .wtg-field__control {
+    display: flex; align-items: center;
+    min-height: 32px;
+    background: var(--s-neutral-bg-default);
+    border: 1px solid var(--s-neutral-border-weak-default);
+    border-radius: var(--s-radius-s);
+    padding: 0 var(--s-padding-s);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  .wtg-field__control:hover:not(.wtg-field__control--disabled) {
+    border-color: var(--s-neutral-border-weak-hover);
+  }
+  .wtg-field__control:focus-within {
+    border-color: var(--s-primary-border-default);
+    box-shadow: 0 0 0 2px var(--s-primary-border-weak-default, rgba(55, 30, 225, 0.25));
+  }
+
+  .wtg-field__input {
+    flex: 1; min-width: 0;
+    border: 0; background: transparent; outline: none;
+    padding: var(--s-padding-s) var(--s-padding-xs);
+    font: var(--s-text-md-default);
+    color: var(--s-neutral-txt-active);
+  }
+  .wtg-field__input::placeholder { color: var(--s-neutral-txt-weak-default); }
+
+  .wtg-field__affix {
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--s-neutral-icon-weak-default);
+    flex: none;
+  }
+  .wtg-field__affix svg { width: 16px; height: 16px; }
+  .wtg-field__affix--clickable {
+    cursor: pointer; padding: var(--s-padding-xs); border-radius: var(--s-radius-xs);
+    border: 0; background: transparent; color: var(--s-neutral-icon-default);
+  }
+  .wtg-field__affix--clickable:hover { background: var(--s-neutral-bg-tonal-hover); }
+
+  /* Hint / error row */
+  .wtg-field__hint {
+    font: var(--s-text-sm-default);
+    color: var(--s-neutral-txt-weak-default);
+    min-height: 16px;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .wtg-field__hint svg { width: 12px; height: 12px; flex: none; }
+
+  /* --- Error variant --- */
+  .wtg-field--error .wtg-field__control {
+    border-color: var(--s-error-border-default);
+  }
+  .wtg-field--error .wtg-field__control:focus-within {
+    box-shadow: 0 0 0 2px var(--s-error-border-weak-default, rgba(213, 0, 71, 0.25));
+  }
+  .wtg-field--error .wtg-field__hint {
+    color: var(--s-error-txt-default);
+  }
+
+  /* --- Disabled variant --- */
+  .wtg-field--disabled .wtg-field__label { color: var(--s-neutral-txt-disabled); }
+  .wtg-field--disabled .wtg-field__control {
+    background: var(--s-neutral-bg-disabled);
+    border-color: var(--s-neutral-border-weak-default);
+    cursor: not-allowed;
+  }
+  .wtg-field--disabled .wtg-field__input {
+    color: var(--s-neutral-txt-disabled);
+    cursor: not-allowed;
+  }
+  .wtg-field--disabled .wtg-field__input::placeholder { color: var(--s-neutral-txt-disabled); }
+
+  /* --- Readonly variant — no border, no background */
+  .wtg-field--readonly .wtg-field__control {
+    background: transparent; border-color: transparent; padding-left: 0;
+  }
+  .wtg-field--readonly .wtg-field__control:focus-within {
+    box-shadow: none; border-color: transparent;
+  }
+
+  /* --- Filled variant --- */
+  .wtg-field--filled .wtg-field__control {
+    background: var(--s-neutral-bg-weak-default);
+    border-color: transparent;
+  }
+  .wtg-field--filled .wtg-field__control:hover {
+    background: var(--s-neutral-bg-weak-hover);
+  }
+
+  .rowset { display: flex; gap: var(--s-spacing-xl); flex-wrap: wrap; align-items: flex-start; }
+  .section-title { font: var(--s-text-md-strong); color: var(--s-neutral-txt-active); margin: 0 0 var(--s-spacing-m); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="label" style="margin-bottom:18px">WtgTextField · variants &amp; states</div>
+
+  <h4 class="section-title">Default · states</h4>
+  <div class="rowset" style="margin-bottom: 24px">
+    <!-- Rest -->
+    <div class="wtg-field">
+      <label class="wtg-field__label">Shipment ID</label>
+      <div class="wtg-field__control">
+        <input class="wtg-field__input" value="S00412-AUSYD">
+      </div>
+      <span class="wtg-field__hint">Unique reference</span>
+    </div>
+
+    <!-- Placeholder -->
+    <div class="wtg-field">
+      <label class="wtg-field__label">Consignee</label>
+      <div class="wtg-field__control">
+        <input class="wtg-field__input" placeholder="Start typing…">
+      </div>
+      <span class="wtg-field__hint">&nbsp;</span>
+    </div>
+
+    <!-- Focused (autofocus) -->
+    <div class="wtg-field">
+      <label class="wtg-field__label">Origin port</label>
+      <div class="wtg-field__control" style="border-color: var(--s-primary-border-default); box-shadow: 0 0 0 2px rgba(55, 30, 225, 0.25)">
+        <input class="wtg-field__input" value="AUSYD — Sydney">
+      </div>
+      <span class="wtg-field__hint">5-char UN/LOCODE</span>
+    </div>
+
+    <!-- Error -->
+    <div class="wtg-field wtg-field--error">
+      <label class="wtg-field__label">Gross weight <span class="wtg-field__required">*</span></label>
+      <div class="wtg-field__control">
+        <input class="wtg-field__input" value="28,500">
+      </div>
+      <span class="wtg-field__hint">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 2 20h20L12 2zm0 6v6m0 2.5v1.5"/></svg>
+        Exceeds container limit (21,000 kg)
+      </span>
+    </div>
+  </div>
+
+  <h4 class="section-title">With affixes</h4>
+  <div class="rowset" style="margin-bottom: 24px">
+    <!-- Leading icon -->
+    <div class="wtg-field">
+      <label class="wtg-field__label">Search</label>
+      <div class="wtg-field__control">
+        <span class="wtg-field__affix">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </span>
+        <input class="wtg-field__input" placeholder="Search shipments">
+      </div>
+      <span class="wtg-field__hint">Global search</span>
+    </div>
+
+    <!-- Trailing clear action -->
+    <div class="wtg-field">
+      <label class="wtg-field__label">Booking ref</label>
+      <div class="wtg-field__control">
+        <input class="wtg-field__input" value="BK-88492">
+        <button class="wtg-field__affix wtg-field__affix--clickable" aria-label="Clear">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m18 6-12 12M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <span class="wtg-field__hint">&nbsp;</span>
+    </div>
+
+    <!-- Trailing suffix text (unit) -->
+    <div class="wtg-field">
+      <label class="wtg-field__label">Volume</label>
+      <div class="wtg-field__control">
+        <input class="wtg-field__input" value="47.50" style="text-align: right">
+        <span class="wtg-field__affix" style="padding-left: var(--s-padding-xs); color: var(--s-neutral-txt-weak-default)">m³</span>
+      </div>
+      <span class="wtg-field__hint">&nbsp;</span>
+    </div>
+  </div>
+
+  <h4 class="section-title">Other variants</h4>
+  <div class="rowset">
+    <!-- Readonly -->
+    <div class="wtg-field wtg-field--readonly">
+      <label class="wtg-field__label">Created by</label>
+      <div class="wtg-field__control">
+        <input class="wtg-field__input" value="Darlene Robertson" readonly>
+      </div>
+      <span class="wtg-field__hint">&nbsp;</span>
+    </div>
+
+    <!-- Filled -->
+    <div class="wtg-field wtg-field--filled">
+      <label class="wtg-field__label">Notes <span class="wtg-field__optional">(optional)</span></label>
+      <div class="wtg-field__control">
+        <input class="wtg-field__input" placeholder="Add a note…">
+      </div>
+      <span class="wtg-field__hint">&nbsp;</span>
+    </div>
+
+    <!-- Disabled -->
+    <div class="wtg-field wtg-field--disabled">
+      <label class="wtg-field__label">Auto-assigned ref</label>
+      <div class="wtg-field__control wtg-field__control--disabled">
+        <input class="wtg-field__input" value="GFR-8640923" disabled>
+      </div>
+      <span class="wtg-field__hint">Generated on save</span>
+    </div>
+  </div>
+</div>
+</body></html>

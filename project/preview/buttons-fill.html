@@ -1,0 +1,24 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Buttons — Fill</title>
+<link rel="stylesheet" href="card.css">
+<style>
+  .btn { display:inline-flex; align-items:center; gap:6px; padding:4px 12px; border-radius:4px; border:1px solid; font:var(--s-text-md-strong); cursor:pointer; line-height:20px; position:relative; }
+  .btn-fill-neutral { background:#f7f7f4; border-color:#f7f7f4; color:#383836; box-shadow:0px 1px 1px 0px rgba(27,27,26,0.06), inset 0px -1px 1px 1px #efeeeb; }
+  .btn-fill-primary { background:#371ee1; border-color:#371ee1; color:#fff; box-shadow:0px 1px 1px 0px rgba(27,27,26,0.06); }
+  .btn-fill-critical { background:#d50047; border-color:#d50047; color:#fff; }
+  .btn-fill-success { background:#00795d; border-color:#00795d; color:#fff; }
+  .btn-fill-primary-hover { background:#221098; border-color:#221098; color:#fff; }
+  .btn-disabled { background:#f7f7f4; border-color:#f7f7f4; color:#8d8c88; cursor:default; box-shadow:none; }
+</style></head>
+<body>
+<div class="card">
+  <div class="label" style="margin-bottom:14px">Buttons · Fill variant</div>
+  <div class="row">
+    <button class="btn btn-fill-neutral">Default</button>
+    <button class="btn btn-fill-primary">Primary</button>
+    <button class="btn btn-fill-primary-hover">Primary · hover</button>
+    <button class="btn btn-fill-critical">Delete</button>
+    <button class="btn btn-fill-success">Approve</button>
+    <button class="btn btn-disabled">Disabled</button>
+  </div>
+</div>
+</body></html>

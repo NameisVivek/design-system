@@ -1,0 +1,15 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Callouts</title>
+<link rel="stylesheet" href="card.css">
+<style>
+  .callout { display:flex; align-items:flex-start; gap:10px; padding:12px 14px; border-radius:8px; border:1px solid; font:var(--s-text-sm-default); }
+  .callout strong { font:var(--s-text-sm-strong); display:block; margin-bottom:2px; }
+  .dot { width:8px; height:8px; border-radius:50%; margin-top:6px; flex:none; }
+</style></head>
+<body>
+<div style="display:flex;flex-direction:column;gap:10px">
+  <div class="callout" style="background:#f2f9f8;border-color:rgba(1,121,93,0.5);color:#00513e"><span class="dot" style="background:#00795d"></span><div><strong>Shipment cleared.</strong>Customs released at 14:02 UTC. No further action required.</div></div>
+  <div class="callout" style="background:#fef6f9;border-color:rgba(213,0,71,0.5);color:#910031"><span class="dot" style="background:#d50047"></span><div><strong>Weight exceeds container limit.</strong>Reduce load below 21,000 kg or split into a second consol.</div></div>
+  <div class="callout" style="background:#faf9e3;border-color:rgba(113,109,40,0.5);color:#4b481b"><span class="dot" style="background:#716d28"></span><div><strong>Awaiting HAWB.</strong>Airline has not yet returned the house airway bill number.</div></div>
+  <div class="callout" style="background:#f9f7fc;border-color:rgba(132,81,193,0.5);color:#583583"><span class="dot" style="background:#8351c2"></span><div><strong>Rate valid until 30 Apr.</strong>Renegotiate with carrier ahead of expiry.</div></div>
+</div>
+</body></html>
