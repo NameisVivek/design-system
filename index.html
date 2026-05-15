@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CargoWise — Framework</title>
+
+<!-- Inter (Google Fonts CDN) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..700;1,14..32,400..700&display=swap" rel="stylesheet">
+
+<!-- Supply icon font + glyph map -->
+<link rel="stylesheet" href="project/preview/supply-icons.css">
+<style>
+/* Ensure icons render inline-block (supply-icons.css doesn't set this) */
+[class^='s-icon-'],
+[class*=' s-icon-'] { display: inline-block; }
+</style>
+
+<style>
+/* ============================================================
+   Supply Design System — Core Tokens
+   Source: @wtg/supply-tokens (WiseTechGlobal/WTG.WebComponents)
+   ============================================================ */
+:root {
+  --s-fontfamily-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* Type primitives */
+  --s-fontsize-100: 10px;
+  --s-fontsize-200: 12px;
+  --s-fontsize-300: 13px;
+  --s-fontsize-400: 16px;
+  --s-fontsize-500: 20px;
+  --s-fontsize-600: 28px;
+  --s-fontsize-700: 32px;
+  --s-fontsize-800: 40px;
+  --s-fontweight-400: 400;
+  --s-fontweight-500: 500;
+  --s-fontweight-600: 600;
+  --s-fontweight-700: 700;
+  --s-lineheight-100: 10px;
+  --s-lineheight-200: 16px;
+  --s-lineheight-300: 20px;
+  --s-lineheight-400: 24px;
+  --s-lineheight-500: 28px;
+  --s-lineheight-600: 34px;
+  --s-lineheight-700: 38px;
+  --s-lineheight-800: 48px;
+
+  /* Spacing + padding */
+  --s-spacing-null: 0; --s-padding-null: 0;
+  --s-spacing-xs: 2px;  --s-padding-xs: 2px;
+  --s-spacing-s: 4px;   --s-padding-s: 4px;
+  --s-spacing-m: 8px;   --s-padding-m: 8px;
+  --s-spacing-l: 12px;  --s-padding-l: 12px;
+  --s-spacing-xl: 16px; --s-padding-xl: 16px;
+  --s-spacing-xxl: 24px; --s-padding-xxl: 24px;
+
+  /* Radii */
+  --s-radius-null: 0;
+  --s-radius-xs: 2px;
+  --s-radius-s: 4px;
+  --s-radius-m: 8px;
+  --s-radius-l: 12px;
+  --s-radius-xl: 16px;
+  --s-radius-xxl: 24px;
+
+  /* Icon sizing */
+  --s-sizing-icon-sm: 16px;
+  --s-sizing-icon-md: 20px;
+  --s-sizing-icon-lg: 28px;
+  --s-sizing-icon-xl: 34px;
+  --s-sizing-icon-2xl: 38px;
+  --s-sizing-icon-3xl: 48px;
+
+  /* Typography compositions */
+  --s-display-lg-default: var(--s-fontweight-700) var(--s-fontsize-800) / var(--s-lineheight-800) var(--s-fontfamily-primary);
+  --s-display-md-default: var(--s-fontweight-700) var(--s-fontsize-700) / var(--s-lineheight-700) var(--s-fontfamily-primary);
+  --s-display-sm-default: var(--s-fontweight-700) var(--s-fontsize-600) / var(--s-lineheight-600) var(--s-fontfamily-primary);
+  --s-title-lg-default:   var(--s-fontweight-600) var(--s-fontsize-500) / var(--s-lineheight-500) var(--s-fontfamily-primary);
+  --s-title-md-default:   var(--s-fontweight-600) var(--s-fontsize-400) / var(--s-lineheight-400) var(--s-fontfamily-primary);
+  --s-title-sm-default:   var(--s-fontweight-600) var(--s-fontsize-300) / var(--s-lineheight-300) var(--s-fontfamily-primary);
+  --s-text-md-default:    var(--s-fontweight-400) var(--s-fontsize-300) / var(--s-lineheight-300) var(--s-fontfamily-primary);
+  --s-text-md-strong:     var(--s-fontweight-600) var(--s-fontsize-300) / var(--s-lineheight-300) var(--s-fontfamily-primary);
+  --s-text-sm-default:    var(--s-fontweight-400) var(--s-fontsize-200) / var(--s-lineheight-200) var(--s-fontfamily-primary);
+  --s-text-sm-strong:     var(--s-fontweight-600) var(--s-fontsize-200) / var(--s-lineheight-200) var(--s-fontfamily-primary);
+  --s-text-xs-default:    var(--s-fontweight-400) var(--s-fontsize-100) / var(--s-lineheight-100) var(--s-fontfamily-primary);
+  --s-text-xs-strong:     var(--s-fontweight-600) var(--s-fontsize-100) / var(--s-lineheight-100) var(--s-fontfamily-primary);
+
+  /* Primary / Brand (indigo) */
+  --s-primary-bg-default: #371ee1;
+  --s-primary-bg-hover: #221098;
+  --s-primary-bg-active: #110662;
+  --s-primary-bg-weak-default: #f6f8ff;
+  --s-primary-bg-weak-hover: #ecf1ff;
+  --s-primary-bg-weak-active: #dae2fe;
+  --s-primary-bg-tonal-default: rgba(55, 30, 225, 0.06);
+  --s-primary-bg-tonal-hover: rgba(55, 30, 225, 0.12);
+  --s-primary-bg-tonal-active: rgba(55, 30, 225, 0.15);
+  --s-primary-border-default: #371ee1;
+  --s-primary-border-hover: #221098;
+  --s-primary-border-active: #110662;
+  --s-primary-txt-default: #371ee1;
+  --s-primary-txt-hover: #221098;
+  --s-primary-txt-active: #110662;
+  --s-primary-txt-inv-default: #f6f8ff;
+  --s-primary-icon-default: #371ee1;
+  --s-primary-icon-weak-default: #4d58eb;
+
+  /* Neutral (warm stone) */
+  --s-neutral-canvas-default: #f7f7f4;
+  --s-neutral-bg-default: #ffffff;
+  --s-neutral-bg-weak-default: #f7f7f4;
+  --s-neutral-bg-weak-hover: #efeeeb;
+  --s-neutral-bg-weak-active: #e8e7e3;
+  --s-neutral-bg-disabled: #f7f7f4;
+  --s-neutral-bg-hover: #383836;
+  --s-neutral-bg-active: #1b1b1a;
+  --s-neutral-bg-tonal-default: rgba(27, 27, 26, 0.06);
+  --s-neutral-bg-tonal-hover: rgba(27, 27, 26, 0.12);
+  --s-neutral-bg-tonal-active: rgba(27, 27, 26, 0.15);
+  --s-neutral-border-default: #5c5b57;
+  --s-neutral-border-hover: #383836;
+  --s-neutral-border-active: #1b1b1a;
+  --s-neutral-border-weak-default: #bfbeb9;
+  --s-neutral-border-weak-hover: #8d8c88;
+  --s-neutral-border-weak-active: #5c5b57;
+  --s-neutral-border-disabled: #dad9d5;
+  --s-neutral-divider: #383836;
+  --s-neutral-txt-default: #383836;
+  --s-neutral-txt-hover: #1b1b1a;
+  --s-neutral-txt-active: #000000;
+  --s-neutral-txt-disabled: #8d8c88;
+  --s-neutral-txt-weak-default: #5c5b57;
+  --s-neutral-txt-weak-hover: #383836;
+  --s-neutral-txt-weak-active: #1b1b1a;
+  --s-neutral-txt-inv-default: #f7f7f4;
+  --s-neutral-icon-default: #383836;
+  --s-neutral-icon-hover: #1b1b1a;
+  --s-neutral-icon-weak-default: #5c5b57;
+  --s-neutral-icon-disabled: #8d8c88;
+
+  /* Success */
+  --s-success-bg-default: #00795d;
+  --s-success-bg-hover: #00513e;
+  --s-success-bg-weak-default: #f2f9f8;
+  --s-success-border-default: #00795d;
+  --s-success-txt-default: #00795d;
+  --s-success-txt-inv-default: #f2f9f8;
+
+  /* Error */
+  --s-error-bg-default: #d50047;
+  --s-error-bg-weak-default: #fef6f9;
+  --s-error-border-default: #d50047;
+  --s-error-txt-default: #d50047;
+  --s-error-txt-inv-default: #fef6f9;
+
+  /* Warning */
+  --s-warning-bg-default: #ece68c;
+  --s-warning-bg-weak-default: #faf9e3;
+  --s-warning-border-default: #716d28;
+  --s-warning-txt-default: #716d28;
+  --s-warning-txt-inv-default: #4b481b;
+
+  /* Info */
+  --s-info-bg-default: #8351c2;
+  --s-info-bg-weak-default: #f9f7fc;
+  --s-info-border-default: #8351c2;
+  --s-info-txt-default: #8351c2;
+  --s-info-txt-inv-default: #f9f7fc;
+
+  /* Elevation */
+  --s-elevation-100: 0px 1px 1px 0px rgba(27, 27, 26, 0.06), inset 0px -1px 1px 0px rgba(27, 27, 26, 0.12);
+  --s-elevation-200: 0px 2px 4px 0px rgba(27, 27, 26, 0.12), inset 0px -1px 1px 0px rgba(27, 27, 26, 0.12);
+  --s-elevation-300: 0px 4px 8px 0px rgba(27, 27, 26, 0.16), inset 0px -1px 1px 0px rgba(27, 27, 26, 0.12);
+  --s-elevation-button-default: 0px 1px 1px 0px rgba(27, 27, 26, 0.06), inset 0px -1px 1px 1px #efeeeb, inset 0px 0px 2px 0px #f7f7f4;
+  --s-elevation-button-pressed: inset 0px 1px 2px 1px #bfbeb9, inset 0px -1px 1px 0px rgba(191, 190, 185, 0.4);
+}
+
+/* ============================================================
+   Reset + base
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  height: 100%; min-height: 700px;
+  background: var(--s-neutral-canvas-default);
+  color: var(--s-neutral-txt-default);
+  font: var(--s-text-md-default);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+/* ============================================================
+   App shell
+   Indigo sidebar floats as a rounded card on neutral canvas.
+   White content column is flush to the right of the sidebar.
+   ============================================================ */
+.app {
+  display: grid;
+  grid-template-columns: 216px 1fr;
+  gap: 12px;
+  padding: 12px;
+  height: 100vh;
+  min-height: 700px;
+  background: var(--s-neutral-canvas-default);
+}
+
+/* ============================================================
+   Sidebar — WtgNavigationDrawer shell
+   Floating indigo card with rounded corners
+   ============================================================ */
+.side {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+  background: var(--s-primary-bg-default);
+  border-radius: var(--s-radius-m);
+  overflow: hidden;
+  color: #fff;
+}
+
+.side .logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 16px 18px;
+}
+
+.side .brand {
+  font: var(--s-title-md-default);
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+/* Icon button for light (indigo) backgrounds */
+.iconbtn-light {
+  width: 24px; height: 24px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  opacity: 0.75;
+  border-radius: var(--s-radius-s);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+.iconbtn-light:hover { background: rgba(255,255,255,0.12); opacity: 1; }
+
+/* Portal card */
+.portal {
+  margin: 0 12px 14px;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  cursor: pointer;
+}
+.portal:hover { background: rgba(255,255,255,0.18); }
+.portal .lbl { font: var(--s-text-md-strong); color: #fff; line-height: 18px; }
+.portal .sub { font: var(--s-text-sm-default); color: rgba(255,255,255,0.78); line-height: 16px; }
+
+/* Navigation slot area */
+.slot {
+  margin: 4px 14px 0;
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.55);
+  font: var(--s-text-sm-default);
+}
+.slot .dots {
+  width: 14px; height: 14px;
+  background:
+    radial-gradient(circle 1.2px at 3px 3px, rgba(255,255,255,0.55) 99%, transparent 100%),
+    radial-gradient(circle 1.2px at 11px 3px, rgba(255,255,255,0.55) 99%, transparent 100%),
+    radial-gradient(circle 1.2px at 3px 11px, rgba(255,255,255,0.55) 99%, transparent 100%),
+    radial-gradient(circle 1.2px at 11px 11px, rgba(255,255,255,0.55) 99%, transparent 100%);
+}
+
+.side-spacer { flex: 1; }
+
+/* Bottom nav items */
+.side-bottom { padding: 0 12px 4px; display: flex; flex-direction: column; gap: 2px; }
+
+.sideitem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: rgba(255,255,255,0.92);
+  font: var(--s-text-md-strong);
+  line-height: 18px;
+}
+.sideitem:hover { background: rgba(255,255,255,0.12); }
+.sideitem .chev { margin-left: auto; opacity: 0.7; }
+.sideitem i { font-size: var(--s-sizing-icon-sm); flex-shrink: 0; }
+
+.sideitem.user { margin-top: 8px; padding: 10px 12px; }
+.sideitem.user .ava {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: #c4b8f5;
+  color: #221098;
+  font: var(--s-text-xs-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   Main column — canvas background, full height
+   ============================================================ */
+.main-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--s-neutral-canvas-default);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ============================================================
+   WtgMasthead — port of WtgMasthead.vue
+   ============================================================ */
+.masthead {
+  flex: none;
+  background: var(--s-neutral-canvas-default);
+  padding-left: var(--s-padding-xl);
+}
+
+/* Top toolbar row (.v-toolbar__content equivalent) */
+.mh-row {
+  min-height: 44px;
+  padding-top: 8px;
+  padding-right: 16px;
+  display: flex;
+  align-items: center;
+  gap: var(--s-spacing-m);
+}
+
+/* WtgDivider between breadcrumbs and extension */
+.mh-divider {
+  height: 1px;
+  background: var(--s-neutral-border-weak-default);
+  border: 0;
+  margin: 0;
+}
+
+/* Extension column (.v-toolbar__extension) */
+.mh-extension {
+  display: flex;
+  flex-direction: column;
+  padding-right: 16px;
+}
+
+/* ============================================================
+   WtgBreadcrumbs — port of WtgBreadcrumbs.vue
+   ============================================================ */
+.crumbs {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-spacing-s);
+  font: var(--s-text-md-default);
+}
+.crumbs .bc-item {
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: var(--s-fontweight-500);
+  color: var(--s-primary-txt-default);
+}
+.crumbs .bc-item:hover { color: var(--s-primary-txt-hover); }
+.crumbs .bc-current {
+  font-weight: var(--s-fontweight-600);
+  color: var(--s-neutral-txt-default);
+}
+.crumbs .bc-sep {
+  font-size: var(--s-sizing-icon-sm);
+  color: var(--s-neutral-icon-weak-default);
+  line-height: 1;
+}
+
+.mh-row .spacer { flex: 1; }
+.mh-append { display: flex; align-items: center; gap: var(--s-spacing-xs); }
+
+/* ============================================================
+   WtgButton — port of WtgButton.vue
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--s-padding-s) var(--s-padding-m);
+  border-radius: var(--s-radius-s);
+  border: 1px solid transparent;
+  font: var(--s-text-md-strong);
+  cursor: pointer;
+  line-height: 20px;
+  white-space: nowrap;
+  position: relative;
+  background: transparent;
+  transition:
+    background 0.28s cubic-bezier(0.4,0,0.2,1),
+    border-color 0.28s cubic-bezier(0.4,0,0.2,1),
+    box-shadow 0.28s cubic-bezier(0.4,0,0.2,1);
+}
+
+.btn--outline {
+  background: var(--s-neutral-bg-default);
+  border-color: var(--s-neutral-border-weak-default);
+  color: var(--s-neutral-txt-default);
+  box-shadow: var(--s-elevation-button-default);
+}
+.btn--outline:hover:not(:disabled) {
+  background: var(--s-neutral-bg-weak-hover);
+  border-color: var(--s-neutral-border-weak-hover);
+}
+.btn--outline:active:not(:disabled) {
+  box-shadow: var(--s-elevation-button-pressed);
+}
+
+.btn--primary {
+  background: var(--s-primary-bg-default);
+  border-color: var(--s-primary-border-default);
+  color: var(--s-primary-txt-inv-default);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+}
+.btn--primary:hover:not(:disabled) {
+  background: var(--s-primary-bg-hover);
+  border-color: var(--s-primary-border-hover);
+}
+.btn--primary:active:not(:disabled) {
+  background: var(--s-primary-bg-active);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--s-neutral-txt-default);
+}
+.btn--ghost:hover:not(:disabled)::before {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--s-primary-border-default);
+  outline-offset: 1px;
+  z-index: 1;
+}
+.btn:disabled {
+  background: var(--s-neutral-bg-disabled);
+  border-color: transparent;
+  color: var(--s-neutral-txt-disabled);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ============================================================
+   WtgIconButton — port of WtgIconButton.vue
+   Extends WtgButton: padding: --s-padding-s, centered icon
+   Default: 4px padding + 20px md-icon + 2×1px border = 30px
+   ============================================================ */
+.icon-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--s-padding-s);
+  border-radius: var(--s-radius-s);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--s-neutral-txt-default);
+  cursor: pointer;
+  position: relative;
+  transition:
+    background 0.28s cubic-bezier(0.4,0,0.2,1),
+    border-color 0.28s cubic-bezier(0.4,0,0.2,1);
+}
+.icon-btn > i {
+  font-size: var(--s-sizing-icon-md);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+}
+.icon-btn.icon-btn--s { padding: var(--s-padding-xs); }
+.icon-btn.icon-btn--s > i { font-size: var(--s-sizing-icon-sm); }
+
+/* Outline variant */
+.icon-btn.outline {
+  background: var(--s-neutral-bg-default);
+  border-color: var(--s-neutral-border-weak-default);
+}
+.icon-btn.outline:hover:not(:disabled) {
+  background: var(--s-neutral-bg-weak-hover);
+  border-color: var(--s-neutral-border-weak-hover);
+  color: var(--s-neutral-txt-hover);
+}
+.icon-btn.outline:active:not(:disabled) {
+  border-color: var(--s-neutral-border-weak-active);
+  color: var(--s-neutral-txt-active);
+}
+
+/* Ghost variant */
+.icon-btn.ghost { background: transparent; border-color: transparent; color: inherit; }
+.icon-btn.ghost:hover::before,
+.icon-btn.ghost:active::before {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0.12;
+  pointer-events: none;
+}
+.icon-btn.ghost:active::before { opacity: 0.24; }
+
+.icon-btn:focus-visible {
+  outline: 2px solid var(--s-primary-border-default);
+  outline-offset: 1px;
+  z-index: 1;
+}
+
+/* ============================================================
+   Masthead extension rows
+   ============================================================ */
+.mh-ext {
+  padding: var(--s-padding-m) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--s-padding-m);
+}
+.rec-id-group { display: flex; align-items: center; gap: var(--s-padding-s); }
+.rec-id {
+  font: var(--s-title-md-default);
+  color: var(--s-neutral-txt-active);
+  padding: 0 var(--s-padding-xs);
+}
+.mh-ext .spacer { flex: 1; }
+
+/* ============================================================
+   WtgEntityActions — port of WtgEntityActions.vue
+   Flex row, gap: --s-spacing-xs, 1px weak border, radius-s.
+   No padding, no fill — just a bordered cluster.
+   ============================================================ */
+.entity-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--s-spacing-xs);
+  border: 1px solid var(--s-neutral-border-weak-default);
+  border-radius: var(--s-radius-s);
+}
+
+/* Entity action ghost buttons */
+.ea-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--s-padding-s);
+  border: 0;
+  background: transparent;
+  border-radius: var(--s-radius-xs);
+  font: var(--s-text-md-default);
+  color: var(--s-neutral-txt-default);
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 20px;
+  position: relative;
+}
+.ea-btn:hover::before {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0.08;
+  pointer-events: none;
+}
+.ea-btn > i {
+  color: var(--s-neutral-icon-weak-default);
+  font-size: var(--s-sizing-icon-sm);
+  line-height: 1;
+  width: 16px; height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   WtgTabs + WtgTab — port of WtgTabs.vue + WtgTab.vue
+   ============================================================ */
+.mh-tabs {
+  display: flex;
+  align-items: stretch;
+  flex-grow: 1;
+  position: relative;
+}
+
+.mh-tab {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: var(--s-neutral-txt-default);
+  font: var(--s-text-md-strong);
+  letter-spacing: normal;
+  text-transform: none;
+  position: relative;
+}
+.mh-tab > .mh-tab-content {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--s-padding-s);
+}
+.mh-tab:hover {
+  background: var(--s-primary-bg-weak-hover);
+  color: var(--s-primary-txt-hover);
+}
+.mh-tab.active { color: var(--s-primary-txt-default); }
+.mh-tab.active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: var(--s-primary-border-default);
+}
+
+/* ============================================================
+   Content area — scrollable body
+   ============================================================ */
+.content {
+  flex: 1;
+  overflow: auto;
+  padding: var(--s-padding-xl);
+  background: var(--s-neutral-canvas-default);
+}
+
+/* ============================================================
+   WtgActionBar — port of WtgActionBar.vue (desktop)
+   Floating card at the bottom, inset from edges
+   ============================================================ */
+.action-bar-footer {
+  flex: none;
+  padding: 0 var(--s-padding-xl) var(--s-padding-xl);
+  background: var(--s-neutral-canvas-default);
+}
+.action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--s-spacing-xl);
+  padding: var(--s-padding-xl);
+  border: 1px solid var(--s-neutral-border-weak-default);
+  border-radius: var(--s-radius-m);
+  background: var(--s-neutral-bg-default);
+  box-shadow: var(--s-elevation-200);
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+  <!-- ================================================================
+       Sidebar — WtgNavigationDrawer (app shell)
+       ================================================================ -->
+  <aside class="side" aria-label="Primary navigation">
+
+    <div class="logo">
+      <span class="brand">cargowise</span>
+      <button class="iconbtn-light" aria-label="Collapse sidebar" title="Collapse sidebar">
+        <i class="s-icon-drawer-close"></i>
+      </button>
+    </div>
+
+    <div class="portal" role="button" tabindex="0" aria-label="Switch portal">
+      <div>
+        <div class="lbl">Portal name</div>
+        <div class="sub">Branch / Department</div>
+      </div>
+      <i class="s-icon-caret-right" style="font-size:14px; opacity:0.85" aria-hidden="true"></i>
+    </div>
+
+    <!-- Navigation items slot -->
+    <div class="slot" aria-label="Navigation">
+      <div class="dots" aria-hidden="true"></div>
+      <div>Slot</div>
+    </div>
+
+    <div class="side-spacer"></div>
+
+    <div class="side-bottom">
+      <div class="sideitem" role="button" tabindex="0">
+        <i class="s-icon-star-empty" aria-hidden="true"></i>
+        <span>Favorites</span>
+        <i class="s-icon-caret-right chev" style="font-size:12px" aria-hidden="true"></i>
+      </div>
+      <div class="sideitem" role="button" tabindex="0">
+        <i class="s-icon-history" aria-hidden="true"></i>
+        <span>Recently viewed</span>
+        <i class="s-icon-caret-right chev" style="font-size:12px" aria-hidden="true"></i>
+      </div>
+    </div>
+
+    <div class="side-bottom" style="margin-top:16px">
+      <div class="sideitem" role="button" tabindex="0">
+        <i class="s-icon-help" aria-hidden="true"></i>
+        <span>Help</span>
+      </div>
+      <div class="sideitem" role="button" tabindex="0">
+        <i class="s-icon-settings" aria-hidden="true"></i>
+        <span>Settings</span>
+      </div>
+      <div class="sideitem user" role="button" tabindex="0">
+        <span class="ava" aria-hidden="true">DR</span>
+        <span>Darlene Robertson</span>
+        <i class="s-icon-caret-right chev" style="font-size:12px" aria-hidden="true"></i>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ================================================================
+       Main column
+       ================================================================ -->
+  <main class="main-col">
+
+    <!-- WtgMasthead -->
+    <header class="masthead">
+
+      <!-- Breadcrumbs row (.v-toolbar__content) -->
+      <div class="mh-row">
+        <nav class="crumbs" aria-label="Breadcrumbs">
+          <a href="#" class="bc-item">Portal name</a>
+          <i class="s-icon-forward-slash bc-sep" aria-hidden="true"></i>
+          <span class="bc-current">Form caption</span>
+        </nav>
+        <div class="spacer"></div>
+        <div class="mh-append">
+          <button class="icon-btn outline" aria-label="Search">
+            <i class="s-icon-search"></i>
+          </button>
+          <button class="icon-btn outline" aria-label="Warnings">
+            <i class="s-icon-status-warning"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- WtgDivider -->
+      <hr class="mh-divider" aria-hidden="true">
+
+      <!-- Extension (.v-toolbar__extension) -->
+      <div class="mh-extension">
+
+        <!-- Record header row: back + ID | entity actions -->
+        <div class="mh-ext">
+          <div class="rec-id-group">
+            <button class="icon-btn ghost" aria-label="Back">
+              <i class="s-icon-arrow-left"></i>
+            </button>
+            <div class="rec-id">GFR-8640</div>
+          </div>
+          <div class="spacer"></div>
+          <!-- WtgEntityActions -->
+          <div class="entity-actions" role="group" aria-label="Entity actions">
+            <button class="ea-btn"><i class="s-icon-workflow" aria-hidden="true"></i>Workflow</button>
+            <button class="ea-btn"><i class="s-icon-edocs" aria-hidden="true"></i>eDocs</button>
+            <button class="ea-btn"><i class="s-icon-documentation" aria-hidden="true"></i>Documents</button>
+            <button class="ea-btn"><i class="s-icon-related-records" aria-hidden="true"></i>Related items</button>
+            <button class="ea-btn"><i class="s-icon-notes" aria-hidden="true"></i>Notes</button>
+            <button class="ea-btn"><i class="s-icon-chat" aria-hidden="true"></i>Messages</button>
+            <button class="ea-btn"><i class="s-icon-logs" aria-hidden="true"></i>Logs</button>
+          </div>
+        </div>
+
+        <!-- WtgTabs -->
+        <div class="mh-tabs" role="tablist" aria-label="Form sections">
+          <button class="mh-tab active" role="tab" aria-selected="true" tabindex="0">
+            <span class="mh-tab-content">Label</span>
+          </button>
+          <button class="mh-tab" role="tab" aria-selected="false" tabindex="-1">
+            <span class="mh-tab-content">Label</span>
+          </button>
+          <button class="mh-tab" role="tab" aria-selected="false" tabindex="-1">
+            <span class="mh-tab-content">Label</span>
+          </button>
+          <button class="mh-tab" role="tab" aria-selected="false" tabindex="-1">
+            <span class="mh-tab-content">Label</span>
+          </button>
+          <button class="mh-tab" role="tab" aria-selected="false" tabindex="-1">
+            <span class="mh-tab-content">Label</span>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Content body (framework shell — intentionally empty) -->
+    <section class="content" role="main" aria-label="Form content"></section>
+
+    <!-- WtgActionBar footer -->
+    <footer class="action-bar-footer">
+      <div class="action-bar" role="toolbar" aria-label="Form actions">
+        <button class="btn btn--outline">Cancel</button>
+        <button class="btn btn--outline">Secondary actions</button>
+        <button class="btn btn--primary">Save changes</button>
+      </div>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  /* Tab switching — keyboard + click */
+  const tabs = document.querySelectorAll('.mh-tab');
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+        t.tabIndex = -1;
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      tab.tabIndex = 0;
+    });
+    tab.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') { tabs[Math.min(i + 1, tabs.length - 1)].focus(); e.preventDefault(); }
+      if (e.key === 'ArrowLeft')  { tabs[Math.max(i - 1, 0)].focus(); e.preventDefault(); }
+    });
+  });
+</script>
+
+</body>
+</html>
