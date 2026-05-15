@@ -249,8 +249,36 @@ body {
 .sw-token { font-family: var(--mono); font-size: 11px; color: var(--stone-500); }
 .sw-hex { font-family: var(--mono); font-size: 11px; color: var(--stone-700); margin-top: 2px; }
 
-.palette-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 0; border-radius: 8px; overflow: hidden; margin-bottom: 12px; }
-.palette-grid .pc { height: 48px; }
+.palette-grid { display: flex; gap: 6px; margin-bottom: 4px; }
+.palette-grid .pc {
+  flex: 1;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.palette-grid .pc-swatch { height: 72px; }
+.palette-grid .pc-label {
+  padding: 6px 6px 5px;
+  background: #fff;
+  border: 1px solid #e8e7e3;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+}
+.palette-grid .pc-step {
+  font-size: 10px;
+  font-weight: 600;
+  color: #383836;
+  line-height: 1.2;
+  font-family: var(--mono);
+}
+.palette-grid .pc-hex {
+  font-size: 10px;
+  color: #8d8c88;
+  font-family: var(--mono);
+  line-height: 1.2;
+  margin-top: 1px;
+}
 
 /* ─── Typography specimens ────────────────────────────────────────────────── */
 .type-specimen {
@@ -684,21 +712,50 @@ body {
         <div class="subsection__desc">Canvas, surfaces, borders, and text. Based on a warm off-white stone with charcoal dark tones.</div>
 
         <div class="demo">
-          <div class="demo__canvas demo__canvas--white" style="flex-direction:column; gap:12px">
+          <div class="demo__canvas demo__canvas--white" style="flex-direction:column; gap:0; padding:16px">
             <div class="palette-grid">
-              <div class="pc" style="background:#fff; border:1px solid #e8e7e3" title="bg · #fff"></div>
-              <div class="pc" style="background:#f7f7f4" title="canvas · #f7f7f4"></div>
-              <div class="pc" style="background:#efeeeb" title="bg-hover · #efeeeb"></div>
-              <div class="pc" style="background:#e8e7e3" title="bg-active · #e8e7e3"></div>
-              <div class="pc" style="background:#dad9d5" title="disabled · #dad9d5"></div>
-              <div class="pc" style="background:#bfbeb9" title="border · #bfbeb9"></div>
-              <div class="pc" style="background:#8d8c88" title="muted · #8d8c88"></div>
-              <div class="pc" style="background:#5c5b57" title="weak txt · #5c5b57"></div>
-              <div class="pc" style="background:#383836" title="txt-default · #383836"></div>
-              <div class="pc" style="background:#1b1b1a" title="txt-active · #1b1b1a"></div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#fff; border:1px solid #e8e7e3; border-bottom:none"></div>
+                <div class="pc-label"><div class="pc-step">White</div><div class="pc-hex">#ffffff</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#f7f7f4"></div>
+                <div class="pc-label"><div class="pc-step">Canvas</div><div class="pc-hex">#f7f7f4</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#efeeeb"></div>
+                <div class="pc-label"><div class="pc-step">50</div><div class="pc-hex">#efeeeb</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#e8e7e3"></div>
+                <div class="pc-label"><div class="pc-step">100</div><div class="pc-hex">#e8e7e3</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#dad9d5"></div>
+                <div class="pc-label"><div class="pc-step">200</div><div class="pc-hex">#dad9d5</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#bfbeb9"></div>
+                <div class="pc-label"><div class="pc-step">300</div><div class="pc-hex">#bfbeb9</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#8d8c88"></div>
+                <div class="pc-label" style="border-color:#c8c7c3"><div class="pc-step">500</div><div class="pc-hex">#8d8c88</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#5c5b57"></div>
+                <div class="pc-label" style="border-color:#9b9a96"><div class="pc-step">700</div><div class="pc-hex">#5c5b57</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#383836"></div>
+                <div class="pc-label" style="border-color:#6e6e6a"><div class="pc-step">900</div><div class="pc-hex">#383836</div></div>
+              </div>
+              <div class="pc">
+                <div class="pc-swatch" style="background:#1b1b1a"></div>
+                <div class="pc-label" style="border-color:#4a4a47"><div class="pc-step">950</div><div class="pc-hex">#1b1b1a</div></div>
+              </div>
             </div>
           </div>
-          <div class="demo__label">Neutral ramp — hover each swatch for label</div>
         </div>
 
         <table class="token-table">
