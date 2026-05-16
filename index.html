@@ -622,63 +622,61 @@ body {
   /* Demo canvas */
   .demo__canvas { padding: 20px 16px; }
 
-  /* Palette grid — horizontal scroll */
+  /* Palette grid — 5 per row, 2 rows of 5 */
   .palette-grid {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    flex-wrap: nowrap;
-    padding-bottom: 4px;
-    gap: 5px;
+    flex-wrap: wrap;
+    gap: 4px;
   }
-  .palette-grid .pc { min-width: 72px; flex: 0 0 72px; }
-  .palette-grid .pc-swatch { height: 56px; }
-  .palette-grid .pc-label { padding: 5px 4px 4px; }
+  .palette-grid .pc {
+    flex: 0 0 calc(20% - 4px);
+    min-width: 0;
+  }
+  .palette-grid .pc-swatch { height: 48px; }
+  .palette-grid .pc-label { padding: 4px 3px; }
   .palette-grid .pc-step { font-size: 9px; }
-  .palette-grid .pc-hex { font-size: 9px; }
+  .palette-grid .pc-hex { font-size: 8px; }
 
-  /* Token + data table scroll — applied via JS wrapper */
-  .table-scroll-wrap {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    border-radius: 8px;
-    margin-bottom: 24px;
-  }
-  .table-scroll-wrap .token-table,
-  .table-scroll-wrap .dt {
-    margin-bottom: 0;
-    white-space: nowrap;
-    min-width: 480px;
-  }
-  .token-table th, .token-table td { padding: 6px 10px; }
+  /* Token table — 2 visible columns, Usage hidden */
+  .token-table th:nth-child(3),
+  .token-table td:nth-child(3) { display: none; }
+  .token-table th, .token-table td { padding: 8px 10px; }
+  .tok { font-size: 10px; word-break: break-all; white-space: normal; }
+  .val { font-size: 11px; }
 
-  /* Form fields — full width */
+  /* Data table — hide less important columns */
+  .dt th:nth-child(2),
+  .dt td:nth-child(2),
+  .dt th:nth-child(4),
+  .dt td:nth-child(4) { display: none; }
+  .dt th, .dt td { padding: 8px 10px; font-size: 12px; }
+
+  /* Form fields — full width, 2 col grid */
   .field { width: 100%; }
   .demo__canvas--grid { grid-template-columns: 1fr 1fr; gap: 12px; }
 
   /* Type specimen — stack meta below sample */
   .type-specimen { flex-direction: column; gap: 4px; align-items: flex-start; }
-  .type-specimen__sample[style*="font-size:40px"] { font-size: 28px !important; }
-  .type-specimen__sample[style*="font-size:32px"] { font-size: 24px !important; }
-  .type-specimen__sample[style*="font-size:28px"] { font-size: 21px !important; }
+  .type-specimen__sample[style*="font-size:40px"] { font-size: 26px !important; }
+  .type-specimen__sample[style*="font-size:32px"] { font-size: 22px !important; }
+  .type-specimen__sample[style*="font-size:28px"] { font-size: 19px !important; }
 
-  /* Elevation tiles — wrap to 2 columns */
-  .elevation-row { gap: 12px; }
-  .elevation-tile { width: calc(50% - 6px); }
+  /* Elevation tiles — 2 per row */
+  .elevation-row { gap: 10px; }
+  .elevation-tile { width: calc(50% - 5px); height: 72px; }
 
-  /* Spacing grid — wrap */
+  /* Spacing grid — wrap naturally */
   .spacing-grid { gap: 10px; }
 
-  /* Shell preview — hide on mobile (too complex) */
+  /* Shell preview — hide, link still accessible */
   .shell-preview { display: none; }
-  .shell-preview + div { margin-top: 0; }
 
-  /* Callouts */
+  /* Callouts — full width, smaller text */
   .callout { font-size: 12px; }
 
-  /* Chips — wrap */
+  /* All flex canvases wrap */
   .demo__canvas { flex-wrap: wrap; }
 
-  /* Buttons demo */
+  /* Buttons */
   .btn-lg { padding: 7px 14px; font-size: 13px; }
 
   /* Divider */
@@ -1891,16 +1889,6 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.25 });
 
 sections.forEach(s => obs.observe(s));
-
-/* ── Wrap tables in scroll containers on mobile ──────────────────── */
-if (window.innerWidth <= 768) {
-  document.querySelectorAll('.token-table, .dt').forEach(t => {
-    const w = document.createElement('div');
-    w.className = 'table-scroll-wrap';
-    t.parentNode.insertBefore(w, t);
-    w.appendChild(t);
-  });
-}
 
 /* ── Mobile nav active state ─────────────────────────────────────── */
 const mobileNavItems = document.querySelectorAll('.mobile-nav__item[data-section]');
