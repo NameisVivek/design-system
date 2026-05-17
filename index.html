@@ -582,6 +582,56 @@ body {
 }
 .hero__pill i { font-size: 13px; color: var(--indigo-500); }
 
+.hero__process {
+  margin-bottom: 28px;
+  max-width: 640px;
+}
+.hero__process-label {
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: var(--stone-500);
+  margin-bottom: 14px;
+}
+.hero__process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--stone-200);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.hero__process-step {
+  display: flex;
+  gap: 16px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--stone-100);
+  background: #fff;
+}
+.hero__process-step:last-child { border-bottom: none; }
+.hero__process-step:hover { background: var(--canvas); }
+.hero__process-num {
+  font-size: 11px; font-weight: 700;
+  color: var(--indigo-300);
+  font-family: var(--mono);
+  flex-shrink: 0;
+  padding-top: 2px;
+  width: 20px;
+}
+.hero__process-title {
+  font-size: 13px; font-weight: 600;
+  color: var(--stone-950);
+  margin-bottom: 4px;
+}
+.hero__process-desc {
+  font-size: 13px; line-height: 20px;
+  color: var(--stone-700);
+}
+.hero__process-desc code {
+  font-family: var(--mono); font-size: 11px;
+  background: var(--canvas); padding: 1px 5px;
+  border-radius: 3px; color: var(--indigo-700);
+}
+
 .hero__objective {
   margin-bottom: 28px;
   padding: 18px 20px;
@@ -879,6 +929,40 @@ body {
         <p class="hero__objective-text">
           This design system exists to give every product team a single, shared visual language — one set of decisions made once, used everywhere. By centralising colour, typography, spacing, and component behaviour into versioned tokens and documented patterns, teams spend less time debating pixels and more time solving user problems. The goal is consistency without rigidity: a foundation strong enough that any screen built on top of it feels immediately familiar, and flexible enough that teams can still ship fast.
         </p>
+      </div>
+
+      <div class="hero__process">
+        <div class="hero__process-label">Process</div>
+        <div class="hero__process-steps">
+          <div class="hero__process-step">
+            <div class="hero__process-num">01</div>
+            <div>
+              <div class="hero__process-title">Design handoff</div>
+              <div class="hero__process-desc">Started from a Claude Design export — a bundled prototype containing the final approved app shell, chat transcripts, and all design assets. Extracted tokens, icon fonts, and component structure from the bundle.</div>
+            </div>
+          </div>
+          <div class="hero__process-step">
+            <div class="hero__process-num">02</div>
+            <div>
+              <div class="hero__process-title">Token audit</div>
+              <div class="hero__process-desc">Mapped the Supply token system — <code>--s-*</code> CSS custom properties covering colour, typography, spacing, radius, elevation, and iconography — into a structured reference so every decision traces back to a named token.</div>
+            </div>
+          </div>
+          <div class="hero__process-step">
+            <div class="hero__process-num">03</div>
+            <div>
+              <div class="hero__process-title">Documentation build</div>
+              <div class="hero__process-desc">Rebuilt the project from a single app shell screen into a full documentation site — Foundation, Components, and Patterns sections — with live demos, searchable icon grids, and token tables for every element.</div>
+            </div>
+          </div>
+          <div class="hero__process-step">
+            <div class="hero__process-num">04</div>
+            <div>
+              <div class="hero__process-title">Mobile adaptation</div>
+              <div class="hero__process-desc">Designed a parallel mobile layout — bottom tab navigation, sheet drawer, stacked content — ensuring the documentation and the framework shell both work as native-feeling apps on small screens without any zooming or horizontal overflow.</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="hero__pills">
