@@ -582,6 +582,26 @@ body {
 }
 .hero__pill i { font-size: 13px; color: var(--indigo-500); }
 
+.hero__objective {
+  margin-bottom: 28px;
+  padding: 18px 20px;
+  background: var(--canvas);
+  border: 1px solid var(--stone-200);
+  border-left: 3px solid var(--indigo-500);
+  border-radius: 0 8px 8px 0;
+  max-width: 640px;
+}
+.hero__objective-label {
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: var(--indigo-500);
+  margin-bottom: 8px;
+}
+.hero__objective-text {
+  font-size: 14px; line-height: 24px;
+  color: var(--stone-700);
+}
+
 /* ─── Responsive ──────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
 
@@ -853,6 +873,14 @@ body {
     <div class="hero" id="foundation">
       <div class="hero__title">Design System<br><span>documentation</span></div>
       <p class="hero__sub">A token-driven, component-first design language. Warm stone canvas, indigo brand actions, high-density layout built for power users.</p>
+
+      <div class="hero__objective">
+        <div class="hero__objective-label">Project objective</div>
+        <p class="hero__objective-text">
+          This design system exists to give every product team a single, shared visual language — one set of decisions made once, used everywhere. By centralising colour, typography, spacing, and component behaviour into versioned tokens and documented patterns, teams spend less time debating pixels and more time solving user problems. The goal is consistency without rigidity: a foundation strong enough that any screen built on top of it feels immediately familiar, and flexible enough that teams can still ship fast.
+        </p>
+      </div>
+
       <div class="hero__pills">
         <span class="hero__pill"><i class="s-icon-color"></i>Supply tokens</span>
         <span class="hero__pill"><i class="s-icon-star-empty"></i>251 icons</span>
